@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CREATE_EXE TRUE)
 
-add_executable(da_t2 main.cpp include/obj.h include/readFiles.h src/readFiles.cpp)
+add_executable(da_t2 main.cpp include/objs.h include/readFiles.h src/readFiles.cpp
+        include/minHeap.h include/graph.h src/graph.cpp)
 
 
