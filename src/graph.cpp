@@ -9,7 +9,6 @@ void Graph::addEdge(int src, int dest, int duration, int cap) {
     if (!hasDir) nodes[dest].adj.push_back({src, cap});
 }
 
-
 Graph buildGraph(int id, bool hasDir) {
 
     string path;
@@ -38,7 +37,6 @@ Graph buildGraph(int id, bool hasDir) {
 
     return graph;
 }
-
 
 int Graph::dijkstra_distance(int a, int b) {
 

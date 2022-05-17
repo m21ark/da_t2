@@ -1,14 +1,15 @@
 #include <iostream>
 #include "include/graph.h"
+#include "include/menu.h"
 
 using namespace std;
 
 int main() {
-    cout << "Starting to build graph...\n";
-    Graph graph = buildGraph(10);
-    cout << "Graph Built!\n";
 
-    cout << graph.dijkstra_distance(1, 5000) << endl;
+    Graph graph = buildGraph(1);
+    cout << graph.dijkstra_distance(1, 50) << endl;
+
+    Menu::start();
 
     getchar();
     return 0;
