@@ -5,11 +5,10 @@
 using namespace std;
 
 int main() {
-
     Graph graph = buildGraph(1);
-    cout << graph.dijkstra_distance(1, 50) << endl;
+    //Menu::start();
 
-    Menu::start();
+    graph.dfs(2);
 
     getchar();
     return 0;
