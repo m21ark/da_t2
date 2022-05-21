@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <iostream>
+#include "graph.h"
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -42,9 +43,16 @@ public:
      */
     static void start();
 
+    static int askInt(string message);
+
+    static void displayResults(int capacity, list<int> path);
+
 private:
 
     static void scenario1();
+    static void scenario1_1();
+    static void scenario1_2();
+    static void scenario1_3();
 
     static void scenario2();
 

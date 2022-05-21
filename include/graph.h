@@ -7,6 +7,8 @@
 #include <iostream>
 #include <queue>
 #include "readFiles.h"
+#include "../include/minHeap.h"
+#include "../include/maxHeap.h"
 
 #define INF ( INT_MAX / 2)
 
@@ -28,6 +30,7 @@ class Graph {
     struct Node {
         list<Edge> adj;
         int dist;
+        int capacity;
         int pred;
         Color color;
         bool visited;
@@ -45,7 +48,11 @@ public:
 
     int dijkstra_distance(int a, int b);
 
-    list<int> dijkstra_path(int a, int b);
+    int maximum_capacity(int a, int b);
+    int maximum_capacity_with_shortest_path(int a, int b);
+    int shortest_path_with_maximum_capacity(int a, int b);
+
+    list<int> get_path(int a, int b);
 
     int dfs(int v);
 

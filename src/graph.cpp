@@ -1,5 +1,5 @@
 #include "../include/graph.h"
-#include "../include/minHeap.h"
+
 
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num + 1) {}
 
@@ -26,11 +26,12 @@ Graph buildGraph(int id, bool hasDir) {
     ss >> numNodes;
     file.close();
 
+
     Graph graph = Graph(numNodes, hasDir);
 
     vector<FileContents> nodes = read_file(path);
 
-    for (int i = 1; i < nodes.size(); i++) {
+    for (int i = 0; i < nodes.size(); i++) {
         FileContents item = nodes[i];
         graph.addEdge(item.pred, item.dest, item.duration, item.capacity);
     }
@@ -75,10 +76,131 @@ int Graph::dijkstra_distance(int a, int b) {
     return -1;
 }
 
+int Graph::maximum_capacity(int a, int b) {
+    for (int i = 1; i <= n; i++) {
+        nodes[i].capacity = -1;
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
+    nodes[a].capacity = INF;
+    nodes[a].pred = a;
 
-list<int> Graph::dijkstra_path(int a, int b) {
+    MaxHeap<int, int> maxHeap(n, -1);
+    for (int i = 1; i <= n; i++)
+        maxHeap.insert(i, nodes[i].capacity);
 
-    dijkstra_distance(a, b);
+    while (maxHeap.getSize() > 0) {
+        int u = maxHeap.removeMax();
+        nodes[u].visited = true;
+
+        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
+
+            int newCap = min(nodes[u].capacity, it->cap);
+            int currentCap = nodes[it->dest].capacity;
+
+            if ( newCap > currentCap && !nodes[it->dest].visited) {
+                nodes[it->dest].capacity = newCap;
+                nodes[it->dest].pred = u;
+                maxHeap.increaseKey(it->dest, newCap);
+            }
+
+        }
+
+    }
+
+    return nodes[b].capacity;
+}
+
+
+int Graph::maximum_capacity_with_shortest_path(int a, int b) {
+    for (int i = 1; i <= n; i++) {
+        nodes[i].dist = INF;
+        nodes[i].capacity = -1;
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
+    nodes[a].capacity = INF;
+    nodes[a].dist = 0;
+    nodes[a].pred = a;
+
+    MaxHeap<int, int> maxHeap(n, -1);
+    for (int i = 1; i <= n; i++)
+        maxHeap.insert(i, nodes[i].capacity);
+
+    while (maxHeap.getSize() > 0) {
+        int u = maxHeap.removeMax();
+        nodes[u].visited = true;
+
+        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
+
+            int newCap = min(nodes[u].capacity, it->cap);
+            int currentCap = nodes[it->dest].capacity;
+            int newDist = nodes[u].dist + 1;
+            int currentDist = nodes[it->dest].dist;
+
+            if ( newCap > currentCap && !nodes[it->dest].visited) {
+                nodes[it->dest].capacity = newCap;
+                nodes[it->dest].dist = newDist;
+                nodes[it->dest].pred = u;
+                maxHeap.increaseKey(it->dest, newCap);
+            } else if (newCap == currentCap && newDist < currentDist && !nodes[it->dest].visited) {
+                nodes[it->dest].capacity = newCap;
+                nodes[it->dest].dist = newDist;
+                nodes[it->dest].pred = u;
+            }
+        }
+    }
+
+    return nodes[b].capacity;
+}
+
+int Graph::shortest_path_with_maximum_capacity(int a, int b) {
+    for (int i = 1; i <= n; i++) {
+        nodes[i].visited = false;
+        nodes[i].dist = INF;
+        nodes[i].capacity = 0;
+    }
+
+    nodes[a].visited = true;
+    nodes[a].dist = 0;
+    nodes[a].capacity = INF;
+    MinHeap<int, int> minHeap(n, -1); // queue of unvisited nodes
+    for (int i = 1; i <= n; i++)
+        minHeap.insert(i, nodes[i].dist);
+
+    while (minHeap.getSize() > 0) { // while there are still unvisited nodes
+        int u = minHeap.removeMin();
+        nodes[u].visited = true;
+
+        //cout << u << " "; // show node order
+        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
+
+            int newCap = min(nodes[u].capacity, it->cap);
+            int currentCap = nodes[it->dest].capacity;
+            int newDist = nodes[u].dist + 1;
+            int currentDist = nodes[it->dest].dist;
+
+            if (currentDist > newDist && !nodes[it->dest].visited) {
+                nodes[it->dest].capacity = newCap;
+                nodes[it->dest].dist = newDist;
+                nodes[it->dest].pred = u;
+                minHeap.decreaseKey(it->dest, newDist);
+
+            } else if (currentDist == newDist && newCap > currentCap && !nodes[it->dest].visited) {
+                nodes[it->dest].capacity = newCap;
+                nodes[it->dest].dist = newDist;
+                nodes[it->dest].pred = u;
+            }
+
+        }
+    }
+
+    return nodes[b].capacity;
+}
+
+list<int> Graph::get_path(int a, int b) {
+
+    //dijkstra_distance(a, b); call outside the function
     list<int> path = {b};
     int parent = b;
 
@@ -92,6 +214,9 @@ list<int> Graph::dijkstra_path(int a, int b) {
 
     return path;
 }
+
+
+
 
 
 // Depth-First Search: example implementation
