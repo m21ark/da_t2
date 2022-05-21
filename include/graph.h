@@ -30,6 +30,7 @@ class Graph {
     struct Node {
         list<Edge> adj;
         int dist;
+        int capacity;
         int pred;
         Color color;
         bool visited;
