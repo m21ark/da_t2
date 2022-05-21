@@ -11,10 +11,14 @@ TEST(MaxCapacity, cenario_1_1) {
     Graph graph1 = buildGraph(99, true);
     Graph graph2 = buildGraph(98, true);
 
-
+    ASSERT_EQ(4 , graph1.maximum_capacity_distance(1, 6));
+    ASSERT_EQ(7 , graph2.maximum_capacity_distance(1, 6));
 
 }
 
+TEST(MaxCapacity, cenario_1_2) {
+
+}
 
 
 

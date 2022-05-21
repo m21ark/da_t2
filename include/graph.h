@@ -7,6 +7,8 @@
 #include <iostream>
 #include <queue>
 #include "readFiles.h"
+#include "../include/minHeap.h"
+#include "../include/maxHeap.h"
 
 #define INF ( INT_MAX / 2)
 
@@ -45,7 +47,9 @@ public:
 
     int dijkstra_distance(int a, int b);
 
-    list<int> dijkstra_path(int a, int b);
+    int maximum_capacity_distance(int a, int b);
+
+    list<int> get_path(int a, int b);
 
     int dfs(int v);
 

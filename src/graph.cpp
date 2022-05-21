@@ -1,5 +1,5 @@
 #include "../include/graph.h"
-#include "../include/minHeap.h"
+
 
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num + 1) {}
 
@@ -26,11 +26,12 @@ Graph buildGraph(int id, bool hasDir) {
     ss >> numNodes;
     file.close();
 
+
     Graph graph = Graph(numNodes, hasDir);
 
     vector<FileContents> nodes = read_file(path);
 
-    for (int i = 1; i < nodes.size(); i++) {
+    for (int i = 0; i < nodes.size(); i++) {
         FileContents item = nodes[i];
         graph.addEdge(item.pred, item.dest, item.duration, item.capacity);
     }
@@ -75,10 +76,44 @@ int Graph::dijkstra_distance(int a, int b) {
     return -1;
 }
 
+int Graph::maximum_capacity_distance(int a, int b) {
+    for (int i = 1; i <= n; i++) {
+        nodes[i].dist = -1;
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
+    nodes[a].dist = INF;
+    nodes[a].pred = a;
 
-list<int> Graph::dijkstra_path(int a, int b) {
+    MaxHeap<int, int> maxHeap(n, -1);
+    for (int i = 1; i <= n; i++)
+        maxHeap.insert(i, nodes[i].dist);
 
-    dijkstra_distance(a, b);
+    while (maxHeap.getSize() > 0) {
+        int u = maxHeap.removeMax();
+        nodes[u].visited = true;
+
+        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
+
+            int newCap = min(nodes[u].dist, it->cap);
+            int currentCap = nodes[it->dest].dist;
+
+            if ( newCap > currentCap ) {
+                nodes[it->dest].dist = newCap;
+                nodes[it->dest].pred = u;
+                maxHeap.increaseKey(it->dest, newCap);
+            }
+
+        }
+
+    }
+
+    return nodes[b].dist;
+};
+
+list<int> Graph::get_path(int a, int b) {
+
+    //dijkstra_distance(a, b); call outside the function
     list<int> path = {b};
     int parent = b;
 
@@ -92,6 +127,9 @@ list<int> Graph::dijkstra_path(int a, int b) {
 
     return path;
 }
+
+
+
 
 
 // Depth-First Search: example implementation
