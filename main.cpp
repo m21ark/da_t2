@@ -7,13 +7,12 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    //testing::InitGoogleTest(&argc, argv);
+    //return RUN_ALL_TESTS();
 
     Graph graph = buildGraph(1);
-    //Menu::start();
+    Menu::start();
 
-    graph.dfs(2);
 
     getchar();
     return 0;
