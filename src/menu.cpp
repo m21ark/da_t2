@@ -15,16 +15,8 @@ bool emptyStream(istream &ios) {
     return false;
 }
 
-char askChar() {
-    char c;
-    cout << ">> ";
-    cin >> c;
-    cin.clear();
-    cin.ignore(1000, '\n');
-    return c;
-}
 
-int Menu::askInt(string message) {
+int Menu::askInt(const string &message) {
     cout << message;
     string userInput;
     int response;
@@ -34,15 +26,14 @@ int Menu::askInt(string message) {
                 cout << "\nInvalid Input!\n";
                 continue;
             }
-
             try {
                 response = stoi(userInput);
                 return response;
-            } catch (invalid_argument ) {
+
+                //NOLINTNEXTLINE
+            } catch (exception) {
                 cout << "\nInvalid Input!\n";
-                continue;
-            } catch (out_of_range) {
-                cout << "\nInvalid Input!\n";
+                cin.clear();
                 continue;
             }
 
@@ -55,12 +46,11 @@ int Menu::askInt(string message) {
 }
 
 
-void Menu::displayResults(int capacity, list<int> path) {
-    cout << "  The path will be: ";
-    for (auto it = path.begin(); it != path.end(); it++) {
-        cout << *it << " ";
-    }
-    cout << "\n  The max group size of this path is: " << capacity << endl;
+void Menu::displayResults(int capacity, const list<int> &path) {
+    cout << "The path will be:\n";
+    for (const int &it: path)
+        cout << it << "  ";
+    cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
 }
 
 
@@ -89,10 +79,10 @@ void Menu::start() {
                 case '0':
                     return;
                 case '1':
-                    scenario1();
+                    submenu1();
                     break;
                 case '2':
-                    scenario2();
+                    submenu2();
                     break;
                 default:
                     cout << "Invalid Input!\n";
@@ -109,8 +99,7 @@ void Menu::start() {
 }
 
 
-
-void Menu::scenario1() {
+void Menu::submenu1() {
     char userInput;
     (void) system(CLEAR);
 
@@ -136,13 +125,13 @@ void Menu::scenario1() {
                 case '0':
                     return;
                 case '1':
-                    scenario1_1();
+                    scenario1(1);
                     return;
                 case '2':
-                    scenario1_2();
+                    scenario1(2);
                     return;
                 case '3':
-                    scenario1_3();
+                    scenario1(3);
                     return;
                 default:
                     cout << "Invalid Input!\n";
@@ -154,47 +143,108 @@ void Menu::scenario1() {
             continue;
         }
     }
-
-    getchar();
 }
 
-void Menu::scenario1_1() {
+
+void Menu::scenario1(int option) {
     // Check the if they exist
-    int dataSetId = askInt("  Enter Data set id:  ");
-    int begin = askInt("  Enter number of starting stop: ");
-    int end = askInt("  Enter the number of ending stop: ");
+    int dataSetId = askInt("\nEnter Data set id:  ");
+    int begin = askInt("Enter number of starting stop: ");
+    int end = askInt("Enter the number of ending stop: ");
     Graph graph = buildGraph(dataSetId, true);
-    int capacity = graph.maximum_capacity(begin, end);
+
+    int capacity;
+
+    if (option == 1)
+        capacity = graph.maximum_capacity(begin, end);
+    else if (option == 2)
+        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
+    else
+        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
+
     list<int> path = graph.get_path(begin, end);
     displayResults(capacity, path);
-}
-
-void Menu::scenario1_2() {
-    int dataSetId = askInt("  Enter Data set id:  ");
-    int begin = askInt("  Enter number of starting stop: ");
-    int end = askInt("  Enter the number of ending stop: ");
-    Graph graph = buildGraph(dataSetId, true);
-    int capacity = graph.maximum_capacity_with_shortest_path(begin, end);
-    list<int> path = graph.get_path(begin, end);
-    displayResults(capacity, path);
-}
-
-void Menu::scenario1_3() {
-    int dataSetId = askInt("  Enter Data set id:  ");
-    int begin = askInt("  Enter number of starting stop: ");
-    int end = askInt("  Enter the number of ending stop: ");
-    Graph graph = buildGraph(dataSetId, true);
-    int capacity = graph.shortest_path_with_maximum_capacity(begin, end);
-    list<int> path = graph.get_path(begin, end);
-    displayResults(capacity, path);
-}
-
-
-
-void Menu::scenario2() {
-
-    cout << " Scenario 2!\n";
     getchar();
+}
+
+
+void Menu::submenu2() {
+    char userInput;
+    (void) system(CLEAR);
+
+    cout << "==============================================" << endl;
+    cout << "                   Scenario 2                 " << endl;
+    cout << "==============================================" << endl;
+    cout << "   1)  2.1                                    " << endl;
+    cout << "   2)  2.2                                    " << endl;
+    cout << "   3)  2.3                                    " << endl;
+    cout << "   4)  2.4                                    " << endl;
+    cout << "   5)  2.5                                    " << endl;
+    cout << "   0)  Exit                                   " << endl;
+    cout << "==============================================" << endl;
+    cout << "\n > ";
+
+
+    while (true) {
+        if ((cin >> userInput)) {
+            if (!emptyStream(cin)) {
+                cout << "Invalid Input!\n";
+                continue;
+            }
+
+            switch (userInput) {
+                case '0':
+                    return;
+                case '1':
+                    scenario2(1);
+                    return;
+                case '2':
+                    scenario2(2);
+                    return;
+                case '3':
+                    scenario2(3);
+                    return;
+                case '4':
+                    scenario2(4);
+                    return;
+                case '5':
+                    scenario2(5);
+                    return;
+                default:
+                    cout << "Invalid Input!\n";
+                    continue;
+            }
+        } else {
+            cout << "Invalid Input!\n";
+            getchar();
+            continue;
+        }
+    }
+}
+
+
+void Menu::scenario2(int option) {
+    /*
+    // Check the if they exist
+    int dataSetId = askInt("\nEnter Data set id:  ");
+    int begin = askInt("Enter number of starting stop: ");
+    int end = askInt("Enter the number of ending stop: ");
+    Graph graph = buildGraph(dataSetId, true);
+
+
+    int capacity;
+
+    if (option == 1)
+        capacity = graph.maximum_capacity(begin, end);
+    else if (option == 2)
+        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
+    else
+        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
+
+    list<int> path = graph.get_path(begin, end);
+    displayResults(capacity, path);
+    getchar();
+    */
 }
 
 
