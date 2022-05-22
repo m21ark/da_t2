@@ -26,15 +26,12 @@ Graph buildGraph(int id, bool hasDir) {
     ss >> numNodes;
     file.close();
 
-
     Graph graph = Graph(numNodes, hasDir);
 
     vector<FileContents> nodes = read_file(path);
 
-    for (int i = 0; i < nodes.size(); i++) {
-        FileContents item = nodes[i];
+    for (const FileContents &item: nodes)
         graph.addEdge(item.pred, item.dest, item.duration, item.capacity);
-    }
 
     return graph;
 }
@@ -76,6 +73,9 @@ int Graph::dijkstra_distance(int a, int b) {
     return -1;
 }
 
+
+/*___________________________________SCENARIO 1___________________________________*/
+
 int Graph::maximum_capacity(int a, int b) {
     for (int i = 1; i <= n; i++) {
         nodes[i].capacity = -1;
@@ -103,11 +103,8 @@ int Graph::maximum_capacity(int a, int b) {
                 nodes[it->dest].pred = u;
                 maxHeap.increaseKey(it->dest, newCap);
             }
-
         }
-
     }
-
     return nodes[b].capacity;
 }
 
@@ -138,19 +135,17 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b) {
             int newDist = nodes[u].dist + 1;
             int currentDist = nodes[it->dest].dist;
 
-            if (newCap > currentCap && !nodes[it->dest].visited) {
+            bool b1 = (newCap > currentCap && !nodes[it->dest].visited);
+            bool b2 = (newCap == currentCap && newDist < currentDist && !nodes[it->dest].visited);
+
+            if (b1 || b2) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
                 nodes[it->dest].pred = u;
-                maxHeap.increaseKey(it->dest, newCap);
-            } else if (newCap == currentCap && newDist < currentDist && !nodes[it->dest].visited) {
-                nodes[it->dest].capacity = newCap;
-                nodes[it->dest].dist = newDist;
-                nodes[it->dest].pred = u;
+                if (b1) maxHeap.increaseKey(it->dest, newCap);
             }
         }
     }
-
     return nodes[b].capacity;
 }
 
@@ -164,6 +159,7 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b) {
     nodes[a].visited = true;
     nodes[a].dist = 0;
     nodes[a].capacity = INF;
+
     MinHeap<int, int> minHeap(n, -1); // queue of unvisited nodes
     for (int i = 1; i <= n; i++)
         minHeap.insert(i, nodes[i].dist);
@@ -180,23 +176,21 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b) {
             int newDist = nodes[u].dist + 1;
             int currentDist = nodes[it->dest].dist;
 
-            if (currentDist > newDist && !nodes[it->dest].visited) {
-                nodes[it->dest].capacity = newCap;
-                nodes[it->dest].dist = newDist;
-                nodes[it->dest].pred = u;
-                minHeap.decreaseKey(it->dest, newDist);
+            bool b1 = (currentDist > newDist && !nodes[it->dest].visited);
+            bool b2 = (currentDist == newDist && newCap > currentCap && !nodes[it->dest].visited);
 
-            } else if (currentDist == newDist && newCap > currentCap && !nodes[it->dest].visited) {
+            if (b1 || b2) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
                 nodes[it->dest].pred = u;
+                if (b1) minHeap.decreaseKey(it->dest, newDist);
             }
-
         }
     }
-
     return nodes[b].capacity;
 }
+
+/*___________________________________/SCENARIO 1___________________________________*/
 
 list<int> Graph::get_path(int a, int b) {
 
@@ -321,9 +315,7 @@ int Graph::diameter() {
 
     for (int i = 1; i <= n; i++)
         d = max(d, nodes[i].dist);
-
     return d;
-
 }
 
 

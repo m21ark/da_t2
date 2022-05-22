@@ -107,7 +107,7 @@ void Menu::submenu1() {
     cout << "                   Scenario 1                 " << endl;
     cout << "==============================================" << endl;
     cout << "   1)  Maximize Group Size                    " << endl;
-    cout << "   2)  Maximize Group Size with Shortest Path " << endl;
+    cout << "   2)  Maximize Group Size VS Shortest Path " << endl;
     cout << "   3)  Minimize Path with with Max Group Size " << endl;
     cout << "   0)  Exit                                   " << endl;
     cout << "==============================================" << endl;
