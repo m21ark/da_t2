@@ -26,11 +26,6 @@ string trimStr(string str);
  */
 bool emptyStream(istream &ios);
 
-/**
- * Asks user for a char
- * @return user given char
- */
-char askChar();
 
 /**
  * Simple Menu Terminal GUI
@@ -43,18 +38,19 @@ public:
      */
     static void start();
 
-    static int askInt(string message);
+    static int askInt(const string& message);
 
-    static void displayResults(int capacity, list<int> path);
+    static void displayResults(int capacity, const list<int>& path);
 
 private:
 
-    static void scenario1();
-    static void scenario1_1();
-    static void scenario1_2();
-    static void scenario1_3();
+    static void submenu1();
 
-    static void scenario2();
+    static void scenario1(int option);
+
+    static void submenu2();
+
+    static void scenario2(int option);
 
 };
 

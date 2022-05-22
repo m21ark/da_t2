@@ -98,7 +98,7 @@ int Graph::maximum_capacity(int a, int b) {
             int newCap = min(nodes[u].capacity, it->cap);
             int currentCap = nodes[it->dest].capacity;
 
-            if ( newCap > currentCap && !nodes[it->dest].visited) {
+            if (newCap > currentCap && !nodes[it->dest].visited) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].pred = u;
                 maxHeap.increaseKey(it->dest, newCap);
@@ -138,7 +138,7 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b) {
             int newDist = nodes[u].dist + 1;
             int currentDist = nodes[it->dest].dist;
 
-            if ( newCap > currentCap && !nodes[it->dest].visited) {
+            if (newCap > currentCap && !nodes[it->dest].visited) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
                 nodes[it->dest].pred = u;
@@ -214,9 +214,6 @@ list<int> Graph::get_path(int a, int b) {
 
     return path;
 }
-
-
-
 
 
 // Depth-First Search: example implementation

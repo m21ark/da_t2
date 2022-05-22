@@ -20,11 +20,8 @@ enum Color {
 
 class Graph {
 
-
     struct Edge {
-        int dest;
-        int duration;
-        int cap;
+        int dest, duration, cap;
     };
 
     struct Node {
@@ -49,7 +46,9 @@ public:
     int dijkstra_distance(int a, int b);
 
     int maximum_capacity(int a, int b);
+
     int maximum_capacity_with_shortest_path(int a, int b);
+
     int shortest_path_with_maximum_capacity(int a, int b);
 
     list<int> get_path(int a, int b);
