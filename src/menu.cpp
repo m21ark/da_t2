@@ -36,7 +36,6 @@ int Menu::askInt(const string &message) {
                 cin.clear();
                 continue;
             }
-
         } else {
             cout << "\nInvalid Input!\n";
             getchar();
@@ -108,7 +107,6 @@ void Menu::submenu1() {
     cout << "==============================================" << endl;
     cout << "   1)  Maximize Group Size                    " << endl;
     cout << "   2)  Maximize Group Size VS Shortest Path " << endl;
-    cout << "   3)  Minimize Path with with Max Group Size " << endl;
     cout << "   0)  Exit                                   " << endl;
     cout << "==============================================" << endl;
     cout << "\n > ";
@@ -129,9 +127,6 @@ void Menu::submenu1() {
                     return;
                 case '2':
                     scenario1(2);
-                    return;
-                case '3':
-                    scenario1(3);
                     return;
                 default:
                     cout << "Invalid Input!\n";
@@ -155,15 +150,29 @@ void Menu::scenario1(int option) {
 
     int capacity;
 
-    if (option == 1)
-        capacity = graph.maximum_capacity(begin, end);
-    else if (option == 2)
-        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
-    else
-        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
 
-    list<int> path = graph.get_path(begin, end);
-    displayResults(capacity, path);
+    if (option == 1) {
+        capacity = graph.maximum_capacity(begin, end);
+        list<int> path = graph.get_path(begin, end);
+        displayResults(capacity, path);
+    } else {
+
+        int capacity1 = graph.maximum_capacity_with_shortest_path(begin, end);
+        list<int> path1 = graph.get_path(begin, end);
+
+        int capacity2 = graph.shortest_path_with_maximum_capacity(begin, end);
+        list<int> path2 = graph.get_path(begin, end);
+
+        if (capacity1 == capacity2) {
+            cout << "\nBoth algorithms reached same max capacity value. Showing shortest path.\n\n";
+            displayResults(capacity2, path2);
+        } else {
+            cout << "\nTwo solutions were computed:\n\n(Max Capacity with shortest path)\n";
+            displayResults(capacity1, path1);
+            cout << "\n(Shortest path with max Capacity)\n";
+            displayResults(capacity2, path2);
+        }
+    }
     getchar();
 }
 
