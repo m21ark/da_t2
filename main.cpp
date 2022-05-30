@@ -7,13 +7,25 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    //testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
+    // Menu::start();
 
-    Graph graph = buildGraph(1);
-    Menu::start();
+    Graph graph = buildGraph(94, true);
+
+    // cout << graph.fordFulkerson(1, 6, graph);
+
+    cout << "Here!" << endl;
+    cout << graph.solve();
+    cout << "\nHere2!" << endl;
+    graph.printResidual();
+
+    /*auto p = graph.path_flow(1, 6);
+
+    cout << "flow : " << p.first << endl;
+
+    for (auto e: p.second)
+        cout << e << " ";*/
 
 
-    getchar();
+    //getchar();
     return 0;
 }

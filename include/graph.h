@@ -21,7 +21,7 @@ enum Color {
 class Graph {
 
     struct Edge {
-        int dest, duration, cap;
+        int dest, duration, cap, flow, residual;
     };
 
     struct Node {
@@ -34,12 +34,12 @@ class Graph {
     };
 
     int n;
-    bool hasDir;
+    bool includeResidual;
     vector<Node> nodes;
 
 public:
 
-    explicit Graph(int nodes, bool dir = false);
+    explicit Graph(int nodes, bool includeResidual = false);
 
     void addEdge(int src, int dest, int duration, int cap = 1);
 
@@ -59,6 +59,12 @@ public:
 
     int outDegree(int v);
 
+    bool bfs2(int s, int t);
+
+    pair<int, list<int>> path_flow(int a, int b);
+
+    list<int> getResidualPath();
+
     int connectedComponents();
 
     int giantComponent();
@@ -66,6 +72,8 @@ public:
     list<int> topologicalSorting();
 
     void dfsTopSort(int v, list<int> &l);
+
+    int fordFulkerson(int s, int t, Graph graph);
 
     int distance(int a, int b);
 
@@ -77,8 +85,94 @@ public:
 
     int prim(int r);
 
+    int solve() {
+        int flow, maxFlow = 0;
+        do {
+            flow = bfs5(1, n);
+            cout << "Current flow = " << flow << endl;
+            maxFlow += flow;
+        } while (flow != 0);
+        return maxFlow;
+    }
+
+
+    int bfs5(int s, int t) {
+
+        for (int i = 1; i <= n; i++) {
+            nodes[i].visited = false;
+            nodes[i].pred = -1;
+        }
+
+
+        queue<int> q;
+        q.push(s);
+        nodes[s].visited = true;
+
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+            if (node == t) break;
+
+            for (auto e: nodes[node].adj) {
+                int remaining_cap = e.cap - e.flow;
+                if (remaining_cap > 0 && !nodes[e.dest].visited) {
+                    nodes[e.dest].pred = node;
+                    nodes[e.dest].visited = true;
+                    q.push(e.dest);
+                }
+            }
+        }
+
+        // no path to the sink
+        if (!nodes[t].visited) return 0;
+
+        // ===========================================================================
+
+
+        // Find augmented path and bottle neck
+        int bottleNeck = INT_MAX;
+        int parent = t;
+        int child;
+
+        while (parent != s) {
+            child = parent;
+            parent = nodes[parent].pred;
+
+            for (Edge e: nodes[parent].adj)
+                if (e.dest == child) {
+                    bottleNeck = min(bottleNeck, e.cap - e.flow);
+                    break;
+                }
+        }
+
+        // ===========================================================================
+
+        parent = t;
+        cout << t << " --> ";
+        while (parent != s) {
+            child = parent;
+            parent = nodes[parent].pred;
+
+            cout << parent << " --> ";
+            for (Edge &e: nodes[parent].adj)
+                if (e.dest == child) {
+                    e.flow += bottleNeck;
+                    e.residual -= bottleNeck;
+                }
+        }
+
+        // Return bottleneck flow
+        return bottleNeck;
+    }
+
+    void printResidual() {
+        for (int i = 1; i <= n; i++)
+            for (Edge e: nodes[i].adj)
+                printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
+                       e.flow, e.residual, e.cap == 0);
+    }
 };
 
-Graph buildGraph(int id, bool hasDir = false);
+Graph buildGraph(int id, bool includeResidual = false);
 
 #endif
