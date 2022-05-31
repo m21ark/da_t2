@@ -1,7 +1,7 @@
 #include "../include/graph.h"
 
 
-Graph::Graph(int num, bool dir) : n(num), includeResidual(dir), nodes(num + 1) {}
+Graph::Graph(int num, bool dir) : n(num), includeResidual(dir), nodes(num + 2) {}
 
 void Graph::addEdge(int src, int dest, int duration, int cap) {
 
@@ -245,6 +245,7 @@ stack<int> Graph::topologicalSorting() {
     return order;
 }
 
+//NOLINTNEXTLINE
 void Graph::dfsTopSort(int v, stack<int> &l) {
     nodes[v].visited = true;
     for (auto e: nodes[v].adj) {
@@ -255,7 +256,7 @@ void Graph::dfsTopSort(int v, stack<int> &l) {
     l.push(v);
 }
 
-
+//NOLINTNEXTLINE
 bool Graph::cycleDfs(int v) {
     nodes[v].color = GREY;
     for (auto e: nodes[v].adj) {
@@ -352,6 +353,28 @@ void Graph::max_path_dag() {
                 S.push(e.dest);
         }
     }
+}
+
+
+void Graph::cen_2_1(int groupSize) {
+
+    int maxCapPath = maximum_capacity_with_shortest_path(1, n);
+
+    if (maxCapPath >= groupSize) {
+
+        cout << "\nA path was found where the group doesnt need to break apart:\n";
+        list<int> path = get_path(1, n);
+
+        cout << "\nThe path will be:\n";
+        for (const int &it: path)
+            cout << it << " ";
+        cout << "\n\nThe max group size of this path is:\n" << maxCapPath << endl;
+
+        return;
+    }
+
+
+    cout << "ADD LIMITING NODE AT START!";
 }
 
 
