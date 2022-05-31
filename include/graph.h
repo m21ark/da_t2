@@ -118,8 +118,8 @@ public:
             if (node == t) break;
 
             for (auto e: nodes[node].adj) {
-                int remaining_cap = e.cap - e.flow;
-                if (remaining_cap > 0 && !nodes[e.dest].visited) {
+                // int remaining_cap = e.cap - e.flow;
+                if (e.residual > 0 && !nodes[e.dest].visited) {
                     nodes[e.dest].pred = node;
                     nodes[e.dest].visited = true;
                     q.push(e.dest);
@@ -160,13 +160,20 @@ public:
             cout << parent << " --> ";
             for (Edge &e: nodes[parent].adj)
                 if (e.dest == child) {
-                    e.flow += bottleNeck;
                     e.residual -= bottleNeck;
-                    // adicionar à edge contrario
+
+                    // aresta residual
+                    for (auto e2: nodes[e.dest].adj) {
+                        if (e2.dest == parent) {
+                            e2.residual += bottleNeck;
+                        }
+                    }
                 }
         }
 
         // Return bottleneck flow
+        cout << endl;
+        printResidual();
         return bottleNeck;
     }
 
@@ -178,8 +185,11 @@ public:
     }
 
     void activity_readyAt();
+
     void print_readyAt();
+
     void max_waited_time();
+
     void max_path_dag();
 
 };
