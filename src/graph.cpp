@@ -314,6 +314,9 @@ void Graph::max_waited_time() {
     for (auto n: nodesOfMaxWait) {
         cout << "Node max:  " << n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
     }
+
+    if (nodesOfMaxWait.empty())
+        cout << "No Waiting breaks" << endl;
 }
 
 void Graph::max_path_dag() {

@@ -208,7 +208,7 @@ void Menu::submenu2() {
         cout << "=====================================" << endl;
         cout << "   1)  User Given Group Size         " << endl;
         cout << "   2)  Max Group Size                " << endl;
-        cout << "   3)  Dinic's solution (better in ) " << endl;
+        cout << "   3)  Dinic's solution (better in this situation) " << endl;
         cout << "   0)  Go Back                       " << endl;
         cout << "=====================================" << endl;
         cout << " > ";
