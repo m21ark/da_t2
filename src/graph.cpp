@@ -379,12 +379,12 @@ int Graph::giantComponent() {
 }
 
 
-list<int> Graph::topologicalSorting() {
+stack<int> Graph::topologicalSorting() {
 
     for (int i = 1; i <= n; i++)
         nodes[i].visited = false;
 
-    list<int> order;
+    stack<int> order;
 
     for (int i = 1; i <= n; i++)
         if (!nodes[i].visited)
@@ -393,14 +393,14 @@ list<int> Graph::topologicalSorting() {
     return order;
 }
 
-void Graph::dfsTopSort(int v, list<int> &l) {
+void Graph::dfsTopSort(int v, stack<int> &l) {
     nodes[v].visited = true;
     for (auto e: nodes[v].adj) {
         int w = e.dest;
         if (!nodes[w].visited)
             dfsTopSort(w, l);
     }
-    l.push_front(v);
+    l.push(v);
 }
 
 
@@ -485,8 +485,8 @@ void Graph::activity_readyAt() {
     nodes[1].dist = 0;
     auto lst = topologicalSorting();
     while (!lst.empty()){
-        int i = lst.front();
-        lst.pop_front();
+        int i = lst.top();
+        lst.pop();
         for (auto& e : nodes[i].adj) {
             int w = e.dest;
             if (nodes[w].dist < nodes[i].dist+ e.duration && e.flow > 0) { // TODO: e.flow esta correto? yup, ma friend
@@ -497,4 +497,67 @@ void Graph::activity_readyAt() {
 }
 void Graph::print_readyAt() {
     cout << "Node: "<< n << " Ready at: " << nodes[n].dist << endl;
+}
+
+void Graph::max_waited_time() {
+
+    int max = 0;
+    list<Node> nodesOfMaxWait;
+    for (auto n : nodes) {
+        for ( auto & e : n.adj) {
+            if (n.dist + e.duration < nodes[e.dest].dist && e.flow > 0 && nodes[e.dest].FT_MAX < n.dist + e.duration) {
+                nodes[e.dest].FT_MAX = n.dist + e.duration;
+                if (nodes[e.dest].FT_MAX > max) {
+                    max = nodes[e.dest].FT_MAX;
+                    nodesOfMaxWait.empty();
+                    nodesOfMaxWait.push_back(nodes[e.dest]);
+                } else if (nodes[e.dest].FT_MAX == max) {
+                    nodesOfMaxWait.push_back(nodes[e.dest]);
+                }
+            }
+        }
+    }
+
+    for (auto n : nodesOfMaxWait) {
+        cout <<"Node max:  "<< n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
+    }
+}
+
+void Graph::max_path_dag() {
+    for (int i = 1; i <= n; ++i) {
+        nodes[i].pred = NULL;
+        nodes[i].dist = 0;
+        nodes[i].degree = 0;
+    }
+    for(int i = 1; i <= n; ++i) {
+        for (auto & e : nodes[i].adj) {
+            if (e.flow > 0)
+                nodes[e.dest].degree++;
+        }
+    }
+    queue<int> S;
+    for (int i = 1; i <= n ; ++i) {
+        if (nodes[i].degree == 0 )
+            S.push(i);
+    }
+
+    int durMin = -1, vf = NULL;
+
+    while (!S.empty()) {
+        int v = S.front();
+        S.pop();
+        if (durMin < nodes[v].dist) {
+            durMin = nodes[v].dist;
+            vf = v;
+        }
+        for (auto &e : nodes[v].adj) {
+            if  (nodes[e.dest].dist < nodes[v].dist + e.duration && e.flow > 0) {
+                nodes[e.dest].dist = nodes[v].dist + e.duration;
+                nodes[e.dest].pred = v;
+            }
+            nodes[e.dest].degree--;
+            if (nodes[e.dest].degree == 0)
+                S.push(e.dest);
+        }
+    }
 }

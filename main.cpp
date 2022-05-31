@@ -16,10 +16,15 @@ int main(int argc, char *argv[]) {
     cout << graph.solve();
     cout << "\nHere2!" << endl;
 
-    graph.activity_readyAt();
+    // graph.activity_readyAt();
+    // graph.print_readyAt();
+    // graph.max_waited_time();
+    graph.max_path_dag();
     graph.print_readyAt();
+    graph.max_waited_time();
 
-    graph.printResidual();
+    // be carefull has some of the above funcs changes the dist atributes of the graph
+    // graph.printResidual();
 
     /*auto p = graph.path_flow(1, 6);
 

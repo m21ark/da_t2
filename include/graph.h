@@ -5,7 +5,9 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include "set"
 #include <queue>
+#include "stack"
 #include "readFiles.h"
 #include "../include/minHeap.h"
 #include "../include/maxHeap.h"
@@ -32,6 +34,7 @@ class Graph {
         Color color;
         bool visited;
         int degree = 0;
+        int FT_MAX = 0;
     };
 
     int n;
@@ -70,9 +73,9 @@ public:
 
     int giantComponent();
 
-    list<int> topologicalSorting();
+    stack<int> topologicalSorting();
 
-    void dfsTopSort(int v, list<int> &l);
+    void dfsTopSort(int v, stack<int> &l);
 
     int fordFulkerson(int s, int t, Graph graph);
 
@@ -176,6 +179,9 @@ public:
 
     void activity_readyAt();
     void print_readyAt();
+    void max_waited_time();
+    void max_path_dag();
+
 };
 
 Graph buildGraph(int id, bool includeResidual = false);
