@@ -35,6 +35,7 @@ class Graph {
         bool visited;
         int degree = 0;
         int FT_MAX = 0;
+        int level;
     };
 
     int n;
@@ -59,6 +60,8 @@ public:
 
     int dfs(int v);
 
+    bool bfs_sink(int u, int v);
+
     stack<int> topologicalSorting();
 
     void dfsTopSort(int v, stack<int> &l);
@@ -78,6 +81,10 @@ public:
     // ----------------------------------------------------
 
     int edmonds_karp_bfs(int s, int t);
+
+    int dinic_algo();
+
+    int send_dinic_flow(int s, int flow, int t);
 
     int edmonds_karp();
 

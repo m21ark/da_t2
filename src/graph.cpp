@@ -397,6 +397,84 @@ int Graph::edmonds_karp() {
     return maxFlow;
 }
 
+bool Graph::bfs_sink(int s, int v) {
+    for (int i = 1; i <= n; ++i) {
+        nodes[i].level = -1;
+        nodes[i].visited = false;
+    }
+
+    queue<int> q; // queue of unvisited nodes
+    q.push(s);
+
+    nodes[s]. visited = true;
+    nodes[s].level = 0;
+
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front(); q.pop();
+        // cout << u << " "; // show node order
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited && e.flow < e.cap) {
+                q.push(w);
+                nodes[w].visited = true;
+                nodes[w].level = nodes[u].level + 1;
+            }
+        }
+    }
+
+    return nodes[v].visited;
+}
+
+int Graph::send_dinic_flow(int s, int flow, int t) {
+
+    if (s == t) {
+        cout << t << "\n";
+        return flow;
+    }
+    cout << s << " --> ";
+
+    for (auto &e : nodes[s].adj) {
+        if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
+            int cur_flow = min(flow, e.cap - e.flow);
+            int temp_flow = send_dinic_flow(e.dest, cur_flow, t);
+
+            if (temp_flow > 0) {
+
+                e.flow += temp_flow;
+
+                for (auto &e2 : nodes[e.dest].adj) {
+                    if (e2.dest == s) {
+                        e2.flow -= temp_flow;
+                    }
+                }
+                return temp_flow;
+            }
+        }
+    }
+
+    return 0;
+}
+
+int Graph::dinic_algo() {
+
+    int total = 0;
+
+    for (int i = 1; i <= n; i++) {
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
+
+    while (bfs_sink(1, n))
+    {
+        while (int flow = send_dinic_flow(1, INT_MAX, n))
+            total += flow;
+    }
+
+
+    return total;
+}
+
+
 int Graph::edmonds_karp_flow_path(int s, int t) {
 
     // Get nodes distance from S
