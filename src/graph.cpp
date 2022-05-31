@@ -356,15 +356,6 @@ void Graph::max_path_dag() {
 
 
 // ======================= EDMONDS KARP ==============================
-int Graph::edmonds_karp() {
-    int flow, maxFlow = 0;
-    do {
-        flow = edmonds_karp_bfs(1, n);
-        cout << "New found flow = " << flow << endl;
-        maxFlow += flow;
-    } while (flow != 0);
-    return maxFlow;
-}
 
 int Graph::edmonds_karp_bfs(int s, int t) {
     for (int i = 1; i <= n; i++) {
@@ -388,34 +379,41 @@ int Graph::edmonds_karp_bfs(int s, int t) {
                 nodes[e.dest].visited = true;
                 q.push(e.dest);
             }
-
     }
 
     // no path to the sink
-    if (!nodes[t].visited) return 0;
+    if (!nodes[t].visited) return 1;
+    return 0;
+}
 
-    // ===========================================================================
+int Graph::edmonds_karp() {
+    int flow, maxFlow = 0;
+    do {
+        flow = edmonds_karp_flow_path(1, n);
+        cout << "New found flow = " << flow << endl;
+        maxFlow += flow;
+    } while (flow != 0);
+    return maxFlow;
+}
 
+int Graph::edmonds_karp_flow_path(int s, int t) {
 
-    // Find augmented path and bottle neck
-    int bottleNeck = INT_MAX;
-    int parent = t;
-    int child;
+    // Get nodes distance from S
+    if (edmonds_karp_bfs(s, t))
+        return 0;
 
-    while (parent != s) {
-        child = parent;
-        parent = nodes[parent].pred;
+    // Get path flow bottleneck
+    int bottleNeck = getPathBottleNeck(s, t);
 
-        for (Edge &e: nodes[parent].adj)
-            if (e.dest == child) {
-                bottleNeck = min(bottleNeck, e.cap - e.flow);
-                break;
-            }
-    }
+    // Update the flows & residual edges values
+    edmonds_karp_update(bottleNeck, s, t);
 
-    // ===========================================================================
+    return bottleNeck;
+}
 
-    parent = t;
+void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
+
+    int parent = t, child;
     cout << t << " --> ";
     while (parent != s) {
         child = parent;
@@ -452,13 +450,26 @@ int Graph::edmonds_karp_bfs(int s, int t) {
                 }
             }
     }
+}
 
-    // printEdges();
-    return bottleNeck;
+int Graph::getPathBottleNeck(int start, int end) {
+    int bottleNeck = INT_MAX;
+    int parent = end;
+    int child;
+
+    while (parent != start) {
+        child = parent;
+        parent = nodes[parent].pred;
+
+        for (Edge &e: nodes[parent].adj)
+            if (e.dest == child) {
+                bottleNeck = min(bottleNeck, e.cap - e.flow);
+                break;
+            }
+    }
 }
 
 void Graph::printEdges() {
-    // For debug only
     for (int i = 1; i <= n; i++)
         for (Edge e: nodes[i].adj)
             printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,

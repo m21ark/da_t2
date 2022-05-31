@@ -6,8 +6,10 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    Menu::start();
+    // Menu::start();
 
-    getchar();
+    Graph graph = buildGraph(93, true);
+    cout << graph.edmonds_karp();
+
     return 0;
 }

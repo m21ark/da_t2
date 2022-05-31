@@ -65,10 +65,6 @@ public:
 
     bool cycleDfs(int v);
 
-    int edmonds_karp();
-
-    int edmonds_karp_bfs(int s, int t);
-
     void printEdges();
 
     void activity_readyAt();
@@ -79,6 +75,17 @@ public:
 
     void max_path_dag();
 
+    // ----------------------------------------------------
+
+    int edmonds_karp_bfs(int s, int t);
+
+    int edmonds_karp();
+
+    void edmonds_karp_update(int bottleNeck, int s, int t);
+
+    int getPathBottleNeck(int start, int end);
+
+    int edmonds_karp_flow_path(int s, int t);
 };
 
 Graph buildGraph(int id, bool includeResidual = false);
