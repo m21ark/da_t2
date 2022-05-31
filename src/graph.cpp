@@ -413,42 +413,29 @@ int Graph::edmonds_karp_flow_path(int s, int t) {
 }
 
 void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
-
     int parent = t, child;
     cout << t << " --> ";
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
-
         cout << parent << " --> ";
+
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {
 
                 if (e.cap != 0) {
                     e.residual -= bottleNeck;
                     e.flow += bottleNeck;
-
-                    for (auto &e2: nodes[e.dest].adj) {
+                    for (auto &e2: nodes[e.dest].adj)
                         if (e2.dest == parent) {
                             e2.residual += bottleNeck;
                             e2.flow -= bottleNeck;
                             break;
                         }
-
-                    }
-
-                } else {
-
-                    // aresta contraria
-                    for (auto &e2: nodes[e.dest].adj) {
-                        if (e2.dest == parent) {
+                } else
+                    for (auto &e2: nodes[e.dest].adj)
+                        if (e2.dest == parent)
                             e2.flow -= bottleNeck;
-
-                        }
-                    };
-
-
-                }
             }
     }
 }
