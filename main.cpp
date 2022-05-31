@@ -9,7 +9,8 @@ int main(int argc, char *argv[]) {
     // Menu::start();
 
     Graph graph = buildGraph(92, true);
-    cout << graph.edmonds_karp();
+    int maxFlow = graph.edmonds_karp();
+    cout << "Max Flow: " << maxFlow;
 
     return 0;
 }

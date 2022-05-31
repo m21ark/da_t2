@@ -390,7 +390,8 @@ int Graph::edmonds_karp() {
     int flow, maxFlow = 0;
     do {
         flow = edmonds_karp_flow_path(1, n);
-        cout << "New found flow = " << flow << endl;
+        if (flow)
+            cout << "New found flow = " << flow << endl;
         maxFlow += flow;
     } while (flow != 0);
     return maxFlow;
