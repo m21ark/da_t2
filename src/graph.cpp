@@ -467,6 +467,7 @@ int Graph::getPathBottleNeck(int start, int end) {
                 break;
             }
     }
+    return bottleNeck;
 }
 
 void Graph::printEdges() {

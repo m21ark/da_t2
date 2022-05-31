@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 
     // Menu::start();
 
-    Graph graph = buildGraph(93, true);
+    Graph graph = buildGraph(92, true);
     cout << graph.edmonds_karp();
 
     return 0;
