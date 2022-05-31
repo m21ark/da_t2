@@ -118,7 +118,6 @@ public:
             if (node == t) break;
 
             for (auto e: nodes[node].adj) {
-                // int remaining_cap = e.cap - e.flow;
                 if (e.residual > 0 && !nodes[e.dest].visited) {
                     nodes[e.dest].pred = node;
                     nodes[e.dest].visited = true;
@@ -142,7 +141,7 @@ public:
             child = parent;
             parent = nodes[parent].pred;
 
-            for (Edge e: nodes[parent].adj)
+            for (Edge &e: nodes[parent].adj)
                 if (e.dest == child) {
                     bottleNeck = min(bottleNeck, e.cap - e.flow);
                     break;
@@ -160,20 +159,38 @@ public:
             cout << parent << " --> ";
             for (Edge &e: nodes[parent].adj)
                 if (e.dest == child) {
-                    e.residual -= bottleNeck;
 
-                    // aresta residual
-                    for (auto e2: nodes[e.dest].adj) {
-                        if (e2.dest == parent) {
-                            e2.residual += bottleNeck;
+                    if (e.cap != 0) {
+                        e.residual -= bottleNeck;
+                        e.flow += bottleNeck;
+
+                        for (auto &e2: nodes[e.dest].adj) {
+                            if (e2.dest == parent) {
+                                e2.residual += bottleNeck;
+                                e2.flow -= bottleNeck;
+                                break;
+                            }
+
                         }
+
+                    } else {
+
+                        // aresta contraria
+                        for (auto &e2: nodes[e.dest].adj) {
+                            if (e2.dest == parent) {
+                                e2.flow -= bottleNeck;
+
+                            }
+                        };
+
+
                     }
                 }
         }
 
         // Return bottleneck flow
-        cout << endl;
-        printResidual();
+        //cout << endl;
+        //printResidual();
         return bottleNeck;
     }
 
