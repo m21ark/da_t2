@@ -160,7 +160,7 @@ void Menu::scenario1(int option) {
 
 void Menu::scenario2(int option) {
 
-    int dataSetId = askInt("\nEnter Data set id: ");<
+    int dataSetId = askInt("\nEnter Data set id: ");
     if (dataSetId == -1) return;
 
     Graph graph = buildGraph(dataSetId, true);
@@ -168,21 +168,31 @@ void Menu::scenario2(int option) {
 
     int maxFlow;
     if (option == 1) {
-        cout << "Get size";
-        getchar();
+        int groupSize = askInt("Group size: ");
+        if (groupSize == -1) return;
+
+        cout << " [ 2.1 ] \n";
+
+        int incrementBool = askInt("\nDo you wanna try to increment group size? (0 - No | 1 - Yes):\n > ");
+        if (incrementBool == -1) return;
+
+        cout << endl;
+        goto FLOW;
+
     } else {
+        FLOW:
         cout << "Flow Paths:\n";
         maxFlow = graph.edmonds_karp();
         cout << "\nMax flow is: " << maxFlow;
-
-        cout << "\n\n=====================================\n";
-        graph.activity_readyAt();
-        graph.max_path_dag();
-        graph.print_readyAt();
-        graph.max_waited_time();
-
-        getchar();
     }
+
+    cout << "\n\n=====================================\n";
+    graph.activity_readyAt();
+    graph.max_path_dag();
+    graph.print_readyAt();
+    graph.max_waited_time();
+
+    getchar();
 }
 
 void Menu::submenu2() {
