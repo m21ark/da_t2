@@ -1,5 +1,4 @@
 #include <iostream>
-#include "gtest/gtest.h"
 #include "include/graph.h"
 #include "include/menu.h"
 
@@ -7,11 +6,32 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    //testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
+    // Menu::start();
 
-    Graph graph = buildGraph(1);
-    Menu::start();
+    Graph graph = buildGraph(100, true);
+
+    //cout << graph.fordFulkerson(1, 5, graph);
+
+    cout << "Here!" << endl;
+    cout << graph.solve();
+    cout << "\nHere2!" << endl;
+
+    // graph.activity_readyAt();
+    // graph.print_readyAt();
+    // graph.max_waited_time();
+    graph.max_path_dag();
+    graph.print_readyAt();
+    graph.max_waited_time();
+
+    // be carefull has some of the above funcs changes the dist atributes of the graph
+    // graph.printResidual();
+
+    /*auto p = graph.path_flow(1, 6);
+
+    cout << "flow : " << p.first << endl;
+
+    for (auto e: p.second)
+        cout << e << " ";*/
 
 
     getchar();

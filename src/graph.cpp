@@ -1,15 +1,20 @@
 #include "../include/graph.h"
 
 
-Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num + 1) {}
+Graph::Graph(int num, bool dir) : n(num), includeResidual(dir), nodes(num + 1) {}
 
 void Graph::addEdge(int src, int dest, int duration, int cap) {
-    if (src < 1 || src > n || dest < 1 || dest > n) return;
+
+    if (src < 1 || src > n || dest < 1 || dest > n)
+        return;
+
     nodes[src].adj.push_back({dest, duration, cap});
-    if (!hasDir) nodes[dest].adj.push_back({src, cap});
+
+    if (includeResidual)
+        nodes[dest].adj.push_back({src, duration, 0});
 }
 
-Graph buildGraph(int id, bool hasDir) {
+Graph buildGraph(int id, bool includeResidual) {
 
     string path;
     if (id >= 10)
@@ -26,7 +31,7 @@ Graph buildGraph(int id, bool hasDir) {
     ss >> numNodes;
     file.close();
 
-    Graph graph = Graph(numNodes, hasDir);
+    Graph graph = Graph(numNodes, includeResidual);
 
     vector<FileContents> nodes = read_file(path);
 
@@ -34,6 +39,107 @@ Graph buildGraph(int id, bool hasDir) {
         graph.addEdge(item.pred, item.dest, item.duration, item.capacity);
 
     return graph;
+}
+
+
+// Using BFS as a searching algorithm
+bool Graph::bfs2(int s, int t) {
+
+    for (int i = 1; i <= n; i++) {
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
+
+    nodes[s].visited = true;
+    queue<int> q;
+    q.push(s);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        for (auto e: nodes[u].adj)
+            if (!nodes[e.dest].visited && e.cap > 0) {
+                q.push(e.dest);
+                nodes[e.dest].pred = u;
+                nodes[e.dest].visited = true;
+            }
+    }
+    return (nodes[t].visited);
+}
+
+
+// Applying fordfulkerson algorithm
+int Graph::fordFulkerson(int s, int t, Graph rGraph) {
+
+    int max_flow = 0;
+
+    // Set the residual values of edges
+    while (rGraph.bfs2(s, t)) {
+
+        int path_flow = INT_MAX;
+        int currentNode = t;
+
+        while (currentNode != s) {
+
+            int u = nodes[currentNode].pred;
+
+            for (auto e: nodes[currentNode].adj)
+                if (e.dest == u) {
+                    path_flow = min(path_flow, e.cap);
+                    break;
+                }
+
+            currentNode = u;
+
+            for (auto e: nodes[currentNode].adj)
+                if (e.dest == u) {
+                    e.cap -= path_flow;
+
+                    for (auto e2: nodes[u].adj)
+                        if (e2.dest == currentNode)
+                            e2.cap += path_flow;
+
+                    break;
+                }
+
+
+        }
+
+        // Adding the path flows
+        max_flow += path_flow;
+    }
+
+    return max_flow;
+}
+
+list<int> Graph::getResidualPath() {
+    list<int> l;
+    for (int i = 1; i < n; i++)
+        for (Edge edge: nodes[i].adj) {
+            int residualCap = edge.cap - edge.flow;
+        }
+    return l;
+}
+
+pair<int, list<int>> Graph::path_flow(int a, int b) {
+
+    int max_flow = 999;
+    //dijkstra_distance(a, b); call outside the function
+    list<int> path = {b};
+    int parent = b;
+
+    if (nodes[b].pred == -1)
+        return {};
+
+    while (parent != a) {
+        parent = nodes[parent].pred;
+        max_flow = min(max_flow, nodes[parent].capacity);
+        path.push_front(parent);
+    }
+
+    return {max_flow, path};
+
 }
 
 int Graph::dijkstra_distance(int a, int b) {
@@ -273,12 +379,12 @@ int Graph::giantComponent() {
 }
 
 
-list<int> Graph::topologicalSorting() {
+stack<int> Graph::topologicalSorting() {
 
     for (int i = 1; i <= n; i++)
         nodes[i].visited = false;
 
-    list<int> order;
+    stack<int> order;
 
     for (int i = 1; i <= n; i++)
         if (!nodes[i].visited)
@@ -287,14 +393,14 @@ list<int> Graph::topologicalSorting() {
     return order;
 }
 
-void Graph::dfsTopSort(int v, list<int> &l) {
+void Graph::dfsTopSort(int v, stack<int> &l) {
     nodes[v].visited = true;
     for (auto e: nodes[v].adj) {
         int w = e.dest;
         if (!nodes[w].visited)
             dfsTopSort(w, l);
     }
-    l.push_front(v);
+    l.push(v);
 }
 
 
@@ -362,7 +468,7 @@ int Graph::prim(int r) {
             int peso = edge.duration;
             int dest = edge.dest;
 
-            if (heap.hasKey(dest) and nodes[dest].dist > peso) {
+            if (heap.hasKey(dest) && nodes[dest].dist > peso) {
                 nodes[dest].dist = peso;
                 nodes[dest].pred = u;
                 heap.decreaseKey(dest, peso);
@@ -370,4 +476,88 @@ int Graph::prim(int r) {
         }
     }
     return cost;
+}
+
+void Graph::activity_readyAt() {
+    for (int i = 2; i <= n; ++i) {
+        nodes[i].dist = 0;
+    }
+    nodes[1].dist = 0;
+    auto lst = topologicalSorting();
+    while (!lst.empty()){
+        int i = lst.top();
+        lst.pop();
+        for (auto& e : nodes[i].adj) {
+            int w = e.dest;
+            if (nodes[w].dist < nodes[i].dist+ e.duration && e.flow > 0) { // TODO: e.flow esta correto? yup, ma friend
+                nodes[w].dist = nodes[i].dist+ e.duration;
+            }
+        }
+    }
+}
+void Graph::print_readyAt() {
+    cout << "Node: "<< n << " Ready at: " << nodes[n].dist << endl;
+}
+
+void Graph::max_waited_time() {
+
+    int max = 0;
+    list<Node> nodesOfMaxWait;
+    for (auto n : nodes) {
+        for ( auto & e : n.adj) {
+            if (n.dist + e.duration < nodes[e.dest].dist && e.flow > 0 && nodes[e.dest].FT_MAX < n.dist + e.duration) {
+                nodes[e.dest].FT_MAX = n.dist + e.duration;
+                if (nodes[e.dest].FT_MAX > max) {
+                    max = nodes[e.dest].FT_MAX;
+                    nodesOfMaxWait.empty();
+                    nodesOfMaxWait.push_back(nodes[e.dest]);
+                } else if (nodes[e.dest].FT_MAX == max) {
+                    nodesOfMaxWait.push_back(nodes[e.dest]);
+                }
+            }
+        }
+    }
+
+    for (auto n : nodesOfMaxWait) {
+        cout <<"Node max:  "<< n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
+    }
+}
+
+void Graph::max_path_dag() {
+    for (int i = 1; i <= n; ++i) {
+        nodes[i].pred = NULL;
+        nodes[i].dist = 0;
+        nodes[i].degree = 0;
+    }
+    for(int i = 1; i <= n; ++i) {
+        for (auto & e : nodes[i].adj) {
+            if (e.flow > 0)
+                nodes[e.dest].degree++;
+        }
+    }
+    queue<int> S;
+    for (int i = 1; i <= n ; ++i) {
+        if (nodes[i].degree == 0 )
+            S.push(i);
+    }
+
+    int durMin = -1, vf = NULL;
+
+    while (!S.empty()) {
+        int v = S.front();
+        S.pop();
+        if (durMin < nodes[v].dist) {
+            durMin = nodes[v].dist;
+            vf = v;
+        }
+        for (auto &e : nodes[v].adj) {
+            if  (nodes[e.dest].dist < nodes[v].dist + e.duration && e.flow > 0) {
+                nodes[e.dest].dist = nodes[v].dist + e.duration;
+                nodes[e.dest].pred = v;
+            }
+            nodes[e.dest].degree--;
+            if (nodes[e.dest].degree == 0)
+                S.push(e.dest);
+        }
+    }
 }
