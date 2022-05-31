@@ -56,6 +56,7 @@ void Menu::displayResults(int capacity, const list<int> &path) {
 void Menu::start() {
     char userInput;
     while (true) {
+
         (void) system(CLEAR);
 
         cout << "========================" << endl;
@@ -177,6 +178,31 @@ void Menu::scenario1(int option) {
 }
 
 
+void Menu::scenario2(int option) {
+    /*
+    // Check the if they exist
+    int dataSetId = askInt("\nEnter Data set id:  ");
+    int begin = askInt("Enter number of starting stop: ");
+    int end = askInt("Enter the number of ending stop: ");
+    Graph graph = buildGraph(dataSetId, true);
+
+
+    int capacity;
+
+    if (option == 1)
+        capacity = graph.maximum_capacity(begin, end);
+    else if (option == 2)
+        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
+    else
+        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
+
+    list<int> path = graph.get_path(begin, end);
+    displayResults(capacity, path);
+    getchar();
+    */
+}
+
+
 void Menu::submenu2() {
     char userInput;
     (void) system(CLEAR);
@@ -229,31 +255,6 @@ void Menu::submenu2() {
             continue;
         }
     }
-}
-
-
-void Menu::scenario2(int option) {
-    /*
-    // Check the if they exist
-    int dataSetId = askInt("\nEnter Data set id:  ");
-    int begin = askInt("Enter number of starting stop: ");
-    int end = askInt("Enter the number of ending stop: ");
-    Graph graph = buildGraph(dataSetId, true);
-
-
-    int capacity;
-
-    if (option == 1)
-        capacity = graph.maximum_capacity(begin, end);
-    else if (option == 2)
-        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
-    else
-        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
-
-    list<int> path = graph.get_path(begin, end);
-    displayResults(capacity, path);
-    getchar();
-    */
 }
 
 

@@ -59,147 +59,17 @@ public:
 
     int dfs(int v);
 
-    void bfs(int v);
-
-    int outDegree(int v);
-
-    bool bfs2(int s, int t);
-
-    pair<int, list<int>> path_flow(int a, int b);
-
-    list<int> getResidualPath();
-
-    int connectedComponents();
-
-    int giantComponent();
-
     stack<int> topologicalSorting();
 
     void dfsTopSort(int v, stack<int> &l);
 
-    int fordFulkerson(int s, int t, Graph graph);
-
-    int distance(int a, int b);
-
-    int diameter();
-
-    bool hasCycle();
-
     bool cycleDfs(int v);
 
-    int prim(int r);
+    int edmonds_karp();
 
-    int solve() {
-        int flow, maxFlow = 0;
-        do {
-            flow = bfs5(1, n);
-            cout << "Current flow = " << flow << endl;
-            maxFlow += flow;
-        } while (flow != 0);
-        return maxFlow;
-    }
+    int edmonds_karp_bfs(int s, int t);
 
-
-    int bfs5(int s, int t) {
-
-        for (int i = 1; i <= n; i++) {
-            nodes[i].visited = false;
-            nodes[i].pred = -1;
-        }
-
-
-        queue<int> q;
-        q.push(s);
-        nodes[s].visited = true;
-
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-            if (node == t) break;
-
-            for (auto e: nodes[node].adj) {
-                if (e.residual > 0 && !nodes[e.dest].visited) {
-                    nodes[e.dest].pred = node;
-                    nodes[e.dest].visited = true;
-                    q.push(e.dest);
-                }
-            }
-        }
-
-        // no path to the sink
-        if (!nodes[t].visited) return 0;
-
-        // ===========================================================================
-
-
-        // Find augmented path and bottle neck
-        int bottleNeck = INT_MAX;
-        int parent = t;
-        int child;
-
-        while (parent != s) {
-            child = parent;
-            parent = nodes[parent].pred;
-
-            for (Edge &e: nodes[parent].adj)
-                if (e.dest == child) {
-                    bottleNeck = min(bottleNeck, e.cap - e.flow);
-                    break;
-                }
-        }
-
-        // ===========================================================================
-
-        parent = t;
-        cout << t << " --> ";
-        while (parent != s) {
-            child = parent;
-            parent = nodes[parent].pred;
-
-            cout << parent << " --> ";
-            for (Edge &e: nodes[parent].adj)
-                if (e.dest == child) {
-
-                    if (e.cap != 0) {
-                        e.residual -= bottleNeck;
-                        e.flow += bottleNeck;
-
-                        for (auto &e2: nodes[e.dest].adj) {
-                            if (e2.dest == parent) {
-                                e2.residual += bottleNeck;
-                                e2.flow -= bottleNeck;
-                                break;
-                            }
-
-                        }
-
-                    } else {
-
-                        // aresta contraria
-                        for (auto &e2: nodes[e.dest].adj) {
-                            if (e2.dest == parent) {
-                                e2.flow -= bottleNeck;
-
-                            }
-                        };
-
-
-                    }
-                }
-        }
-
-        // Return bottleneck flow
-        //cout << endl;
-        //printResidual();
-        return bottleNeck;
-    }
-
-    void printResidual() {
-        for (int i = 1; i <= n; i++)
-            for (Edge e: nodes[i].adj)
-                printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
-                       e.flow, e.residual, e.cap == 0);
-    }
+    void printEdges();
 
     void activity_readyAt();
 
