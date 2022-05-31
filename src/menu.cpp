@@ -15,35 +15,28 @@ bool emptyStream(istream &ios) {
     return false;
 }
 
-
 int Menu::askInt(const string &message) {
     cout << message;
     string userInput;
-    int response;
-    while (true) {
-        if ((cin >> userInput)) {
-            if (!emptyStream(cin)) {
-                cout << "\nInvalid Input!\n";
-                continue;
-            }
-            try {
-                response = stoi(userInput);
-                return response;
 
-                //NOLINTNEXTLINE
-            } catch (exception) {
-                cout << "\nInvalid Input!\n";
-                cin.clear();
-                continue;
-            }
-        } else {
-            cout << "\nInvalid Input!\n";
-            getchar();
-            continue;
+    if ((cin >> userInput)) {
+        if (!emptyStream(cin))
+            goto END;
+        try {
+            int response = stoi(userInput);
+            return response;
+            //NOLINTNEXTLINE
+        } catch (exception) {
+            goto END;
         }
     }
-}
 
+    END:
+    cout << "\nInvalid Input!\n";
+    cin.clear();
+    cin.ignore(1000, '\n');
+    return -1;
+}
 
 void Menu::displayResults(int capacity, const list<int> &path) {
     cout << "The path will be:\n";
@@ -52,27 +45,24 @@ void Menu::displayResults(int capacity, const list<int> &path) {
     cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
 }
 
-
 void Menu::start() {
+
     char userInput;
     while (true) {
-
         (void) system(CLEAR);
 
-        cout << "========================" << endl;
-        cout << "        Scenarios       " << endl;
-        cout << "========================" << endl;
-        cout << "  1)  Scenario 1        " << endl;
-        cout << "  2)  Scenario 2        " << endl;
-        cout << "  0)  Exit              " << endl;
-        cout << "========================" << endl;
+        cout << "===============================================" << endl;
+        cout << "                   Scenarios                   " << endl;
+        cout << "===============================================" << endl;
+        cout << "   1)  Max Capacity Path (No Group Division)   " << endl;
+        cout << "   2)  Max Flow (Group Division)               " << endl;
+        cout << "   0)  Exit                                    " << endl;
+        cout << "===============================================" << endl;
         cout << " > ";
 
         if ((cin >> userInput)) {
-            if (!emptyStream(cin)) {
-                cout << "Invalid Input!\n";
+            if (!emptyStream(cin))
                 continue;
-            }
 
             pair<string, string> files;
             switch (userInput) {
@@ -85,40 +75,33 @@ void Menu::start() {
                     submenu2();
                     break;
                 default:
-                    cout << "Invalid Input!\n";
                     break;
             }
             continue;
 
-        } else {
-            cout << "Invalid Input!\n";
-            getchar();
+        } else
             continue;
-        }
     }
 }
 
-
 void Menu::submenu1() {
+
     char userInput;
-    (void) system(CLEAR);
-
-    cout << "==============================================" << endl;
-    cout << "                   Scenario 1                 " << endl;
-    cout << "==============================================" << endl;
-    cout << "   1)  Maximize Group Size                    " << endl;
-    cout << "   2)  Maximize Group Size VS Shortest Path " << endl;
-    cout << "   0)  Exit                                   " << endl;
-    cout << "==============================================" << endl;
-    cout << "\n > ";
-
-
     while (true) {
+        (void) system(CLEAR);
+
+        cout << "==============================================" << endl;
+        cout << "                  Scenario 1                  " << endl;
+        cout << "==============================================" << endl;
+        cout << "   1)  Maximize Group Size                    " << endl;
+        cout << "   2)  Maximize Group Size VS Shortest Path   " << endl;
+        cout << "   0)  Go Back                                " << endl;
+        cout << "==============================================" << endl;
+        cout << " > ";
+
         if ((cin >> userInput)) {
-            if (!emptyStream(cin)) {
-                cout << "Invalid Input!\n";
+            if (!emptyStream(cin))
                 continue;
-            }
 
             switch (userInput) {
                 case '0':
@@ -130,28 +113,26 @@ void Menu::submenu1() {
                     scenario1(2);
                     return;
                 default:
-                    cout << "Invalid Input!\n";
                     continue;
             }
-        } else {
-            cout << "Invalid Input!\n";
-            getchar();
+        } else
             continue;
-        }
+
     }
 }
 
-
 void Menu::scenario1(int option) {
-    // Check the if they exist
-    int dataSetId = askInt("\nEnter Data set id:  ");
+
+    int dataSetId = askInt("\nEnter Data set id: ");
+    if (dataSetId == -1) return;
     int begin = askInt("Enter number of starting stop: ");
+    if (begin == -1) return;
     int end = askInt("Enter the number of ending stop: ");
-    Graph graph = buildGraph(dataSetId, true);
+    if (end == -1) return;
+
+    Graph graph = buildGraph(dataSetId, false);
 
     int capacity;
-
-
     if (option == 1) {
         capacity = graph.maximum_capacity(begin, end);
         list<int> path = graph.get_path(begin, end);
@@ -177,55 +158,64 @@ void Menu::scenario1(int option) {
     getchar();
 }
 
-
 void Menu::scenario2(int option) {
-    /*
-    // Check the if they exist
-    int dataSetId = askInt("\nEnter Data set id:  ");
-    int begin = askInt("Enter number of starting stop: ");
-    int end = askInt("Enter the number of ending stop: ");
+
+    int dataSetId = askInt("\nEnter Data set id: ");
+    if (dataSetId == -1) return;
+
     Graph graph = buildGraph(dataSetId, true);
+    cout << endl;
 
+    int maxFlow;
+    if (option == 1) {
+        int groupSize = askInt("Group size: ");
+        if (groupSize == -1) return;
 
-    int capacity;
+        cout << " [ 2.1 ] \n";
 
-    if (option == 1)
-        capacity = graph.maximum_capacity(begin, end);
-    else if (option == 2)
-        capacity = graph.maximum_capacity_with_shortest_path(begin, end);
+        int incrementBool = askInt("\nDo you wanna try to increment group size? (0 - No | 1 - Yes):\n > ");
+        if (incrementBool == -1) return;
+
+        cout << endl;
+
+    }
+
+    cout << "Flow Paths:\n";
+    if (option != 3)
+        maxFlow = graph.edmonds_karp();
     else
-        capacity = graph.shortest_path_with_maximum_capacity(begin, end);
+        maxFlow = graph.dinic_algo();
+    cout << "\nMax flow is: " << maxFlow;
 
-    list<int> path = graph.get_path(begin, end);
-    displayResults(capacity, path);
+
+    cout << "\n\n=====================================\n";
+    graph.activity_readyAt();
+    graph.max_path_dag();
+    graph.print_readyAt();
+    graph.max_waited_time();
+
     getchar();
-    */
 }
 
-
 void Menu::submenu2() {
+
     char userInput;
-    (void) system(CLEAR);
-
-    cout << "==============================================" << endl;
-    cout << "                   Scenario 2                 " << endl;
-    cout << "==============================================" << endl;
-    cout << "   1)  2.1                                    " << endl;
-    cout << "   2)  2.2                                    " << endl;
-    cout << "   3)  2.3                                    " << endl;
-    cout << "   4)  2.4                                    " << endl;
-    cout << "   5)  2.5                                    " << endl;
-    cout << "   0)  Exit                                   " << endl;
-    cout << "==============================================" << endl;
-    cout << "\n > ";
-
-
     while (true) {
+        (void) system(CLEAR);
+
+        cout << "=====================================" << endl;
+        cout << "              Scenario 2             " << endl;
+        cout << "=====================================" << endl;
+        cout << "   1)  User Given Group Size         " << endl;
+        cout << "   2)  Max Group Size                " << endl;
+        cout << "   3)  Dinic's solution (better in ) " << endl;
+        cout << "   0)  Go Back                       " << endl;
+        cout << "=====================================" << endl;
+        cout << " > ";
+
         if ((cin >> userInput)) {
-            if (!emptyStream(cin)) {
-                cout << "Invalid Input!\n";
+            if (!emptyStream(cin))
                 continue;
-            }
 
             switch (userInput) {
                 case '0':
@@ -239,21 +229,11 @@ void Menu::submenu2() {
                 case '3':
                     scenario2(3);
                     return;
-                case '4':
-                    scenario2(4);
-                    return;
-                case '5':
-                    scenario2(5);
-                    return;
                 default:
-                    cout << "Invalid Input!\n";
                     continue;
             }
-        } else {
-            cout << "Invalid Input!\n";
-            getchar();
+        } else
             continue;
-        }
     }
 }
 
