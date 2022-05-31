@@ -1,5 +1,4 @@
 #include <iostream>
-#include "gtest/gtest.h"
 #include "include/graph.h"
 #include "include/menu.h"
 
@@ -9,13 +8,17 @@ int main(int argc, char *argv[]) {
 
     // Menu::start();
 
-    Graph graph = buildGraph(94, true);
+    Graph graph = buildGraph(100, true);
 
-    // cout << graph.fordFulkerson(1, 6, graph);
+    //cout << graph.fordFulkerson(1, 5, graph);
 
     cout << "Here!" << endl;
     cout << graph.solve();
     cout << "\nHere2!" << endl;
+
+    graph.activity_readyAt();
+    graph.print_readyAt();
+
     graph.printResidual();
 
     /*auto p = graph.path_flow(1, 6);
@@ -26,6 +29,6 @@ int main(int argc, char *argv[]) {
         cout << e << " ";*/
 
 
-    //getchar();
+    getchar();
     return 0;
 }

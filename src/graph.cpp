@@ -117,10 +117,7 @@ list<int> Graph::getResidualPath() {
     list<int> l;
     for (int i = 1; i < n; i++)
         for (Edge edge: nodes[i].adj) {
-
             int residualCap = edge.cap - edge.flow;
-
-
         }
     return l;
 }
@@ -471,7 +468,7 @@ int Graph::prim(int r) {
             int peso = edge.duration;
             int dest = edge.dest;
 
-            if (heap.hasKey(dest) and nodes[dest].dist > peso) {
+            if (heap.hasKey(dest) && nodes[dest].dist > peso) {
                 nodes[dest].dist = peso;
                 nodes[dest].pred = u;
                 heap.decreaseKey(dest, peso);
@@ -479,4 +476,25 @@ int Graph::prim(int r) {
         }
     }
     return cost;
+}
+
+void Graph::activity_readyAt() {
+    for (int i = 2; i <= n; ++i) {
+        nodes[i].dist = 0;
+    }
+    nodes[1].dist = 0;
+    auto lst = topologicalSorting();
+    while (!lst.empty()){
+        int i = lst.front();
+        lst.pop_front();
+        for (auto& e : nodes[i].adj) {
+            int w = e.dest;
+            if (nodes[w].dist < nodes[i].dist+ e.duration && e.flow > 0) { // TODO: e.flow esta correto? yup, ma friend
+                nodes[w].dist = nodes[i].dist+ e.duration;
+            }
+        }
+    }
+}
+void Graph::print_readyAt() {
+    cout << "Node: "<< n << " Ready at: " << nodes[n].dist << endl;
 }

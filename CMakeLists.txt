@@ -5,15 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CREATE_EXE TRUE)
 
-add_subdirectory(lib/googletest-master)
-include_directories(lib/googletest-master/googletest/include)
-include_directories(lib/googletest-master/googlemock/include)
-
 add_executable(da_t2 main.cpp
         include/objs.h     include/readFiles.h   src/readFiles.cpp
         include/graph.h    src/graph.cpp
         include/menu.h     src/menu.cpp
         include/minHeap.h  include/maxHeap.h
-        Tests/maxHeapTests.cpp  Tests/maxCapacityTests.cpp)
+        )
 
-target_link_libraries(da_t2 gtest gtest_main)
+target_link_libraries(da_t2)

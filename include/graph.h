@@ -31,6 +31,7 @@ class Graph {
         int pred;
         Color color;
         bool visited;
+        int degree = 0;
     };
 
     int n;
@@ -158,6 +159,7 @@ public:
                 if (e.dest == child) {
                     e.flow += bottleNeck;
                     e.residual -= bottleNeck;
+                    // adicionar à edge contrario
                 }
         }
 
@@ -171,6 +173,9 @@ public:
                 printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
                        e.flow, e.residual, e.cap == 0);
     }
+
+    void activity_readyAt();
+    void print_readyAt();
 };
 
 Graph buildGraph(int id, bool includeResidual = false);
