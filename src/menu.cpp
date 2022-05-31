@@ -39,7 +39,7 @@ int Menu::askInt(const string &message) {
 }
 
 void Menu::displayResults(int capacity, const list<int> &path) {
-    cout << "The path will be:\n";
+    cout << "\nThe path will be:\n";
     for (const int &it: path)
         cout << it << "  ";
     cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
@@ -171,7 +171,7 @@ void Menu::scenario2(int option) {
         int groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        cout << " [ 2.1 ] \n";
+        graph.cen_2_1(groupSize);
 
         int incrementBool = askInt("\nDo you wanna try to increment group size? (0 - No | 1 - Yes):\n > ");
         if (incrementBool == -1) return;

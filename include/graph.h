@@ -78,6 +78,8 @@ public:
 
     void max_path_dag();
 
+    void cen_2_1(int groupSize);
+
     // ----------------------------------------------------
 
     int edmonds_karp_bfs(int s, int t);
