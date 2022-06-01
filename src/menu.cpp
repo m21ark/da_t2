@@ -153,6 +153,20 @@ void Menu::scenario1(int option) {
             displayResults(capacity1, path1);
             cout << "\n(Shortest path with max Capacity)\n";
             displayResults(capacity2, path2);
+
+            cout << "\nHowever, there are solutions not represented in the scope. \n";
+            cout << "Those solutions are not parameter optimal but rather balanced solutions\n";
+            cout << "Here are the best balance solutions ... \n\n";
+
+            int newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
+            list<int> path3 = graph.get_path(begin, end);
+            if ((newCap > capacity2) && (path3.size() < path1.size())) {
+                displayResults(newCap, path3);
+                int newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
+                list<int> path4 = graph.get_path(begin, end);
+                if ((path4.size() < path3.size()) && (newCapMinPath < newCap))
+                    displayResults(newCapMinPath, path4);
+            }
         }
     }
     getchar();
