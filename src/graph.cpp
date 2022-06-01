@@ -303,7 +303,7 @@ void Graph::max_waited_time() {
                 nodes[e.dest].FT_MAX = n.dist + e.duration;
                 if (nodes[e.dest].FT_MAX > max) {
                     max = nodes[e.dest].FT_MAX;
-                    (void) nodesOfMaxWait.empty();
+                    nodesOfMaxWait.clear();
                     nodesOfMaxWait.push_back(nodes[e.dest]);
                 } else if (nodes[e.dest].FT_MAX == max) {
                     nodesOfMaxWait.push_back(nodes[e.dest]);
@@ -313,7 +313,7 @@ void Graph::max_waited_time() {
     }
 
     for (auto n: nodesOfMaxWait) {
-        cout << "Node max:  " << n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
+        cout << "Node max Wait:  " << n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
     }
 
     if (nodesOfMaxWait.empty())
