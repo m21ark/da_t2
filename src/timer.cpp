@@ -12,10 +12,10 @@ void Timer::stop() {
 }
 
 float Timer::getTime() {
-    return (float) (duration_cast<microseconds>(stop_time - start_time).count()) / 10e3f;
+    return (float) (duration_cast<milliseconds>(stop_time - start_time).count());
 }
 
 float Timer::getCurrentTime() {
     time_point_t current_time = high_resolution_clock::now();
-    return (float) (duration_cast<microseconds>(current_time - start_time).count()) / 10e3f;
+    return (float) (duration_cast<milliseconds>(current_time - start_time).count());
 }

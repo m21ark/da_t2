@@ -385,7 +385,6 @@ void Graph::cen_2_1(int groupSize) {
         return;
     }
 
-
     cout << "ADD LIMITING NODE AT START!";
 }
 
@@ -425,8 +424,8 @@ int Graph::edmonds_karp() {
     int flow, maxFlow = 0;
     do {
         flow = edmonds_karp_flow_path(1, n);
-        if (flow)
-            cout << "New found flow = " << flow << endl;
+/*        if (flow)
+            cout << "New found flow = " << flow << endl;*/
         maxFlow += flow;
     } while (flow != 0);
     return maxFlow;
@@ -464,10 +463,10 @@ bool Graph::bfs_sink(int s, int v) {
 int Graph::send_dinic_flow(int s, int flow, int t) {
 
     if (s == t) {
-        cout << t << "\n";
+/*        cout << t << "\n";*/
         return flow;
     }
-    cout << s << " --> ";
+/*    cout << s << " --> ";*/
 
     for (auto &e: nodes[s].adj) {
         if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
@@ -527,11 +526,11 @@ int Graph::edmonds_karp_flow_path(int s, int t) {
 
 void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     int parent = t, child;
-    cout << t << " --> ";
+   /* cout << t << " --> ";*/
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
-        cout << parent << " --> ";
+/*        cout << parent << " --> ";*/
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {

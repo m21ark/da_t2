@@ -7,7 +7,7 @@ int main() {
 
     cout << "Edmonds-Karp\n";
     double time = 0;
-    Graph graph = buildGraph(90, true);
+    Graph graph = buildGraph(403, true);
     Timer::start();
     int maxF = graph.edmonds_karp();
     time += Timer::getCurrentTime();
@@ -15,7 +15,7 @@ int main() {
 
     time = 0;
     cout << "\nDinics\n";
-    graph = buildGraph(90, true);
+    graph = buildGraph(403, true);
     Timer::start();
     maxF = graph.dinic_algo();
     time += Timer::getCurrentTime();
