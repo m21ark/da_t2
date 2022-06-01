@@ -52,9 +52,9 @@ public:
 
     int maximum_capacity(int a, int b);
 
-    int maximum_capacity_with_shortest_path(int a, int b);
+    int maximum_capacity_with_shortest_path(int a, int b, int max = INT32_MAX);
 
-    int shortest_path_with_maximum_capacity(int a, int b);
+    int shortest_path_with_maximum_capacity(int a, int b, int min = INT32_MIN);
 
     list<int> get_path(int a, int b);
 

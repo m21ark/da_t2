@@ -115,7 +115,7 @@ int Graph::maximum_capacity(int a, int b) {
 }
 
 
-int Graph::maximum_capacity_with_shortest_path(int a, int b) {
+int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
     for (int i = 1; i <= n; i++) {
         nodes[i].dist = INF;
         nodes[i].capacity = -1;
@@ -143,8 +143,8 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b) {
 
             bool b1 = (newCap > currentCap && !nodes[it->dest].visited);
             bool b2 = (newCap == currentCap && newDist < currentDist && !nodes[it->dest].visited);
-
-            if (b1 || b2) {
+            bool b3 = newCap < max;
+            if ((b1 || b2) && b3) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
                 nodes[it->dest].pred = u;
@@ -155,7 +155,7 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b) {
     return nodes[b].capacity;
 }
 
-int Graph::shortest_path_with_maximum_capacity(int a, int b) {
+int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].dist = INF;
@@ -184,8 +184,9 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b) {
 
             bool b1 = (currentDist > newDist && !nodes[it->dest].visited);
             bool b2 = (currentDist == newDist && newCap > currentCap && !nodes[it->dest].visited);
+            bool b3 = (it->dest != b || newDist > mini); // erro
 
-            if (b1 || b2) {
+            if ((b1 || b2) && b3) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
                 nodes[it->dest].pred = u;
