@@ -160,34 +160,39 @@ void Menu::scenario1(int option) {
             cout << "Here are the best balance solutions ... \n\n";
 
             bool morePathImprovement = true;
-            while (true) {
-                int newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
-                list<int> path3 = graph.get_path(begin, end);
-                int newCapMinPath;
-                list<int> path4;
+            bool moreCapImprovement = true;
+            int newCap;
+            list<int> path3;
+            int newCapMinPath;
+            list<int> path4;
+            while (moreCapImprovement || morePathImprovement) {
+                if  (moreCapImprovement) {
+                    newCap      = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
+                    path3 = graph.get_path(begin, end);
+                }
                 if (newCap == -1)
-                    break;
+                    moreCapImprovement = false;
                 if ((newCap > capacity2) && (path3.size() < path1.size())) {
                     displayResults(newCap, path3);
-                    if (morePathImprovement) {
-                        newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
-                        path4 = graph.get_path(begin, end);
-                    }
-                    if (newCapMinPath == 0)
-                        morePathImprovement = false;
-                    else {
-                        if ((path4.size() < path3.size()) && (newCapMinPath < newCap)) {
-                            displayResults(newCapMinPath, path4);
-                            capacity2 = newCapMinPath;
-                            path2 = path4;
-                        } else {
-                            path2 = path4;
-                        }
-                    }
                     capacity1 = newCap;
                     path1 = path3;
                 } else {
                     capacity1 = newCap;
+                }
+                if (morePathImprovement) {
+                    newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
+                    path4 = graph.get_path(begin, end);
+                }
+                if (newCapMinPath == 0)
+                    morePathImprovement = false;
+                else {
+                    if ((path4.size() < path3.size()) && (newCapMinPath < newCap)) {
+                        displayResults(newCapMinPath, path4);
+                        capacity2 = newCapMinPath;
+                        path2 = path4;
+                    } else {
+                        path2 = path4;
+                    }
                 }
             }
         }
