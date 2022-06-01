@@ -320,8 +320,9 @@ void Graph::max_waited_time() {
         }
     }
 
+    cout << "Can wait either at the u or at the v in a (u,v) edge. We decided to choose the v.\n";
     for (auto n: nodesOfMaxWait) {
-        cout << "Node max Wait:  " << n.FT_MAX << " at " << "TODO::NEED:TOO KNOW THE NODE ID" << endl;
+        cout << "Node max Wait:  " << n.FT_MAX << " at " << n.dist << endl;
     }
 
     if (nodesOfMaxWait.empty())

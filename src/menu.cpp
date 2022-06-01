@@ -231,7 +231,6 @@ void Menu::scenario2(int option) {
 
 
     cout << "\n\n=====================================\n";
-    graph.activity_readyAt();
     graph.max_path_dag();
     graph.print_readyAt();
     graph.max_waited_time();
