@@ -9,6 +9,7 @@ add_executable(da_t2 main.cpp
         include/objs.h include/readFiles.h src/readFiles.cpp
         include/graph.h src/graph.cpp
         include/menu.h src/menu.cpp
+        include/timer.h src/timer.cpp
         include/minHeap.h include/maxHeap.h)
 
 target_link_libraries(da_t2)
