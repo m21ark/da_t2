@@ -42,6 +42,7 @@ void Menu::displayResults(int capacity, const list<int> &path) {
     cout << "\nThe path will be:\n";
     for (const int &it: path)
         cout << it << "  ";
+    cout << "\n Path size: " << path.size();
     cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
 }
 
@@ -158,14 +159,36 @@ void Menu::scenario1(int option) {
             cout << "Those solutions are not parameter optimal but rather balanced solutions\n";
             cout << "Here are the best balance solutions ... \n\n";
 
-            int newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
-            list<int> path3 = graph.get_path(begin, end);
-            if ((newCap > capacity2) && (path3.size() < path1.size())) {
-                displayResults(newCap, path3);
-                int newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
-                list<int> path4 = graph.get_path(begin, end);
-                if ((path4.size() < path3.size()) && (newCapMinPath < newCap))
-                    displayResults(newCapMinPath, path4);
+            bool morePathImprovement = true;
+            while (true) {
+                int newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
+                list<int> path3 = graph.get_path(begin, end);
+                int newCapMinPath;
+                list<int> path4;
+                if (newCap == -1)
+                    break;
+                if ((newCap > capacity2) && (path3.size() < path1.size())) {
+                    displayResults(newCap, path3);
+                    if (morePathImprovement) {
+                        newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
+                        path4 = graph.get_path(begin, end);
+                    }
+                    if (newCapMinPath == 0)
+                        morePathImprovement = false;
+                    else {
+                        if ((path4.size() < path3.size()) && (newCapMinPath < newCap)) {
+                            displayResults(newCapMinPath, path4);
+                            capacity2 = newCapMinPath;
+                            path2 = path4;
+                        } else {
+                            path2 = path4;
+                        }
+                    }
+                    capacity1 = newCap;
+                    path1 = path3;
+                } else {
+                    capacity1 = newCap;
+                }
             }
         }
     }
