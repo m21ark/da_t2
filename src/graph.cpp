@@ -184,7 +184,7 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
 
             bool b1 = (currentDist > newDist && !nodes[it->dest].visited);
             bool b2 = (currentDist == newDist && newCap > currentCap && !nodes[it->dest].visited);
-            bool b3 = (it->dest != b || newDist > mini); // erro
+            bool b3 = (it->dest != b || newDist > mini);
 
             if ((b1 || b2) && b3) {
                 nodes[it->dest].capacity = newCap;
