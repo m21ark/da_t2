@@ -116,6 +116,9 @@ int Graph::maximum_capacity(int a, int b) {
 
 
 int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
+    a = 1;
+    b = n;
+
     for (int i = 1; i <= n; i++) {
         nodes[i].dist = INF;
         nodes[i].capacity = -1;
@@ -156,6 +159,8 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
 }
 
 int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
+    a = 1;
+    b = n;
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].dist = INF;
@@ -200,6 +205,9 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
 /*___________________________________/SCENARIO 1___________________________________*/
 
 list<int> Graph::get_path(int a, int b) {
+
+    a = 1;
+    b = n;
 
     //dijkstra_distance(a, b); call outside the function
     list<int> path = {b};
@@ -433,13 +441,14 @@ bool Graph::bfs_sink(int s, int v) {
     queue<int> q; // queue of unvisited nodes
     q.push(s);
 
-    nodes[s]. visited = true;
+    nodes[s].visited = true;
     nodes[s].level = 0;
 
     while (!q.empty()) { // while there are still unvisited nodes
-        int u = q.front(); q.pop();
+        int u = q.front();
+        q.pop();
         // cout << u << " "; // show node order
-        for (auto e : nodes[u].adj) {
+        for (auto e: nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited && e.flow < e.cap) {
                 q.push(w);
@@ -460,7 +469,7 @@ int Graph::send_dinic_flow(int s, int flow, int t) {
     }
     cout << s << " --> ";
 
-    for (auto &e : nodes[s].adj) {
+    for (auto &e: nodes[s].adj) {
         if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
             int cur_flow = min(flow, e.cap - e.flow);
             int temp_flow = send_dinic_flow(e.dest, cur_flow, t);
@@ -469,7 +478,7 @@ int Graph::send_dinic_flow(int s, int flow, int t) {
 
                 e.flow += temp_flow;
 
-                for (auto &e2 : nodes[e.dest].adj) {
+                for (auto &e2: nodes[e.dest].adj) {
                     if (e2.dest == s) {
                         e2.flow -= temp_flow;
                     }
@@ -491,8 +500,7 @@ int Graph::dinic_algo() {
         nodes[i].pred = -1;
     }
 
-    while (bfs_sink(1, n))
-    {
+    while (bfs_sink(1, n)) {
         while (int flow = send_dinic_flow(1, INT_MAX, n))
             total += flow;
     }
