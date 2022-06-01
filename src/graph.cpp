@@ -290,41 +290,14 @@ void Graph::activity_readyAt() {
 }
 
 void Graph::print_readyAt() {
-    cout << "Node: " << n << " Ready at: " << nodes[n].dist << endl;
+    cout << "Node: " << n << " Ready at: " << nodes[n].ES << endl;
 }
 
-void Graph::max_waited_time() {
-
-    int max = 0;
-    list<Node> nodesOfMaxWait;
-    for (auto n: nodes) {
-        for (auto &e: n.adj) {
-            if (n.dist + e.duration < nodes[e.dest].dist && e.flow > 0 && nodes[e.dest].FT_MAX < n.dist + e.duration) {
-                nodes[e.dest].FT_MAX = n.dist + e.duration;
-                if (nodes[e.dest].FT_MAX > max) {
-                    max = nodes[e.dest].FT_MAX;
-                    nodesOfMaxWait.clear();
-                    nodesOfMaxWait.push_back(nodes[e.dest]);
-                } else if (nodes[e.dest].FT_MAX == max) {
-                    nodesOfMaxWait.push_back(nodes[e.dest]);
-                }
-            }
-        }
-    }
-
-    cout << "Can wait either at the u or at the v in a (u,v) edge. We decided to choose the v.\n";
-    for (auto n: nodesOfMaxWait) {
-        cout << "Node max Wait:  " << n.FT_MAX << " at " << n.dist << endl;
-    }
-
-    if (nodesOfMaxWait.empty())
-        cout << "No Waiting breaks" << endl;
-}
 
 void Graph::max_path_dag() {
     for (int i = 1; i <= n; ++i) {
         nodes[i].pred = -1;
-        nodes[i].dist = 0;
+        nodes[i].ES = 0;
         nodes[i].degree = 0;
     }
     for (int i = 1; i <= n; ++i) {
@@ -344,13 +317,13 @@ void Graph::max_path_dag() {
     while (!S.empty()) {
         int v = S.front();
         S.pop();
-        if (durMin < nodes[v].dist) {
-            durMin = nodes[v].dist;
+        if (durMin < nodes[v].ES) {
+            durMin = nodes[v].ES;
             vf = v;
         }
         for (auto &e: nodes[v].adj) {
-            if (nodes[e.dest].dist < nodes[v].dist + e.duration && e.flow > 0) {
-                nodes[e.dest].dist = nodes[v].dist + e.duration;
+            if (nodes[e.dest].ES < nodes[v].ES + e.duration && e.flow > 0) {
+                nodes[e.dest].ES = nodes[v].ES + e.duration;
                 nodes[e.dest].pred = v;
             }
             nodes[e.dest].degree--;
@@ -569,4 +542,85 @@ void Graph::printEdges() {
         for (Edge e: nodes[i].adj)
             printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
                    e.flow, e.residual, e.cap == 0);
+}
+
+void Graph::critical_path_lf() {
+    for (int i = 1; i <= n; ++i) {
+        nodes[i].pred = -1;
+        nodes[i].LF = nodes[n].ES; // needs to be called after ES
+        nodes[i].degree = 0;
+    }
+    for (int i = 1; i <= n; ++i) {
+        for (auto &e: nodes[i].adj) {
+            if (e.flow > 0)
+                nodes[e.dest].degree++;
+        }
+    }
+
+    auto gt = transpose();
+
+    queue<int> S;
+    for (int i = 1; i <= n; ++i) {
+        if (nodes[i].degree == 0)
+            S.push(i);
+    }
+
+    while (!S.empty()) {
+        int v = S.front();
+        S.pop();
+        for (auto &e: gt->nodes[v].adj) {
+            if (e.flow > 0 && nodes[e.dest].LF > nodes[v].LF - e.duration) {
+                nodes[e.dest].LF = nodes[v].LF - e.duration;
+                nodes[e.dest].pred = v;
+            }
+            nodes[e.dest].degree--;
+            if (nodes[e.dest].degree == 0)
+                S.push(e.dest);
+        }
+    }
+}
+
+void Graph::max_FL() {
+
+    cout << "If schedule does not have any delay:\n";
+    int max_Fl = 0;
+    set<int> lst;
+    for (auto &node: nodes) {
+        for (auto &e : node.adj) {
+            int fl = nodes[e.dest].ES - (node.ES + e.duration);
+            if (fl > max_Fl && e.flow > 0) {
+                lst.clear();
+                lst.insert(e.dest);
+                max_Fl = fl;
+            } else if (fl == max_Fl && max_Fl!=0) {
+                lst.insert(e.dest);
+            }
+        }
+    }
+
+    for (auto i: lst) {
+        cout << "Node max Wait:  " << max_Fl << " at " << i << endl;
+    }
+
+    if (lst.empty())
+        cout << "No Waiting breaks" << endl;
+
+}
+
+void Graph::max_FT() {
+    int max_FT = 0;
+    for (auto &node: nodes) {
+        for (auto &e : node.adj) {
+            int ls = nodes[e.dest].LF - e.duration;
+            int ft = ls - node.ES;
+            if (ft > max_FT && e.flow > 0) {
+                max_FT = ft;
+            }
+        }
+    }
+
+    if (max_FT == 0)
+        cout << "\n\nThere is no Total 'day' off " << endl;
+    else
+        cout << "\nTotal MAX freedom / (day of, or FT): " << max_FT << endl;
 }
