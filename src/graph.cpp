@@ -320,7 +320,7 @@ void Graph::max_waited_time() {
         }
     }
 
-    cout << "Can wait either at the u or at the v in a (u,v) edge. We decided to choose the v.\n";
+    // cout << "Can wait either at the u or at the v in a (u,v) edge. We decided to choose the v.\n";
     for (auto n: nodesOfMaxWait) {
         cout << "Node max Wait:  " << n.FT_MAX << " at " << n.dist << endl;
     }
@@ -335,17 +335,16 @@ void Graph::max_path_dag() {
         nodes[i].dist = 0;
         nodes[i].degree = 0;
     }
-    for (int i = 1; i <= n; ++i) {
-        for (auto &e: nodes[i].adj) {
+
+    for (int i = 1; i <= n; ++i)
+        for (auto &e: nodes[i].adj)
             if (e.flow > 0)
                 nodes[e.dest].degree++;
-        }
-    }
+
     queue<int> S;
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i <= n; ++i)
         if (nodes[i].degree == 0)
             S.push(i);
-    }
 
     int durMin = -1, vf = -1;
 
@@ -369,7 +368,7 @@ void Graph::max_path_dag() {
 }
 
 
-void Graph::cen_2_1(int groupSize) {
+bool Graph::cen_2_1(int groupSize) {
 
     int maxCapPath = maximum_capacity_with_shortest_path(1, n);
 
@@ -381,12 +380,13 @@ void Graph::cen_2_1(int groupSize) {
         cout << "\nThe path will be:\n";
         for (const int &it: path)
             cout << it << " ";
-        cout << "\n\nThe max group size of this path is:\n" << maxCapPath << endl;
+        cout << "\n\nThe max group size of this path is: " << maxCapPath << endl;
 
-        return;
+        return true;
     }
 
-    cout << "ADD LIMITING NODE AT START!";
+    addEdge(n + 1, 1, 1, groupSize);
+    return false;
 }
 
 
@@ -425,8 +425,8 @@ int Graph::edmonds_karp() {
     int flow, maxFlow = 0;
     do {
         flow = edmonds_karp_flow_path(1, n);
-/*        if (flow)
-            cout << "New found flow = " << flow << endl;*/
+        if (flow)
+            cout << "New flow = " << flow << endl;
         maxFlow += flow;
     } while (flow != 0);
     return maxFlow;
@@ -447,7 +447,6 @@ bool Graph::bfs_sink(int s, int v) {
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front();
         q.pop();
-        // cout << u << " "; // show node order
         for (auto e: nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited && e.flow < e.cap) {
@@ -464,10 +463,10 @@ bool Graph::bfs_sink(int s, int v) {
 int Graph::send_dinic_flow(int s, int flow, int t) {
 
     if (s == t) {
-/*        cout << t << "\n";*/
+        cout << t << "\n";
         return flow;
     }
-/*    cout << s << " --> ";*/
+    cout << s << " --> ";
 
     for (auto &e: nodes[s].adj) {
         if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
@@ -527,11 +526,11 @@ int Graph::edmonds_karp_flow_path(int s, int t) {
 
 void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     int parent = t, child;
-   /* cout << t << " --> ";*/
+    cout << t << " --> ";
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
-/*        cout << parent << " --> ";*/
+        cout << parent << " --> ";
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {

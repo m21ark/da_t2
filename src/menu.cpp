@@ -43,7 +43,7 @@ void Menu::displayResults(int capacity, const list<int> &path) {
     for (const int &it: path)
         cout << it << "  ";
     cout << "\n Path size: " << path.size();
-    cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
+    cout << "\n\nThe max group size of this path is: " << capacity << endl;
 }
 
 void Menu::start() {
@@ -166,8 +166,8 @@ void Menu::scenario1(int option) {
             int newCapMinPath;
             list<int> path4;
             while (moreCapImprovement || morePathImprovement) {
-                if  (moreCapImprovement) {
-                    newCap      = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
+                if (moreCapImprovement) {
+                    newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
                     path3 = graph.get_path(begin, end);
                 }
                 if (newCap == -1)
@@ -213,13 +213,14 @@ void Menu::scenario2(int option) {
         int groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        graph.cen_2_1(groupSize);
+        if (graph.cen_2_1(groupSize)) {
 
-        int incrementBool = askInt("\nDo you wanna try to increment group size? (0 - No | 1 - Yes):\n > ");
-        if (incrementBool == -1) return;
+            int incrementBool = askInt(
+                    "\nDo you wanna try to increment group size by splitting? (0 - No | 1 - Yes):\n > ");
+            if (incrementBool <= 0) return;
+            cout << endl;
 
-        cout << endl;
-
+        }
     }
 
     cout << "Flow Paths:\n";
@@ -229,8 +230,7 @@ void Menu::scenario2(int option) {
         maxFlow = graph.dinic_algo();
     cout << "\nMax flow is: " << maxFlow;
 
-
-    cout << "\n\n=====================================\n";
+    cout << "\n\n=====================================\n\n";
     graph.max_path_dag();
     graph.print_readyAt();
     graph.max_waited_time();
