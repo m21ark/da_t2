@@ -395,7 +395,7 @@ int Graph::edmonds_karp_bfs(int s, int t) {
 int Graph::edmonds_karp(int groupSize_limiter) {
 
     if (groupSize_limiter)
-        addEdge(n + 1, 1, 69, groupSize_limiter);
+        addEdge(n + 1, 1, 0, groupSize_limiter);
 
     int flow, maxFlow = 0;
     do {

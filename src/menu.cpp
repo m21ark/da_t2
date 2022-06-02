@@ -213,7 +213,7 @@ void Menu::scenario2(int option) {
         groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        if(graph.cen_2_1(groupSize))
+        if (graph.cen_2_1(groupSize))
             goto TIMES;
     }
 
