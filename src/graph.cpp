@@ -5,7 +5,7 @@ Graph::Graph(int num, bool dir) : n(num), includeResidual(dir), nodes(num + 2) {
 
 void Graph::addEdge(int src, int dest, int duration, int cap) {
 
-    if (src < 1 || src > n || dest < 1 || dest > n)
+    if (src < 1 || src > n + 2 || dest < 1 || dest > n)
         return;
 
     nodes[src].adj.push_back({dest, duration, cap, 0, cap});
@@ -384,8 +384,6 @@ bool Graph::cen_2_1(int groupSize) {
 
         return true;
     }
-
-    addEdge(n + 1, 1, 1, groupSize);
     return false;
 }
 
@@ -421,14 +419,27 @@ int Graph::edmonds_karp_bfs(int s, int t) {
     return 0;
 }
 
-int Graph::edmonds_karp() {
+int Graph::edmonds_karp(int groupSize_limiter) {
+
+    if (groupSize_limiter)
+        addEdge(n + 1, 1, 69, groupSize_limiter);
+
     int flow, maxFlow = 0;
     do {
-        flow = edmonds_karp_flow_path(1, n);
+
+        if (!groupSize_limiter)
+            flow = edmonds_karp_flow_path(1, n);
+        else
+            flow = edmonds_karp_flow_path(n + 1, n);
+
         if (flow)
-            cout << "New flow = " << flow << endl;
+            if (nodes[n].dist < 20)
+                cout << "New flow = " << flow << endl;
+
         maxFlow += flow;
+
     } while (flow != 0);
+
     return maxFlow;
 }
 
@@ -526,11 +537,16 @@ int Graph::edmonds_karp_flow_path(int s, int t) {
 
 void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     int parent = t, child;
-    cout << t << " --> ";
+
+    if (nodes[t].dist < 20)
+        cout << t << " --> ";
+
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
-        cout << parent << " --> ";
+
+        if (nodes[t].dist < 20)
+            cout << parent << " --> ";
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {

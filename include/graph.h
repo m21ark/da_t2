@@ -86,7 +86,7 @@ public:
 
     int send_dinic_flow(int s, int flow, int t);
 
-    int edmonds_karp();
+    int edmonds_karp(int groupSize_limiter = 0);
 
     void edmonds_karp_update(int bottleNeck, int s, int t);
 

@@ -208,28 +208,24 @@ void Menu::scenario2(int option) {
     Graph graph = buildGraph(dataSetId, true);
     cout << endl;
 
-    int maxFlow;
+    int groupSize = 0;
     if (option == 1) {
-        int groupSize = askInt("Group size: ");
+        groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        if (graph.cen_2_1(groupSize)) {
-
-            int incrementBool = askInt(
-                    "\nDo you wanna try to increment group size by splitting? (0 - No | 1 - Yes):\n > ");
-            if (incrementBool <= 0) return;
-            cout << endl;
-
-        }
+        if(graph.cen_2_1(groupSize))
+            goto TIMES;
     }
 
+    int maxFlow;
     cout << "Flow Paths:\n";
     if (option != 3)
-        maxFlow = graph.edmonds_karp();
+        maxFlow = graph.edmonds_karp(groupSize);
     else
         maxFlow = graph.dinic_algo();
     cout << "\nMax flow is: " << maxFlow;
 
+    TIMES:
     cout << "\n\n=====================================\n\n";
     graph.max_path_dag();
     graph.print_readyAt();
