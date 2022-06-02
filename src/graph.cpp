@@ -329,6 +329,7 @@ int Graph::edmonds_karp_bfs(int s, int t) {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].pred = -1;
+        nodes[i].dist = -1;
     }
 
     queue<int> q;
@@ -345,6 +346,7 @@ int Graph::edmonds_karp_bfs(int s, int t) {
             if (e.residual > 0 && !nodes[e.dest].visited) {
                 nodes[e.dest].pred = node;
                 nodes[e.dest].visited = true;
+                nodes[e.dest].dist = nodes[node].dist + 1;
                 q.push(e.dest);
             }
     }
