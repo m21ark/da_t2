@@ -41,7 +41,6 @@ Graph buildGraph(int id, bool includeResidual) {
     return graph;
 }
 
-/*___________________________________SCENARIO 1___________________________________*/
 
 int Graph::maximum_capacity(int a, int b) {
     for (int i = 1; i <= n; i++) {
@@ -326,9 +325,6 @@ bool Graph::cen_2_1(int groupSize) {
     return false;
 }
 
-
-// ======================= EDMONDS KARP ==============================
-
 int Graph::edmonds_karp_bfs(int s, int t) {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
@@ -488,7 +484,7 @@ void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
         parent = nodes[parent].pred;
 
         if (nodes[t].dist < 20)
-            cout << parent << " <-- ";
+            cout << ((parent == n + 1) ? 0 : parent) << " <-- ";
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {
@@ -528,7 +524,7 @@ int Graph::getPathBottleNeck(int start, int end) {
     return bottleNeck;
 }
 
-
+// TODO: POTENTIAL PROBLEM HERE! WE'RE CREATING A NEW GRAPH WITH N SIZE WHILE THE ORIGINAL VECTOR HAS N+2!!!
 Graph *Graph::transpose() {
     auto *graph = new Graph(n, true);
     for (int i = 1; i <= n; ++i) {

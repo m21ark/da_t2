@@ -42,8 +42,8 @@ void Menu::displayResults(int capacity, const list<int> &path) {
     cout << "\nThe path will be:\n";
     for (const int &it: path)
         cout << it << "  ";
-    cout << "\n Path size: " << path.size();
-    cout << "\n\nThe max group size of this path is: " << capacity << endl;
+    cout << "\n\nPath size: " << path.size();
+    cout << "\nThe max group size of this path is: " << capacity << endl;
 }
 
 void Menu::start() {
@@ -161,10 +161,9 @@ void Menu::scenario1(int option) {
 
             bool morePathImprovement = true;
             bool moreCapImprovement = true;
-            int newCap;
-            list<int> path3;
-            int newCapMinPath;
-            list<int> path4;
+            int newCap, newCapMinPath;
+            list<int> path3, path4;
+
             while (moreCapImprovement || morePathImprovement) {
                 if (moreCapImprovement) {
                     newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
@@ -218,7 +217,7 @@ void Menu::scenario2(int option) {
     }
 
     int maxFlow;
-    cout << "Flow Paths:\n";
+    cout << "\nFlow Paths:\n";
     if (option != 3)
         maxFlow = graph.edmonds_karp(groupSize);
     else
