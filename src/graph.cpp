@@ -414,10 +414,12 @@ bool Graph::bfs_sink(int s, int v) {
 int Graph::send_dinic_flow(int s, int flow, int t) {
 
     if (s == t) {
-        cout << t << "\n";
+        if (nodes[n].dist < 20)
+            cout << t << "\n";
         return flow;
     }
-    cout << s << " --> ";
+    if (nodes[n].dist < 20)
+        cout << s << " --> ";
 
     for (auto &e: nodes[s].adj) {
         if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
@@ -479,14 +481,14 @@ void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     int parent = t, child;
 
     if (nodes[t].dist < 20)
-        cout << t << " --> ";
+        cout << t << " <-- ";
 
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
 
         if (nodes[t].dist < 20)
-            cout << parent << " --> ";
+            cout << parent << " <-- ";
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {

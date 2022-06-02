@@ -223,10 +223,10 @@ void Menu::scenario2(int option) {
         maxFlow = graph.edmonds_karp(groupSize);
     else
         maxFlow = graph.dinic_algo();
-    cout << "\nMax flow is: " << maxFlow;
+    cout << "\nFound flow is: " << maxFlow;
 
     TIMES:
-    cout << "\n\n=====================================\n\n";
+    cout << "\n\n------------------ Times ------------------\n\n";
     graph.max_path_dag();
     graph.print_readyAt();
     graph.critical_path_lf();
