@@ -6,6 +6,7 @@
 #include <list>
 #include <iostream>
 #include "set"
+#include "map"
 #include <queue>
 #include "stack"
 #include "readFiles.h"
@@ -34,8 +35,9 @@ class Graph {
         Color color;
         bool visited;
         int degree = 0;
-        int FT_MAX = 0;
-        int level;
+        int level = 0;
+        int ES = 0;
+        int LF = 0;
     };
 
     int n;
@@ -45,6 +47,17 @@ class Graph {
 public:
 
     explicit Graph(int nodes, bool includeResidual = false);
+
+    inline Graph* transpose() {
+        auto *graph = new Graph(n, true);
+        for (int i = 1; i <= n; ++i) {
+            for (auto n : nodes[i].adj) {
+                graph->addEdge(n.dest,i, n.duration, n.cap);
+                graph->nodes[n.dest].visited = nodes[n.dest].visited;
+            }
+        }
+        return graph;
+    }
 
     void addEdge(int src, int dest, int duration, int cap = 1);
 
@@ -74,7 +87,11 @@ public:
 
     void print_readyAt();
 
-    void max_waited_time();
+    void critical_path_lf();
+
+    void max_FL();
+
+    void max_FT();
 
     void max_path_dag();
 

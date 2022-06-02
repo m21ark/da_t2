@@ -229,7 +229,10 @@ void Menu::scenario2(int option) {
     cout << "\n\n=====================================\n\n";
     graph.max_path_dag();
     graph.print_readyAt();
-    graph.max_waited_time();
+    graph.critical_path_lf();
+
+    graph.max_FL();
+    graph.max_FT();
 
     getchar();
 }
