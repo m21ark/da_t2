@@ -10,6 +10,8 @@
 #define CLEAR "clear"
 #endif
 
+#define TERMINAL_CLEAR  if(system(CLEAR)){}
+
 using namespace std;
 
 /**
@@ -38,9 +40,9 @@ public:
      */
     static void start();
 
-    static int askInt(const string& message);
+    static int askInt(const string &message);
 
-    static void displayResults(int capacity, const list<int>& path);
+    static void displayResults(int capacity, const list<int> &path);
 
 private:
 

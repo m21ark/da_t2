@@ -48,20 +48,9 @@ public:
 
     explicit Graph(int nodes, bool includeResidual = false);
 
-    inline Graph* transpose() {
-        auto *graph = new Graph(n, true);
-        for (int i = 1; i <= n; ++i) {
-            for (auto n : nodes[i].adj) {
-                graph->addEdge(n.dest,i, n.duration, n.cap);
-                graph->nodes[n.dest].visited = nodes[n.dest].visited;
-            }
-        }
-        return graph;
-    }
+    Graph *transpose();
 
     void addEdge(int src, int dest, int duration, int cap = 1);
-
-    int dijkstra_distance(int a, int b);
 
     int maximum_capacity(int a, int b);
 
@@ -75,15 +64,11 @@ public:
 
     bool bfs_sink(int u, int v);
 
-    stack<int> topologicalSorting();
+    // stack<int> topologicalSorting();
 
     void dfsTopSort(int v, stack<int> &l);
 
     bool cycleDfs(int v);
-
-    void printEdges();
-
-    void activity_readyAt();
 
     void print_readyAt();
 

@@ -50,7 +50,7 @@ void Menu::start() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "===============================================" << endl;
         cout << "                   Scenarios                   " << endl;
@@ -89,7 +89,7 @@ void Menu::submenu1() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "==============================================" << endl;
         cout << "                  Scenario 1                  " << endl;
@@ -241,7 +241,7 @@ void Menu::submenu2() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "=====================================" << endl;
         cout << "              Scenario 2             " << endl;

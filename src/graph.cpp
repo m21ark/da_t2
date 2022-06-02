@@ -41,45 +41,6 @@ Graph buildGraph(int id, bool includeResidual) {
     return graph;
 }
 
-
-int Graph::dijkstra_distance(int a, int b) {
-
-    for (int i = 1; i <= n; i++) {
-        nodes[i].dist = INF;
-        nodes[i].visited = false;
-        nodes[i].pred = -1;
-    }
-    nodes[a].dist = 0;
-    nodes[a].pred = -1;
-
-    MinHeap<int, int> heap(n, -1);
-    for (int i = 1; i <= n; i++)
-        heap.insert(i, nodes[i].dist);
-
-    while (heap.getSize() > 0) {
-        int u = heap.removeMin();
-        nodes[u].visited = true;
-
-        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
-
-            int v = nodes[it->dest].dist;
-            int cost = it->cap + nodes[u].dist;
-
-            if (v > cost && !nodes[it->dest].visited) {
-                nodes[it->dest].dist = cost;
-                v = cost;
-                nodes[it->dest].pred = u;
-                heap.decreaseKey(it->dest, v);
-            }
-        }
-    }
-
-    if (nodes[b].dist != (INF))
-        return nodes[b].dist;
-    return -1;
-}
-
-
 /*___________________________________SCENARIO 1___________________________________*/
 
 int Graph::maximum_capacity(int a, int b) {
@@ -225,7 +186,7 @@ list<int> Graph::get_path(int a, int b) {
 }
 
 
-// Depth-First Search: example implementation
+//NOLINTNEXTLINE
 int Graph::dfs(int v) {
     cout << v << " "; // show node order
     int count = 1;
@@ -240,7 +201,8 @@ int Graph::dfs(int v) {
 }
 
 
-stack<int> Graph::topologicalSorting() {
+/* TODO Unico sitio onde é usada é noutra funcao q n e usada. @Ricardo
+ * stack<int> Graph::topologicalSorting() {
 
     for (int i = 1; i <= n; i++)
         nodes[i].visited = false;
@@ -252,7 +214,7 @@ stack<int> Graph::topologicalSorting() {
             dfsTopSort(i, order);
 
     return order;
-}
+}*/
 
 //NOLINTNEXTLINE
 void Graph::dfsTopSort(int v, stack<int> &l) {
@@ -278,7 +240,8 @@ bool Graph::cycleDfs(int v) {
     return false;
 }
 
-
+/*
+ // TODO Ricardo vê se esta funcao e util ou n (n estava a ser usada)
 void Graph::activity_readyAt() {
     for (int i = 2; i <= n; ++i) {
         nodes[i].dist = 0;
@@ -296,6 +259,7 @@ void Graph::activity_readyAt() {
         }
     }
 }
+*/
 
 void Graph::print_readyAt() {
     cout << "Node: " << n << " Ready at: " << nodes[n].ES << endl;
@@ -319,20 +283,22 @@ void Graph::max_path_dag() {
         if (nodes[i].degree == 0)
             S.push(i);
 
-    int durMin = -1, vf = -1;
+    int durMin = -1;
 
     while (!S.empty()) {
+
         int v = S.front();
         S.pop();
-        if (durMin < nodes[v].ES) {
+        if (durMin < nodes[v].ES)
             durMin = nodes[v].ES;
-            vf = v;
-        }
+
         for (auto &e: nodes[v].adj) {
+
             if (nodes[e.dest].ES < nodes[v].ES + e.duration && e.flow > 0) {
                 nodes[e.dest].ES = nodes[v].ES + e.duration;
                 nodes[e.dest].pred = v;
             }
+
             nodes[e.dest].degree--;
             if (nodes[e.dest].degree == 0)
                 S.push(e.dest);
@@ -444,6 +410,7 @@ bool Graph::bfs_sink(int s, int v) {
     return nodes[v].visited;
 }
 
+//NOLINTNEXTLINE
 int Graph::send_dinic_flow(int s, int flow, int t) {
 
     if (s == t) {
@@ -559,11 +526,16 @@ int Graph::getPathBottleNeck(int start, int end) {
     return bottleNeck;
 }
 
-void Graph::printEdges() {
-    for (int i = 1; i <= n; i++)
-        for (Edge e: nodes[i].adj)
-            printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
-                   e.flow, e.residual, e.cap == 0);
+
+Graph *Graph::transpose() {
+    auto *graph = new Graph(n, true);
+    for (int i = 1; i <= n; ++i) {
+        for (auto e: nodes[i].adj) {
+            graph->addEdge(e.dest, i, e.duration, e.cap);
+            graph->nodes[e.dest].visited = nodes[e.dest].visited;
+        }
+    }
+    return graph;
 }
 
 void Graph::critical_path_lf() {
@@ -608,13 +580,13 @@ void Graph::max_FL() {
     int max_Fl = 0;
     set<int> lst;
     for (auto &node: nodes) {
-        for (auto &e : node.adj) {
+        for (auto &e: node.adj) {
             int fl = nodes[e.dest].ES - (node.ES + e.duration);
             if (fl > max_Fl && e.flow > 0) {
                 lst.clear();
                 lst.insert(e.dest);
                 max_Fl = fl;
-            } else if (fl == max_Fl && max_Fl!=0) {
+            } else if (fl == max_Fl && max_Fl != 0) {
                 lst.insert(e.dest);
             }
         }
@@ -632,7 +604,7 @@ void Graph::max_FL() {
 void Graph::max_FT() {
     int max_FT = 0;
     for (auto &node: nodes) {
-        for (auto &e : node.adj) {
+        for (auto &e: node.adj) {
             int ls = nodes[e.dest].LF - e.duration;
             int ft = ls - node.ES;
             if (ft > max_FT && e.flow > 0) {
