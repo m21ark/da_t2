@@ -331,6 +331,8 @@ void Graph::max_path_dag() {
                 S.push(e.dest);
         }
     }
+
+    cout << "MIN Duration: "<< durMin << "\n";
 }
 
 
@@ -407,13 +409,13 @@ bool Graph::bfs_sink(int s, int v) {
     queue<int> q; // queue of unvisited nodes
     q.push(s);
 
-    nodes[s]. visited = true;
+    nodes[s].visited = true;
     nodes[s].level = 0;
 
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
         // cout << u << " "; // show node order
-        for (auto e : nodes[u].adj) {
+        for (auto &e : nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited && e.flow < e.cap) {
                 q.push(w);
@@ -446,6 +448,7 @@ int Graph::send_dinic_flow(int s, int flow, int t) {
                 for (auto &e2 : nodes[e.dest].adj) {
                     if (e2.dest == s) {
                         e2.flow -= temp_flow;
+                        break;
                     }
                 }
                 return temp_flow;
