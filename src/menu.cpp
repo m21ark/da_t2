@@ -42,15 +42,15 @@ void Menu::displayResults(int capacity, const list<int> &path) {
     cout << "\nThe path will be:\n";
     for (const int &it: path)
         cout << it << "  ";
-    cout << "\n Path size: " << path.size();
-    cout << "\n\nThe max group size of this path is:\n" << capacity << endl;
+    cout << "\n\nPath size: " << path.size();
+    cout << "\nThe max group size of this path is: " << capacity << endl;
 }
 
 void Menu::start() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "===============================================" << endl;
         cout << "                   Scenarios                   " << endl;
@@ -89,7 +89,7 @@ void Menu::submenu1() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "==============================================" << endl;
         cout << "                  Scenario 1                  " << endl;
@@ -161,13 +161,12 @@ void Menu::scenario1(int option) {
 
             bool morePathImprovement = true;
             bool moreCapImprovement = true;
-            int newCap;
-            list<int> path3;
-            int newCapMinPath;
-            list<int> path4;
+            int newCap, newCapMinPath;
+            list<int> path3, path4;
+
             while (moreCapImprovement || morePathImprovement) {
-                if  (moreCapImprovement) {
-                    newCap      = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
+                if (moreCapImprovement) {
+                    newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
                     path3 = graph.get_path(begin, end);
                 }
                 if (newCap == -1)
@@ -208,29 +207,25 @@ void Menu::scenario2(int option) {
     Graph graph = buildGraph(dataSetId, true);
     cout << endl;
 
-    int maxFlow;
+    int groupSize = 0;
     if (option == 1) {
-        int groupSize = askInt("Group size: ");
+        groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        graph.cen_2_1(groupSize);
-
-        int incrementBool = askInt("\nDo you wanna try to increment group size? (0 - No | 1 - Yes):\n > ");
-        if (incrementBool == -1) return;
-
-        cout << endl;
-
+        if (graph.cen_2_1(groupSize))
+            goto TIMES;
     }
 
-    cout << "Flow Paths:\n";
+    int maxFlow;
+    cout << "\nFlow Paths:\n";
     if (option != 3)
-        maxFlow = graph.edmonds_karp();
+        maxFlow = graph.edmonds_karp(groupSize);
     else
         maxFlow = graph.dinic_algo();
-    cout << "\nMax flow is: " << maxFlow;
+    cout << "\nFound flow is: " << maxFlow;
 
-
-    cout << "\n\n=====================================\n";
+    TIMES:
+    cout << "\n\n------------------ Times ------------------\n\n";
     graph.max_path_dag();
     graph.print_readyAt();
     graph.critical_path_lf();
@@ -245,14 +240,14 @@ void Menu::submenu2() {
 
     char userInput;
     while (true) {
-        (void) system(CLEAR);
+        TERMINAL_CLEAR
 
         cout << "=====================================" << endl;
         cout << "              Scenario 2             " << endl;
         cout << "=====================================" << endl;
         cout << "   1)  User Given Group Size         " << endl;
         cout << "   2)  Max Group Size                " << endl;
-        cout << "   3)  Dinic's solution (better in this situation) " << endl;
+        cout << "   3)  Dinic's solution              " << endl;
         cout << "   0)  Go Back                       " << endl;
         cout << "=====================================" << endl;
         cout << " > ";

@@ -3,19 +3,20 @@
 time_point_t Timer::start_time; // NOLINT
 time_point_t Timer::stop_time; // NOLINT
 
-void Timer::start() {
+
+[[maybe_unused]] void Timer::start() {
     start_time = high_resolution_clock::now();
 }
 
-void Timer::stop() {
+[[maybe_unused]] void Timer::stop() {
     stop_time = high_resolution_clock::now();
 }
 
-float Timer::getTime() {
-    return (float) (duration_cast<milliseconds>(stop_time - start_time).count()) / 1000;
+[[maybe_unused]] float Timer::getTime() {
+    return (float) (duration_cast<milliseconds>(stop_time - start_time).count());
 }
 
-float Timer::getCurrentTime() {
+[[maybe_unused]] float Timer::getCurrentTime() {
     time_point_t current_time = high_resolution_clock::now();
-    return (float) (duration_cast<milliseconds>(current_time - start_time).count()) / 1000;
+    return (float) (duration_cast<milliseconds>(current_time - start_time).count());
 }

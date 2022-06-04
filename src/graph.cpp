@@ -5,7 +5,7 @@ Graph::Graph(int num, bool dir) : n(num), includeResidual(dir), nodes(num + 2) {
 
 void Graph::addEdge(int src, int dest, int duration, int cap) {
 
-    if (src < 1 || src > n || dest < 1 || dest > n)
+    if (src < 1 || src > n + 2 || dest < 1 || dest > n)
         return;
 
     nodes[src].adj.push_back({dest, duration, cap, 0, cap});
@@ -42,46 +42,6 @@ Graph buildGraph(int id, bool includeResidual) {
 }
 
 
-int Graph::dijkstra_distance(int a, int b) {
-
-    for (int i = 1; i <= n; i++) {
-        nodes[i].dist = INF;
-        nodes[i].visited = false;
-        nodes[i].pred = -1;
-    }
-    nodes[a].dist = 0;
-    nodes[a].pred = -1;
-
-    MinHeap<int, int> heap(n, -1);
-    for (int i = 1; i <= n; i++)
-        heap.insert(i, nodes[i].dist);
-
-    while (heap.getSize() > 0) {
-        int u = heap.removeMin();
-        nodes[u].visited = true;
-
-        for (auto it = nodes[u].adj.begin(); it != nodes[u].adj.end(); it++) {
-
-            int v = nodes[it->dest].dist;
-            int cost = it->cap + nodes[u].dist;
-
-            if (v > cost && !nodes[it->dest].visited) {
-                nodes[it->dest].dist = cost;
-                v = cost;
-                nodes[it->dest].pred = u;
-                heap.decreaseKey(it->dest, v);
-            }
-        }
-    }
-
-    if (nodes[b].dist != (INF))
-        return nodes[b].dist;
-    return -1;
-}
-
-
-/*___________________________________SCENARIO 1___________________________________*/
-
 int Graph::maximum_capacity(int a, int b) {
     for (int i = 1; i <= n; i++) {
         nodes[i].capacity = -1;
@@ -116,6 +76,9 @@ int Graph::maximum_capacity(int a, int b) {
 
 
 int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
+    a = 1;
+    b = n;
+
     for (int i = 1; i <= n; i++) {
         nodes[i].dist = INF;
         nodes[i].capacity = -1;
@@ -156,6 +119,8 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
 }
 
 int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
+    a = 1;
+    b = n;
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].dist = INF;
@@ -201,7 +166,9 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
 
 list<int> Graph::get_path(int a, int b) {
 
-    //dijkstra_distance(a, b); call outside the function
+    a = 1;
+    b = n;
+
     list<int> path = {b};
     int parent = b;
 
@@ -217,7 +184,7 @@ list<int> Graph::get_path(int a, int b) {
 }
 
 
-// Depth-First Search: example implementation
+//NOLINTNEXTLINE
 int Graph::dfs(int v) {
     cout << v << " "; // show node order
     int count = 1;
@@ -232,7 +199,8 @@ int Graph::dfs(int v) {
 }
 
 
-stack<int> Graph::topologicalSorting() {
+/* TODO Unico sitio onde é usada é noutra funcao q n e usada. @Ricardo
+ * stack<int> Graph::topologicalSorting() {
 
     for (int i = 1; i <= n; i++)
         nodes[i].visited = false;
@@ -244,7 +212,7 @@ stack<int> Graph::topologicalSorting() {
             dfsTopSort(i, order);
 
     return order;
-}
+}*/
 
 //NOLINTNEXTLINE
 void Graph::dfsTopSort(int v, stack<int> &l) {
@@ -270,7 +238,8 @@ bool Graph::cycleDfs(int v) {
     return false;
 }
 
-
+/*
+ // TODO Ricardo vê se esta funcao e util ou n (n estava a ser usada)
 void Graph::activity_readyAt() {
     for (int i = 2; i <= n; ++i) {
         nodes[i].dist = 0;
@@ -288,6 +257,7 @@ void Graph::activity_readyAt() {
         }
     }
 }
+*/
 
 void Graph::print_readyAt() {
     cout << "Node: " << n << " Ready at: " << nodes[n].ES << endl;
@@ -300,32 +270,33 @@ void Graph::max_path_dag() {
         nodes[i].ES = 0;
         nodes[i].degree = 0;
     }
-    for (int i = 1; i <= n; ++i) {
-        for (auto &e: nodes[i].adj) {
+
+    for (int i = 1; i <= n; ++i)
+        for (auto &e: nodes[i].adj)
             if (e.flow > 0)
                 nodes[e.dest].degree++;
-        }
-    }
+
     queue<int> S;
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i <= n; ++i)
         if (nodes[i].degree == 0)
             S.push(i);
-    }
 
-    int durMin = -1, vf = -1;
+    int durMin = -1;
 
     while (!S.empty()) {
+
         int v = S.front();
         S.pop();
-        if (durMin < nodes[v].ES) {
+        if (durMin < nodes[v].ES)
             durMin = nodes[v].ES;
-            vf = v;
-        }
+
         for (auto &e: nodes[v].adj) {
+
             if (nodes[e.dest].ES < nodes[v].ES + e.duration && e.flow > 0) {
                 nodes[e.dest].ES = nodes[v].ES + e.duration;
                 nodes[e.dest].pred = v;
             }
+
             nodes[e.dest].degree--;
             if (nodes[e.dest].degree == 0)
                 S.push(e.dest);
@@ -336,7 +307,7 @@ void Graph::max_path_dag() {
 }
 
 
-void Graph::cen_2_1(int groupSize) {
+bool Graph::cen_2_1(int groupSize) {
 
     int maxCapPath = maximum_capacity_with_shortest_path(1, n);
 
@@ -348,22 +319,18 @@ void Graph::cen_2_1(int groupSize) {
         cout << "\nThe path will be:\n";
         for (const int &it: path)
             cout << it << " ";
-        cout << "\n\nThe max group size of this path is:\n" << maxCapPath << endl;
+        cout << "\n\nThe max group size of this path is: " << maxCapPath << endl;
 
-        return;
+        return true;
     }
-
-
-    cout << "ADD LIMITING NODE AT START!";
+    return false;
 }
-
-
-// ======================= EDMONDS KARP ==============================
 
 int Graph::edmonds_karp_bfs(int s, int t) {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].pred = -1;
+        nodes[i].dist = -1;
     }
 
     queue<int> q;
@@ -380,6 +347,7 @@ int Graph::edmonds_karp_bfs(int s, int t) {
             if (e.residual > 0 && !nodes[e.dest].visited) {
                 nodes[e.dest].pred = node;
                 nodes[e.dest].visited = true;
+                nodes[e.dest].dist = nodes[node].dist + 1;
                 q.push(e.dest);
             }
     }
@@ -389,14 +357,27 @@ int Graph::edmonds_karp_bfs(int s, int t) {
     return 0;
 }
 
-int Graph::edmonds_karp() {
+int Graph::edmonds_karp(int groupSize_limiter) {
+
+    if (groupSize_limiter)
+        addEdge(n + 1, 1, 0, groupSize_limiter);
+
     int flow, maxFlow = 0;
     do {
-        flow = edmonds_karp_flow_path(1, n);
+
+        if (!groupSize_limiter)
+            flow = edmonds_karp_flow_path(1, n);
+        else
+            flow = edmonds_karp_flow_path(n + 1, n);
+
         if (flow)
-            cout << "New found flow = " << flow << endl;
+            if (nodes[n].dist < 20)
+                cout << "New flow = " << flow << endl;
+
         maxFlow += flow;
+
     } while (flow != 0);
+
     return maxFlow;
 }
 
@@ -428,15 +409,18 @@ bool Graph::bfs_sink(int s, int v) {
     return nodes[v].visited;
 }
 
+//NOLINTNEXTLINE
 int Graph::send_dinic_flow(int s, int flow, int t) {
 
     if (s == t) {
-        cout << t << "\n";
+        if (nodes[n].dist < 20)
+            cout << t << "\n";
         return flow;
     }
-    cout << s << " --> ";
+    if (nodes[n].dist < 20)
+        cout << s << " --> ";
 
-    for (auto &e : nodes[s].adj) {
+    for (auto &e: nodes[s].adj) {
         if (nodes[e.dest].level == nodes[s].level + 1 && e.flow < e.cap) {
             int cur_flow = min(flow, e.cap - e.flow);
             int temp_flow = send_dinic_flow(e.dest, cur_flow, t);
@@ -445,7 +429,7 @@ int Graph::send_dinic_flow(int s, int flow, int t) {
 
                 e.flow += temp_flow;
 
-                for (auto &e2 : nodes[e.dest].adj) {
+                for (auto &e2: nodes[e.dest].adj) {
                     if (e2.dest == s) {
                         e2.flow -= temp_flow;
                         break;
@@ -468,8 +452,7 @@ int Graph::dinic_algo() {
         nodes[i].pred = -1;
     }
 
-    while (bfs_sink(1, n))
-    {
+    while (bfs_sink(1, n)) {
         while (int flow = send_dinic_flow(1, INT_MAX, n))
             total += flow;
     }
@@ -496,11 +479,16 @@ int Graph::edmonds_karp_flow_path(int s, int t) {
 
 void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     int parent = t, child;
-    cout << t << " --> ";
+
+    if (nodes[t].dist < 20)
+        cout << t << " <-- ";
+
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
-        cout << parent << " --> ";
+
+        if (nodes[t].dist < 20)
+            cout << ((parent == n + 1) ? 0 : parent) << " <-- ";
 
         for (Edge &e: nodes[parent].adj)
             if (e.dest == child) {
@@ -540,11 +528,16 @@ int Graph::getPathBottleNeck(int start, int end) {
     return bottleNeck;
 }
 
-void Graph::printEdges() {
-    for (int i = 1; i <= n; i++)
-        for (Edge e: nodes[i].adj)
-            printf("src: %d\tdest: %d\tcap: %d\tflow: %d\tresidualVal: %d\tresidual? %d\n", i, e.dest, e.cap,
-                   e.flow, e.residual, e.cap == 0);
+// TODO: POTENTIAL PROBLEM HERE! WE'RE CREATING A NEW GRAPH WITH N SIZE WHILE THE ORIGINAL VECTOR HAS N+2!!!
+Graph *Graph::transpose() {
+    auto *graph = new Graph(n, true);
+    for (int i = 1; i <= n; ++i) {
+        for (auto e: nodes[i].adj) {
+            graph->addEdge(e.dest, i, e.duration, e.cap);
+            graph->nodes[e.dest].visited = nodes[e.dest].visited;
+        }
+    }
+    return graph;
 }
 
 void Graph::critical_path_lf() {
@@ -589,13 +582,13 @@ void Graph::max_FL() {
     int max_Fl = 0;
     set<int> lst;
     for (auto &node: nodes) {
-        for (auto &e : node.adj) {
+        for (auto &e: node.adj) {
             int fl = nodes[e.dest].ES - (node.ES + e.duration);
             if (fl > max_Fl && e.flow > 0) {
                 lst.clear();
                 lst.insert(e.dest);
                 max_Fl = fl;
-            } else if (fl == max_Fl && max_Fl!=0) {
+            } else if (fl == max_Fl && max_Fl != 0) {
                 lst.insert(e.dest);
             }
         }
@@ -613,7 +606,7 @@ void Graph::max_FL() {
 void Graph::max_FT() {
     int max_FT = 0;
     for (auto &node: nodes) {
-        for (auto &e : node.adj) {
+        for (auto &e: node.adj) {
             int ls = nodes[e.dest].LF - e.duration;
             int ft = ls - node.ES;
             if (ft > max_FT && e.flow > 0) {
