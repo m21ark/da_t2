@@ -47,8 +47,8 @@ class Graph {
 public:
     /**
      * Builds a graph
-     * @param nodes
-     * @param includeResidual
+     * @param nodes number of nodes
+     * @param includeResidual true if residual edges should be included, false otherwise
      */
     explicit Graph(int nodes, bool includeResidual = false);
 
@@ -60,17 +60,17 @@ public:
 
     /**
      * Adds an edge to the graph that connects src and dest
-     * @param src
-     * @param dest
+     * @param src start node
+     * @param dest end node
      * @param duration
-     * @param cap
+     * @param cap capacity
      */
     void addEdge(int src, int dest, int duration, int cap = 1);
 
     /**
      * Calculates a maximum capacity path for the graph
-     * @param a
-     * @param b
+     * @param a start node
+     * @param b end node
      * @return max capacity
      */
     int maximum_capacity(int a, int b);
@@ -78,9 +78,9 @@ public:
     /**
      * Among the maximum capacity paths,
      * it calculates the shortest one
-     * @param a
-     * @param b
-     * @param max
+     * @param a start node
+     * @param b end node
+     * @param max distance limiter
      * @return max capacity
      */
     int maximum_capacity_with_shortest_path(int a, int b, int max = INT32_MAX);
@@ -88,44 +88,50 @@ public:
     /**
      * Among the shortest paths, it calculates
      * the path with the highest capacity
-     * @param a
-     * @param b
-     * @param min
+     * @param a start node
+     * @param b end node
+     * @param min capacity limiter
      * @return capacity
      */
     int shortest_path_with_maximum_capacity(int a, int b, int min = INT32_MIN);
 
     /**
      * Gets the path of the last used algorithm
-     * @param a
-     * @param b
-     * @return path
+     * @param a start node
+     * @param b end node
+     * @return path from a to b
      */
     list<int> get_path(int a, int b);
 
     /**
      * It traverses the graph using a depth-first search
-     * @param v
+     * @param v start node
      * @return number of nodes
      */
     int dfs(int v);
 
-
+    /**
+     * Bfs that only considers non saturated edges
+     * Sets level for nodes
+     * @param u start node
+     * @param v end node
+     * @return
+     */
     bool bfs_sink(int u, int v);
 
     // stack<int> topologicalSorting();
 
     /**
      * Calculates de topological sorting path using dfs
-     * @param v
-     * @param l
+     * @param v start node
+     * @param l stack of sorted nodes
      */
     void dfsTopSort(int v, stack<int> &l);
 
     /**
      * Checks the graph for cycles
-     * @param v
-     * @return
+     * @param v start node
+     * @return true if cycle found, false otherwise
      */
     bool cycleDfs(int v);
 
@@ -139,11 +145,19 @@ public:
      */
     void critical_path_lf();
 
-
+    /**
+     * Calculates the maximum "Folga livre"
+     */
     void max_FL();
 
+    /**
+     * Calculates the maximum "Folga total"
+     */
     void max_FT();
 
+    /**
+     * Bfs update of the earliest start for paths containing flow
+     */
     void max_path_dag();
 
     /**
@@ -156,22 +170,57 @@ public:
 
     /**
      * Bfs used to calculate edmonds_karp_algorithm
-     * @param s
-     * @param t
+     * @param s start node
+     * @param t end node
      * @return 1 if node t is reached, false otherwise
      */
     int edmonds_karp_bfs(int s, int t);
 
+    /**
+     * Calculates the maximum flow of a graph from start to finish using Dinic's algorithm
+     * @return max flow
+     */
     int dinic_algo();
 
+    /**
+     * Recursive part of the Dinic's algorithm that finds available path to the sink node
+     * @param s start node
+     * @param flow current flow along the recursive chain
+     * @param t end node
+     * @return flow found along the path
+     */
     int send_dinic_flow(int s, int flow, int t);
 
+    /**
+     * Main edmonds karp algorithm
+     * Calculates the maximum flow in a graph from s to t
+     * @param groupSize_limiter max flow bottleneck
+     * @return max flow
+     */
     int edmonds_karp(int groupSize_limiter = 0);
 
+    /**
+     * Updates the residual and flow parameters of the path found
+     * @param bottleNeck the minimum capacity
+     * @param s start node
+     * @param t end node
+     */
     void edmonds_karp_update(int bottleNeck, int s, int t);
 
+    /**
+     * Get the minimum capacity edge along the path
+     * @param start node
+     * @param end node
+     * @return minimum capacity along the path
+     */
     int getPathBottleNeck(int start, int end);
 
+    /**
+     * Finds a flow path to the sink node
+     * @param s start node
+     * @param t end node
+     * @return flow of the path found
+     */
     int edmonds_karp_flow_path(int s, int t);
 };
 
