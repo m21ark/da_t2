@@ -169,7 +169,6 @@ list<int> Graph::get_path(int a, int b) {
     a = 1;
     b = n;
 
-    //dijkstra_distance(a, b); call outside the function
     list<int> path = {b};
     int parent = b;
 

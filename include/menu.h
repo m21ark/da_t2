@@ -40,18 +40,44 @@ public:
      */
     static void start();
 
+    /**
+     * Asks user for a number after displaying the message
+     */
     static int askInt(const string &message);
 
+    /**
+     * It displays the results given to the user in a friendly way
+     * @param capacity
+     * @param path
+     */
     static void displayResults(int capacity, const list<int> &path);
 
 private:
 
+    /**
+     * Shows a submenu for the scenario 1
+     * and handles user input
+     */
     static void submenu1();
 
+    /**
+     * Asks information from the user, processes the information
+     * according to the scenario, and displays the results.
+     * @param option
+     */
     static void scenario1(int option);
 
+    /**
+     * Shows a submenu for the scenario 2
+     * and handles user input
+     */
     static void submenu2();
 
+    /**
+     * Asks information from the user, processes the information
+     * according to the scenario, and displays the results
+     * @param option
+     */
     static void scenario2(int option);
 
 };
