@@ -338,8 +338,15 @@ int Graph::edmonds_karp_dfs(int v) {
     for (auto e: nodes[v].adj) {
         int w = e.dest;
         if (!nodes[w].visited && e.residual > 0) {
-            count += edmonds_karp_dfs(w);
+            int d = edmonds_karp_dfs(w);
+            count += d;
             nodes[w].pred = v;
+            for (auto &e2: nodes[e.dest].adj) {
+                if (e2.dest == v) {
+                    e2.residual += d;
+                    break;
+                }
+            }
         }
     }
     return count;
