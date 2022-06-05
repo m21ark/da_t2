@@ -1,5 +1,5 @@
-#ifndef DA_T1_TIMER_H
-#define DA_T1_TIMER_H
+#ifndef DA_T2_TIMER_H
+#define DA_T2_TIMER_H
 
 #include <chrono>
 
@@ -44,4 +44,4 @@ public:
     [[maybe_unused]] static float getTime();
 };
 
-#endif //DA_T1_TIMER_H
+#endif //DA_T2_TIMER_H

@@ -17,16 +17,28 @@
 
 using namespace std;
 
+/**
+ * Possible node colors
+ */
 enum Color {
     WHITE, GREY, BLACK
 };
 
+/**
+ * Graph class representation using adjacent lists
+ */
 class Graph {
 
+    /**
+     * Union between to Nodes
+     */
     struct Edge {
         int dest, duration, cap, flow, residual;
     };
 
+    /**
+     * Represents a Node in the Graph
+     */
     struct Node {
         list<Edge> adj;
         int dist;
@@ -40,6 +52,7 @@ class Graph {
         int LF = 0;
     };
 
+    // Important information about Graph Object
     int n;
     bool includeResidual;
     vector<Node> nodes;
@@ -62,7 +75,7 @@ public:
      * Adds an edge to the graph that connects src and dest
      * @param src start node
      * @param dest end node
-     * @param duration
+     * @param duration time taken to go from src to dest node
      * @param cap capacity
      */
     void addEdge(int src, int dest, int duration, int cap = 1);
@@ -91,7 +104,7 @@ public:
      * @param a start node
      * @param b end node
      * @param min capacity limiter
-     * @return capacity
+     * @return capacity of path from a to b
      */
     int shortest_path_with_maximum_capacity(int a, int b, int min = INT32_MIN);
 
@@ -115,7 +128,7 @@ public:
      * Sets level for nodes
      * @param u start node
      * @param v end node
-     * @return
+     * @return boolean if v was visited by the bfs
      */
     bool bfs_sink(int u, int v);
 
@@ -163,7 +176,7 @@ public:
     /**
      * Checks if there is a shortest path with the capacity higher or equal
      * than the one given. If so, then it outputs the result to the user.
-     * @param groupSize
+     * @param groupSize group size to look for
      * @return true if path found, false otherwise
      */
     bool cen_2_1(int groupSize);
@@ -195,7 +208,7 @@ public:
      * Main edmonds karp algorithm
      * Calculates the maximum flow in a graph from s to t
      * @param groupSize_limiter max flow bottleneck
-     * @return max flow
+     * @return max flow of the graph
      */
     int edmonds_karp(int groupSize_limiter = 0);
 
@@ -209,8 +222,8 @@ public:
 
     /**
      * Get the minimum capacity edge along the path
-     * @param start node
-     * @param end node
+     * @param start start node
+     * @param end end node
      * @return minimum capacity along the path
      */
     int getPathBottleNeck(int start, int end);
