@@ -203,22 +203,6 @@ int Graph::dfs(int v) {
     return count;
 }
 
-
-/* TODO Unico sitio onde é usada é noutra funcao q n e usada. @Ricardo
- * stack<int> Graph::topologicalSorting() {
-
-    for (int i = 1; i <= n; i++)
-        nodes[i].visited = false;
-
-    stack<int> order;
-
-    for (int i = 1; i <= n; i++)
-        if (!nodes[i].visited)
-            dfsTopSort(i, order);
-
-    return order;
-}*/
-
 //NOLINTNEXTLINE
 void Graph::dfsTopSort(int v, stack<int> &l) {
     nodes[v].visited = true;
@@ -243,26 +227,6 @@ bool Graph::cycleDfs(int v) {
     return false;
 }
 
-/*
- // TODO Ricardo vê se esta funcao e util ou n (n estava a ser usada)
-void Graph::activity_readyAt() {
-    for (int i = 2; i <= n; ++i) {
-        nodes[i].dist = 0;
-    }
-    nodes[1].dist = 0;
-    auto lst = topologicalSorting();
-    while (!lst.empty()) {
-        int i = lst.top();
-        lst.pop();
-        for (auto &e: nodes[i].adj) {
-            int w = e.dest;
-            if (nodes[w].dist < nodes[i].dist + e.duration && e.flow > 0) { // TODO: e.flow esta correto? yup, ma friend
-                nodes[w].dist = nodes[i].dist + e.duration;
-            }
-        }
-    }
-}
-*/
 
 void Graph::print_readyAt() {
     cout << "Node: " << n << " Ready at: " << nodes[n].ES << endl;
@@ -341,12 +305,12 @@ int Graph::edmonds_karp_dfs(int v) {
             int d = edmonds_karp_dfs(w);
             count += d;
             nodes[w].pred = v;
-            for (auto &e2: nodes[e.dest].adj) {
+/*            for (auto &e2: nodes[e.dest].adj) {
                 if (e2.dest == v) {
                     e2.residual += d;
                     break;
                 }
-            }
+            }*/
         }
     }
     return count;
@@ -574,7 +538,6 @@ int Graph::getPathBottleNeck(int start, int end) {
     return bottleNeck;
 }
 
-// TODO: POTENTIAL PROBLEM HERE! WE'RE CREATING A NEW GRAPH WITH N SIZE WHILE THE ORIGINAL VECTOR HAS N+2!!!
 Graph *Graph::transpose() {
     auto *graph = new Graph(n, true);
     for (int i = 1; i <= n; ++i) {
