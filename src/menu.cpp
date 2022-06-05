@@ -126,25 +126,21 @@ void Menu::scenario1(int option) {
 
     int dataSetId = askInt("\nEnter Data set id: ");
     if (dataSetId == -1) return;
-    int begin = askInt("Enter number of starting stop: ");
-    if (begin == -1) return;
-    int end = askInt("Enter the number of ending stop: ");
-    if (end == -1) return;
 
     Graph graph = buildGraph(dataSetId, false);
 
     int capacity;
     if (option == 1) {
-        capacity = graph.maximum_capacity(begin, end);
-        list<int> path = graph.get_path(begin, end);
+        capacity = graph.maximum_capacity();
+        list<int> path = graph.get_path();
         displayResults(capacity, path);
     } else {
 
-        int capacity1 = graph.maximum_capacity_with_shortest_path(begin, end);
-        list<int> path1 = graph.get_path(begin, end);
+        int capacity1 = graph.maximum_capacity_with_shortest_path();
+        list<int> path1 = graph.get_path();
 
-        int capacity2 = graph.shortest_path_with_maximum_capacity(begin, end);
-        list<int> path2 = graph.get_path(begin, end);
+        int capacity2 = graph.shortest_path_with_maximum_capacity();
+        list<int> path2 = graph.get_path();
 
         if (capacity1 == capacity2) {
             cout << "\nBoth algorithms reached same max capacity value. Showing shortest path.\n\n";
@@ -166,8 +162,8 @@ void Menu::scenario1(int option) {
 
             while (moreCapImprovement || morePathImprovement) {
                 if (moreCapImprovement) {
-                    newCap = graph.maximum_capacity_with_shortest_path(begin, end, capacity1);
-                    path3 = graph.get_path(begin, end);
+                    newCap = graph.maximum_capacity_with_shortest_path(capacity1);
+                    path3 = graph.get_path();
                 }
                 if (newCap == -1)
                     moreCapImprovement = false;
@@ -179,8 +175,8 @@ void Menu::scenario1(int option) {
                     capacity1 = newCap;
                 }
                 if (morePathImprovement) {
-                    newCapMinPath = graph.shortest_path_with_maximum_capacity(begin, end, (int) path2.size() - 1);
-                    path4 = graph.get_path(begin, end);
+                    newCapMinPath = graph.shortest_path_with_maximum_capacity((int) path2.size() - 1);
+                    path4 = graph.get_path();
                 }
                 if (newCapMinPath == 0)
                     morePathImprovement = false;

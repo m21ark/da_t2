@@ -82,39 +82,31 @@ public:
 
     /**
      * Calculates a maximum capacity path for the graph
-     * @param a start node
-     * @param b end node
      * @return max capacity
      */
-    int maximum_capacity(int a, int b);
+    int maximum_capacity();
 
     /**
      * Among the maximum capacity paths,
      * it calculates the shortest one
-     * @param a start node
-     * @param b end node
      * @param max distance limiter
      * @return max capacity
      */
-    int maximum_capacity_with_shortest_path(int a, int b, int max = INT32_MAX);
+    int maximum_capacity_with_shortest_path(int max = INT32_MAX);
 
     /**
      * Among the shortest paths, it calculates
      * the path with the highest capacity
-     * @param a start node
-     * @param b end node
      * @param min capacity limiter
      * @return capacity of path from a to b
      */
-    int shortest_path_with_maximum_capacity(int a, int b, int min = INT32_MIN);
+    int shortest_path_with_maximum_capacity(int min = INT32_MIN);
 
     /**
      * Gets the path of the last used algorithm
-     * @param a start node
-     * @param b end node
      * @return path from a to b
      */
-    list<int> get_path(int a, int b);
+    list<int> get_path();
 
     /**
      * It traverses the graph using a depth-first search

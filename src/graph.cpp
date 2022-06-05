@@ -42,7 +42,10 @@ Graph buildGraph(int id, bool includeResidual) {
 }
 
 
-int Graph::maximum_capacity(int a, int b) {
+int Graph::maximum_capacity() {
+    int a = 1;
+    int b = n;
+
     for (int i = 1; i <= n; i++) {
         nodes[i].capacity = -1;
         nodes[i].visited = false;
@@ -75,9 +78,9 @@ int Graph::maximum_capacity(int a, int b) {
 }
 
 
-int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
-    a = 1;
-    b = n;
+int Graph::maximum_capacity_with_shortest_path(int max) {
+    int a = 1;
+    int b = n;
 
     for (int i = 1; i <= n; i++) {
         nodes[i].dist = INF;
@@ -107,6 +110,7 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
             bool b1 = (newCap > currentCap && !nodes[it->dest].visited);
             bool b2 = (newCap == currentCap && newDist < currentDist && !nodes[it->dest].visited);
             bool b3 = newCap < max;
+
             if ((b1 || b2) && b3) {
                 nodes[it->dest].capacity = newCap;
                 nodes[it->dest].dist = newDist;
@@ -118,9 +122,10 @@ int Graph::maximum_capacity_with_shortest_path(int a, int b, int max) {
     return nodes[b].capacity;
 }
 
-int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
-    a = 1;
-    b = n;
+int Graph::shortest_path_with_maximum_capacity(int mini) {
+    int a = 1;
+    int b = n;
+
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].dist = INF;
@@ -164,10 +169,10 @@ int Graph::shortest_path_with_maximum_capacity(int a, int b, int mini) {
 
 /*___________________________________/SCENARIO 1___________________________________*/
 
-list<int> Graph::get_path(int a, int b) {
+list<int> Graph::get_path() {
 
-    a = 1;
-    b = n;
+    int a = 1;
+    int b = n;
 
     list<int> path = {b};
     int parent = b;
@@ -186,7 +191,7 @@ list<int> Graph::get_path(int a, int b) {
 
 //NOLINTNEXTLINE
 int Graph::dfs(int v) {
-    cout << v << " "; // show node order
+    //cout << v << " "; // show node order
     int count = 1;
     nodes[v].visited = true;
     for (auto e: nodes[v].adj) {
@@ -303,18 +308,18 @@ void Graph::max_path_dag() {
         }
     }
 
-    cout << "MIN Duration: "<< durMin << "\n";
+    cout << "MIN Duration: " << durMin << "\n";
 }
 
 
 bool Graph::cen_2_1(int groupSize) {
 
-    int maxCapPath = maximum_capacity_with_shortest_path(1, n);
+    int maxCapPath = maximum_capacity_with_shortest_path();
 
     if (maxCapPath >= groupSize) {
 
         cout << "\nA path was found where the group doesnt need to break apart:\n";
-        list<int> path = get_path(1, n);
+        list<int> path = get_path();
 
         cout << "\nThe path will be:\n";
         for (const int &it: path)
@@ -394,9 +399,10 @@ bool Graph::bfs_sink(int s, int v) {
     nodes[s].level = 0;
 
     while (!q.empty()) { // while there are still unvisited nodes
-        int u = q.front(); q.pop();
+        int u = q.front();
+        q.pop();
         // cout << u << " "; // show node order
-        for (auto &e : nodes[u].adj) {
+        for (auto &e: nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited && e.flow < e.cap) {
                 q.push(w);
