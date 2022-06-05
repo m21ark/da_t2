@@ -331,6 +331,20 @@ bool Graph::cen_2_1(int groupSize) {
     return false;
 }
 
+//NOLINTNEXTLINE
+int Graph::edmonds_karp_dfs(int v) {
+    int count = 1;
+    nodes[v].visited = true;
+    for (auto e: nodes[v].adj) {
+        int w = e.dest;
+        if (!nodes[w].visited && e.residual > 0) {
+            count += edmonds_karp_dfs(w);
+            nodes[w].pred = v;
+        }
+    }
+    return count;
+}
+
 int Graph::edmonds_karp_bfs(int s, int t) {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
@@ -362,7 +376,7 @@ int Graph::edmonds_karp_bfs(int s, int t) {
     return 0;
 }
 
-int Graph::edmonds_karp(int groupSize_limiter) {
+int Graph::edmonds_karp(int groupSize_limiter, bool useDfs) {
 
     if (groupSize_limiter)
         addEdge(n + 1, 1, 0, groupSize_limiter);
@@ -371,9 +385,9 @@ int Graph::edmonds_karp(int groupSize_limiter) {
     do {
 
         if (!groupSize_limiter)
-            flow = edmonds_karp_flow_path(1, n);
+            flow = edmonds_karp_flow_path(1, n, useDfs);
         else
-            flow = edmonds_karp_flow_path(n + 1, n);
+            flow = edmonds_karp_flow_path(n + 1, n, useDfs);
 
         if (flow)
             if (nodes[n].dist < 20)
@@ -468,14 +482,27 @@ int Graph::dinic_algo() {
 }
 
 
-int Graph::edmonds_karp_flow_path(int s, int t) {
+int Graph::edmonds_karp_flow_path(int s, int t, bool dfs) {
 
-    // Get nodes distance from S
-    if (edmonds_karp_bfs(s, t))
-        return 0;
+    if (dfs) {
+
+        for (int i = 1; i <= n; i++) {
+            nodes[i].visited = false;
+            nodes[i].pred = -1;
+            nodes[i].dist = -1;
+        }
+        edmonds_karp_dfs(s);
+
+    } else {
+        // Get nodes distance from S
+        if (edmonds_karp_bfs(s, t))
+            return 0;
+    }
 
     // Get path flow bottleneck
     int bottleNeck = getPathBottleNeck(s, t);
+
+    // if (!bottleNeck && dfs) return 0;
 
     // Update the flows & residual edges values
     edmonds_karp_update(bottleNeck, s, t);
@@ -492,6 +519,9 @@ void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
     while (parent != s) {
         child = parent;
         parent = nodes[parent].pred;
+
+        if (parent == -1)
+            return;
 
         if (nodes[t].dist < 20)
             cout << ((parent == n + 1) ? 0 : parent) << " <-- ";
@@ -517,6 +547,9 @@ void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
 }
 
 int Graph::getPathBottleNeck(int start, int end) {
+
+    if (!nodes[end].visited) return 0;
+
     int bottleNeck = INT_MAX;
     int parent = end;
     int child;

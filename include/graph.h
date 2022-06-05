@@ -174,12 +174,19 @@ public:
     bool cen_2_1(int groupSize);
 
     /**
-     * Bfs used to calculate edmonds_karp_algorithm
+     * BFS used to calculate edmonds_karp_algorithm
      * @param s start node
      * @param t end node
      * @return 1 if node t is reached, false otherwise
      */
     int edmonds_karp_bfs(int s, int t);
+
+    /**
+     * DFS used to calculate edmonds_karp_algorithm --> Ford Fulkerson
+     * @param v node where to start DFS
+     * @return number of nodes visited
+     */
+    int edmonds_karp_dfs(int v);
 
     /**
      * Calculates the maximum flow of a graph from start to finish using Dinic's algorithm
@@ -200,9 +207,10 @@ public:
      * Main edmonds karp algorithm
      * Calculates the maximum flow in a graph from s to t
      * @param groupSize_limiter max flow bottleneck
+     * @param useDfs if DFS should be used instead of BFS
      * @return max flow of the graph
      */
-    int edmonds_karp(int groupSize_limiter = 0);
+    int edmonds_karp(int groupSize_limiter = 0, bool useDfs = false);
 
     /**
      * Updates the residual and flow parameters of the path found
@@ -226,7 +234,7 @@ public:
      * @param t end node
      * @return flow of the path found
      */
-    int edmonds_karp_flow_path(int s, int t);
+    int edmonds_karp_flow_path(int s, int t, bool dfs = false);
 };
 
 Graph buildGraph(int id, bool includeResidual = false);

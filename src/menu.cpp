@@ -214,10 +214,13 @@ void Menu::scenario2(int option) {
 
     int maxFlow;
     cout << "\nFlow Paths:\n";
-    if (option != 3)
+    if (option <= 2) // option 1 or 2
         maxFlow = graph.edmonds_karp(groupSize);
-    else
+    else if (option == 3)
         maxFlow = graph.dinic_algo();
+    else // option 4
+        maxFlow = graph.edmonds_karp(groupSize, true);
+
     cout << "\nFound flow is: " << maxFlow;
 
     TIMES:
@@ -244,6 +247,7 @@ void Menu::submenu2() {
         cout << "   1)  User Given Group Size         " << endl;
         cout << "   2)  Max Group Size                " << endl;
         cout << "   3)  Dinic's solution              " << endl;
+        cout << "   4)  Ford Fulkerson                " << endl;
         cout << "   0)  Go Back                       " << endl;
         cout << "=====================================" << endl;
         cout << " > ";
@@ -263,6 +267,9 @@ void Menu::submenu2() {
                     return;
                 case '3':
                     scenario2(3);
+                    return;
+                case '4':
+                    scenario2(4);
                     return;
                 default:
                     continue;
