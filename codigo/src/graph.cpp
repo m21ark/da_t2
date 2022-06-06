@@ -18,9 +18,9 @@ Graph buildGraph(int id, bool includeResidual) {
 
     string path;
     if (id >= 10)
-        path = "../data/in" + to_string(id) + ".txt";
+        path = "../../input/in" + to_string(id) + ".txt";
     else
-        path = "../data/in0" + to_string(id) + ".txt";
+        path = "../../input/in0" + to_string(id) + ".txt";
 
     string aux;
     int numNodes;
@@ -166,8 +166,6 @@ int Graph::shortest_path_with_maximum_capacity(int mini) {
     }
     return nodes[b].capacity;
 }
-
-/*___________________________________/SCENARIO 1___________________________________*/
 
 list<int> Graph::get_path() {
 
