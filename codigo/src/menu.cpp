@@ -209,13 +209,11 @@ void Menu::scenario2(int option) {
         if (groupSize == -1) return;
 
         if (graph.cen_2_1(groupSize)) {
-            groupSize = askInt("\nGroup size increase (0 to skip): ");
+            groupSize = askInt("\nNew group size (0 to skip): ");
             if (groupSize == -1) return;
             if (groupSize != 0) {
                 cout << endl;
-                if (graph.cen_2_1(groupSize))
-                    goto TIMES;
-                else {
+                if (!graph.cen_2_1(groupSize)) {
                     cout << "Applying flow...\n";
                     goto FLOW;
                 }
