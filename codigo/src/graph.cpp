@@ -35,6 +35,9 @@ Graph buildGraph(int id, bool includeResidual) {
 
     vector<FileContents> nodes = read_file(path);
 
+    if (nodes.empty())
+        return Graph(-1);
+
     for (const FileContents &item: nodes)
         graph.addEdge(item.pred, item.dest, item.duration, item.capacity);
 
@@ -226,11 +229,6 @@ bool Graph::cycleDfs(int v) {
 }
 
 
-void Graph::print_readyAt() {
-    cout << "Node: " << n << " Ready at: " << nodes[n].ES << endl;
-}
-
-
 void Graph::max_path_dag() {
     for (int i = 1; i <= n; ++i) {
         nodes[i].pred = -1;
@@ -297,12 +295,12 @@ bool Graph::cen_2_1(int groupSize) {
 int Graph::edmonds_karp_dfs(int v) {
     int count = 1;
     nodes[v].visited = true;
-    if  (v == n) {
+    if (v == n) {
         return count;
     }
     for (auto e: nodes[v].adj) {
         int w = e.dest;
-        if (!nodes[w].visited && e.residual > 0 ) {
+        if (!nodes[w].visited && e.residual > 0) {
             int d = edmonds_karp_dfs(w);
             count += d;
             nodes[w].pred = v;
@@ -466,7 +464,7 @@ int Graph::edmonds_karp_flow_path(int s, int t, bool dfs) {
     }
     int bottleNeck;
     // Get path flow bottleneck
-        bottleNeck = getPathBottleNeck(s, t);
+    bottleNeck = getPathBottleNeck(s, t);
 
     // if (!bottleNeck && dfs) return 0;
 
@@ -601,7 +599,7 @@ void Graph::max_FL() {
     }
 
     for (auto i: lst) {
-        cout << "Max Wait at stop:  " <<  i << " is " << max_Fl<< endl;
+        cout << "Max Wait at stop:  " << i << " is " << max_Fl << endl;
     }
 
     if (lst.empty())
@@ -625,4 +623,8 @@ void Graph::max_FT() {
         cout << "\n\nThere is no Total 'day' off " << endl;
     else
         cout << "\nTotal MAX freedom / (day of, or FT): " << max_FT << endl;
+}
+
+bool Graph::isValidGraph() {
+    return n != -1;
 }

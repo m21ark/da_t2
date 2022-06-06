@@ -141,11 +141,6 @@ public:
     bool cycleDfs(int v);
 
     /**
-     * Prints the earliest start of the last node
-     */
-    void print_readyAt();
-
-    /**
      * Calculates the critical path of the graph using latest finish
      */
     void critical_path_lf();
@@ -235,6 +230,13 @@ public:
      * @return flow of the path found
      */
     int edmonds_karp_flow_path(int s, int t, bool dfs = false);
+
+    /**
+     * Returns if graph is a valid graph
+     * aka if was built with success
+     * @return
+     */
+    bool isValidGraph();
 };
 
 Graph buildGraph(int id, bool includeResidual = false);

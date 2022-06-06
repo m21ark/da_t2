@@ -128,6 +128,7 @@ void Menu::scenario1(int option) {
     if (dataSetId == -1) return;
 
     Graph graph = buildGraph(dataSetId, false);
+    if (!graph.isValidGraph()) return;
 
     int capacity;
     if (option == 1) {
@@ -201,6 +202,7 @@ void Menu::scenario2(int option) {
     if (dataSetId == -1) return;
 
     Graph graph = buildGraph(dataSetId, true);
+    if (!graph.isValidGraph()) return;
     cout << endl;
 
     int groupSize = 0;
