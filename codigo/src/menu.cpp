@@ -208,10 +208,23 @@ void Menu::scenario2(int option) {
         groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
-        if (graph.cen_2_1(groupSize))
+        if (graph.cen_2_1(groupSize)) {
+            groupSize = askInt("\nGroup size increase (0 to skip): ");
+            if (groupSize == -1) return;
+            if (groupSize != 0) {
+                cout << endl;
+                if (graph.cen_2_1(groupSize))
+                    goto TIMES;
+                else {
+                    cout << "Applying flow...\n";
+                    goto FLOW;
+                }
+            }
             goto TIMES;
+        }
     }
 
+    FLOW:
     int maxFlow;
     cout << "\nFlow Paths:\n";
     if (option <= 2) // option 1 or 2
