@@ -239,7 +239,7 @@ void Menu::scenario2(int option) {
     TIMES:
     cout << "\n\n------------------ Times ------------------\n\n";
     graph.max_path_dag();
-    graph.print_readyAt();
+    // graph.print_readyAt();
     graph.critical_path_lf();
 
     graph.max_FL();

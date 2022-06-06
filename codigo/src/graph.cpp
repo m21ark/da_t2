@@ -270,7 +270,7 @@ void Graph::max_path_dag() {
         }
     }
 
-    cout << "MIN Duration: " << durMin << "\n";
+    cout << "MIN Duration of the trip: " << durMin << "\n";
 }
 
 
@@ -297,18 +297,15 @@ bool Graph::cen_2_1(int groupSize) {
 int Graph::edmonds_karp_dfs(int v) {
     int count = 1;
     nodes[v].visited = true;
+    if  (v == n) {
+        return count;
+    }
     for (auto e: nodes[v].adj) {
         int w = e.dest;
-        if (!nodes[w].visited && e.residual > 0) {
+        if (!nodes[w].visited && e.residual > 0 ) {
             int d = edmonds_karp_dfs(w);
             count += d;
             nodes[w].pred = v;
-/*            for (auto &e2: nodes[e.dest].adj) {
-                if (e2.dest == v) {
-                    e2.residual += d;
-                    break;
-                }
-            }*/
         }
     }
     return count;
@@ -467,9 +464,9 @@ int Graph::edmonds_karp_flow_path(int s, int t, bool dfs) {
         if (edmonds_karp_bfs(s, t))
             return 0;
     }
-
+    int bottleNeck;
     // Get path flow bottleneck
-    int bottleNeck = getPathBottleNeck(s, t);
+        bottleNeck = getPathBottleNeck(s, t);
 
     // if (!bottleNeck && dfs) return 0;
 
@@ -509,8 +506,10 @@ void Graph::edmonds_karp_update(int bottleNeck, int s, int t) {
                         }
                 } else
                     for (auto &e2: nodes[e.dest].adj)
-                        if (e2.dest == parent)
+                        if (e2.dest == parent) {
                             e2.flow -= bottleNeck;
+                            e2.residual += bottleNeck;
+                        }
             }
     }
 }
@@ -602,7 +601,7 @@ void Graph::max_FL() {
     }
 
     for (auto i: lst) {
-        cout << "Node max Wait:  " << max_Fl << " at " << i << endl;
+        cout << "Max Wait at stop:  " <<  i << " is " << max_Fl<< endl;
     }
 
     if (lst.empty())
