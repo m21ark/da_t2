@@ -206,13 +206,17 @@ void Menu::scenario2(int option) {
     cout << endl;
 
     int groupSize = 0;
+
     if (option == 1) {
+
         groupSize = askInt("Group size: ");
         if (groupSize == -1) return;
 
         if (graph.cen_2_1(groupSize)) {
+
             groupSize = askInt("\nNew group size (0 to skip): ");
             if (groupSize == -1) return;
+
             if (groupSize != 0) {
                 cout << endl;
                 if (!graph.cen_2_1(groupSize)) {
@@ -220,8 +224,11 @@ void Menu::scenario2(int option) {
                     goto FLOW;
                 }
             }
-            goto TIMES;
+
+            getchar();
+            return;
         }
+
     }
 
     FLOW:
@@ -235,16 +242,12 @@ void Menu::scenario2(int option) {
         maxFlow = graph.edmonds_karp(groupSize, true);
 
     cout << "\nFound flow is: " << maxFlow;
-
-    TIMES:
     cout << "\n\n------------------ Times ------------------\n\n";
     graph.max_path_dag();
-    // graph.print_readyAt();
     graph.critical_path_lf();
 
     graph.max_FL();
     graph.max_FT();
-
     getchar();
 }
 
