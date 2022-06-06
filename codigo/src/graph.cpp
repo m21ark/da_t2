@@ -599,7 +599,7 @@ void Graph::max_FL() {
     }
 
     for (auto i: lst) {
-        cout << "Max Wait at stop/node "<< i << " is of time: " << max_Fl << endl;
+        cout << "Max Wait at stop/node " << i << " is of time: " << max_Fl << endl;
     }
 
     if (lst.empty())
