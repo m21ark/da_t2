@@ -620,11 +620,11 @@ void Graph::max_FT() {
     }
 
     if (max_FT == 0)
-        cout << "\n\nThere is no Total 'day' off " << endl;
+        cout << "\n\nThere is no 'Folga Total' " << endl;
     else
-        cout << "\nTotal MAX freedom / (day of, or FT): " << max_FT << endl;
+        cout << "\n'Folga Total': " << max_FT << endl;
 }
 
-bool Graph::isValidGraph() {
+bool Graph::isValidGraph() const {
     return n != -1;
 }

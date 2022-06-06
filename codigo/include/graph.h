@@ -236,7 +236,7 @@ public:
      * aka if was built with success
      * @return
      */
-    bool isValidGraph();
+    [[nodiscard]] bool isValidGraph() const;
 };
 
 Graph buildGraph(int id, bool includeResidual = false);
