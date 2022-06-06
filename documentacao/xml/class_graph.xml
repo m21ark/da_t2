@@ -1,0 +1,859 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="class_graph" kind="class" language="C++" prot="public">
+    <compoundname>Graph</compoundname>
+    <includes refid="graph_8h" local="no">graph.h</includes>
+    <innerclass refid="struct_graph_1_1_edge" prot="private">Graph::Edge</innerclass>
+    <innerclass refid="struct_graph_1_1_node" prot="private">Graph::Node</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_graph_1a81a76a428e630453ef019a15b9092967" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="56" column="9" bodyfile="graph.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_graph_1a4e6b5ae36373d3af3bde7e67d36629ff" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Graph::includeResidual</definition>
+        <argsstring></argsstring>
+        <name>includeResidual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="57" column="10" bodyfile="graph.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_graph_1a71b5e16eb9e0670fea3ecee3526abb41" prot="private" static="no" mutable="no">
+        <type>vector&lt; Node &gt;</type>
+        <definition>vector&lt;Node&gt; Graph::nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="58" column="12" bodyfile="graph.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_graph_1ab7ed46069f0ef69abd002f00512c3eb4" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Graph::Graph</definition>
+        <argsstring>(int nodes, bool includeResidual=false)</argsstring>
+        <name>Graph</name>
+        <param>
+          <type>int</type>
+          <declname>nodes</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>includeResidual</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds a graph <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nodes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>includeResidual</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true if residual edges should be included, false otherwise </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="66" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a8e1ef0e7ed58ac4853273fdf43c67801" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_graph" kindref="compound">Graph</ref> *</type>
+        <definition>Graph * Graph::transpose</definition>
+        <argsstring>()</argsstring>
+        <name>transpose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds the transpose graph <simplesect kind="return"><para>transposed graph </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="72" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a8d01a6cde3a2fb3732d02bed81268546" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::addEdge</definition>
+        <argsstring>(int src, int dest, int duration, int cap=1)</argsstring>
+        <name>addEdge</name>
+        <param>
+          <type>int</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>duration</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cap</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds an edge to the graph that connects src and dest <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time taken to go from src to dest node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>capacity </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1ac8568e2dee70d12201c9aba194e79d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::maximum_capacity</definition>
+        <argsstring>()</argsstring>
+        <name>maximum_capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates a maximum capacity path for the graph <simplesect kind="return"><para>max capacity </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="87" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a43b3f9654a3e60fb52f778f15daef9c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::maximum_capacity_with_shortest_path</definition>
+        <argsstring>(int max=INT32_MAX)</argsstring>
+        <name>maximum_capacity_with_shortest_path</name>
+        <param>
+          <type>int</type>
+          <declname>max</declname>
+          <defval>INT32_MAX</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Among the maximum capacity paths, it calculates the shortest one <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance limiter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>max capacity </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="95" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1ac3828054e06e2e56673e498c2a9e30cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::shortest_path_with_maximum_capacity</definition>
+        <argsstring>(int min=INT32_MIN)</argsstring>
+        <name>shortest_path_with_maximum_capacity</name>
+        <param>
+          <type>int</type>
+          <declname>min</declname>
+          <defval>INT32_MIN</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Among the shortest paths, it calculates the path with the highest capacity <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>min</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>capacity limiter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>capacity of path from a to b </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="103" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1acdef71890a7ec2ae60a920858360d6e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list&lt; int &gt;</type>
+        <definition>list&lt; int &gt; Graph::get_path</definition>
+        <argsstring>()</argsstring>
+        <name>get_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the path of the last used algorithm <simplesect kind="return"><para>path from a to b </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="109" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a0b8af8ed6acdd35d9321742c7ffa4950" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::dfs</definition>
+        <argsstring>(int v)</argsstring>
+        <name>dfs</name>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>It traverses the graph using a depth-first search <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>number of nodes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="116" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a7ad72ed7eee778c1874d62fefe6377b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Graph::bfs_sink</definition>
+        <argsstring>(int u, int v)</argsstring>
+        <name>bfs_sink</name>
+        <param>
+          <type>int</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bfs that only considers non saturated edges Sets level for nodes <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>boolean if v was visited by the bfs </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="125" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a20f902dc53b8885c924f230797f94f86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::dfsTopSort</definition>
+        <argsstring>(int v, stack&lt; int &gt; &amp;l)</argsstring>
+        <name>dfsTopSort</name>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>stack&lt; int &gt; &amp;</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates de topological sorting path using dfs <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>stack of sorted nodes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="134" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1aa201cbe7d928038c7b9cb5cd759ea98b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Graph::cycleDfs</definition>
+        <argsstring>(int v)</argsstring>
+        <name>cycleDfs</name>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks the graph for cycles <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if cycle found, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="141" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a1f7cc151b51ef6adbb113a94b43aa46f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::critical_path_lf</definition>
+        <argsstring>()</argsstring>
+        <name>critical_path_lf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the critical path of the graph using latest finish </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="146" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a8d1e98320ebaa549bacaca74e68038f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::max_FL</definition>
+        <argsstring>()</argsstring>
+        <name>max_FL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the maximum &quot;Folga livre&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="151" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1ad80775afcaa1329fd46436ab254d1d5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::max_FT</definition>
+        <argsstring>()</argsstring>
+        <name>max_FT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the maximum &quot;Folga total&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="156" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1ac83d539cd6bea2604ebd5b8f365aa513" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::max_path_dag</definition>
+        <argsstring>()</argsstring>
+        <name>max_path_dag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bfs update of the earliest start for paths containing flow </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1aa4c43c82778e410053e2fc19012dcc2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Graph::cen_2_1</definition>
+        <argsstring>(int groupSize)</argsstring>
+        <name>cen_2_1</name>
+        <param>
+          <type>int</type>
+          <declname>groupSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if there is a shortest path with the capacity higher or equal than the one given. If so, then it outputs the result to the user. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>group size to look for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if path found, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a9843cadf490a7d040bb1b4c57e2ebe35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::edmonds_karp_bfs</definition>
+        <argsstring>(int s, int t)</argsstring>
+        <name>edmonds_karp_bfs</name>
+        <param>
+          <type>int</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BFS used to calculate edmonds_karp_algorithm <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if node t is reached, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="177" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a73331ecf77c21f70217ff52ac85464d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::edmonds_karp_dfs</definition>
+        <argsstring>(int v)</argsstring>
+        <name>edmonds_karp_dfs</name>
+        <param>
+          <type>int</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DFS used to calculate edmonds_karp_algorithm --&gt; Ford Fulkerson <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>node where to start DFS </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>number of nodes visited </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="184" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1ac615b1ce04b5cbc2c7e90d725eacef49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::dinic_algo</definition>
+        <argsstring>()</argsstring>
+        <name>dinic_algo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the maximum flow of a graph from start to finish using Dinic&apos;s algorithm <simplesect kind="return"><para>max flow </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="190" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a573010ea691bfd1d99c4ca51da75a354" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::send_dinic_flow</definition>
+        <argsstring>(int s, int flow, int t)</argsstring>
+        <name>send_dinic_flow</name>
+        <param>
+          <type>int</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flow</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Recursive part of the Dinic&apos;s algorithm that finds available path to the sink node <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current flow along the recursive chain </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>flow found along the path </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="199" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a0f711308a54d86f3ef9e5e4d37f68942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::edmonds_karp</definition>
+        <argsstring>(int groupSize_limiter=0, bool useDfs=false)</argsstring>
+        <name>edmonds_karp</name>
+        <param>
+          <type>int</type>
+          <declname>groupSize_limiter</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useDfs</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Main edmonds karp algorithm Calculates the maximum flow in a graph from s to t <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupSize_limiter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max flow bottleneck </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>useDfs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if DFS should be used instead of BFS </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>max flow of the graph </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="208" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a33d7f8a950836ca72fa684efbe108300" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Graph::edmonds_karp_update</definition>
+        <argsstring>(int bottleNeck, int s, int t)</argsstring>
+        <name>edmonds_karp_update</name>
+        <param>
+          <type>int</type>
+          <declname>bottleNeck</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Updates the residual and flow parameters of the path found <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bottleNeck</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the minimum capacity </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="216" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a701b7ebbaec62bc9cdb70bb6288bbd43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::getPathBottleNeck</definition>
+        <argsstring>(int start, int end)</argsstring>
+        <name>getPathBottleNeck</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the minimum capacity edge along the path <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>minimum capacity along the path </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="224" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1a7187806eda0055303ee4974972da88c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Graph::edmonds_karp_flow_path</definition>
+        <argsstring>(int s, int t, bool dfs=false)</argsstring>
+        <name>edmonds_karp_flow_path</name>
+        <param>
+          <type>int</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>dfs</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Finds a flow path to the sink node <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>start node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>flow of the path found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="232" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graph_1aae8066c344d480bf4f4c522c53de2c80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Graph::isValidGraph</definition>
+        <argsstring>() const</argsstring>
+        <name>isValidGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns if graph is a valid graph aka if was built with success <simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="239" column="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_graph" kindref="compound">Graph</ref> class representation using adjacent lists </para>
+    </detaileddescription>
+    <location file="graph.h" line="30" column="1" bodyfile="graph.h" bodystart="30" bodyend="240"/>
+    <listofallmembers>
+      <member refid="class_graph_1a8d01a6cde3a2fb3732d02bed81268546" prot="public" virt="non-virtual"><scope>Graph</scope><name>addEdge</name></member>
+      <member refid="class_graph_1a7ad72ed7eee778c1874d62fefe6377b4" prot="public" virt="non-virtual"><scope>Graph</scope><name>bfs_sink</name></member>
+      <member refid="class_graph_1aa4c43c82778e410053e2fc19012dcc2b" prot="public" virt="non-virtual"><scope>Graph</scope><name>cen_2_1</name></member>
+      <member refid="class_graph_1a1f7cc151b51ef6adbb113a94b43aa46f" prot="public" virt="non-virtual"><scope>Graph</scope><name>critical_path_lf</name></member>
+      <member refid="class_graph_1aa201cbe7d928038c7b9cb5cd759ea98b" prot="public" virt="non-virtual"><scope>Graph</scope><name>cycleDfs</name></member>
+      <member refid="class_graph_1a0b8af8ed6acdd35d9321742c7ffa4950" prot="public" virt="non-virtual"><scope>Graph</scope><name>dfs</name></member>
+      <member refid="class_graph_1a20f902dc53b8885c924f230797f94f86" prot="public" virt="non-virtual"><scope>Graph</scope><name>dfsTopSort</name></member>
+      <member refid="class_graph_1ac615b1ce04b5cbc2c7e90d725eacef49" prot="public" virt="non-virtual"><scope>Graph</scope><name>dinic_algo</name></member>
+      <member refid="class_graph_1a0f711308a54d86f3ef9e5e4d37f68942" prot="public" virt="non-virtual"><scope>Graph</scope><name>edmonds_karp</name></member>
+      <member refid="class_graph_1a9843cadf490a7d040bb1b4c57e2ebe35" prot="public" virt="non-virtual"><scope>Graph</scope><name>edmonds_karp_bfs</name></member>
+      <member refid="class_graph_1a73331ecf77c21f70217ff52ac85464d6" prot="public" virt="non-virtual"><scope>Graph</scope><name>edmonds_karp_dfs</name></member>
+      <member refid="class_graph_1a7187806eda0055303ee4974972da88c9" prot="public" virt="non-virtual"><scope>Graph</scope><name>edmonds_karp_flow_path</name></member>
+      <member refid="class_graph_1a33d7f8a950836ca72fa684efbe108300" prot="public" virt="non-virtual"><scope>Graph</scope><name>edmonds_karp_update</name></member>
+      <member refid="class_graph_1acdef71890a7ec2ae60a920858360d6e3" prot="public" virt="non-virtual"><scope>Graph</scope><name>get_path</name></member>
+      <member refid="class_graph_1a701b7ebbaec62bc9cdb70bb6288bbd43" prot="public" virt="non-virtual"><scope>Graph</scope><name>getPathBottleNeck</name></member>
+      <member refid="class_graph_1ab7ed46069f0ef69abd002f00512c3eb4" prot="public" virt="non-virtual"><scope>Graph</scope><name>Graph</name></member>
+      <member refid="class_graph_1a4e6b5ae36373d3af3bde7e67d36629ff" prot="private" virt="non-virtual"><scope>Graph</scope><name>includeResidual</name></member>
+      <member refid="class_graph_1aae8066c344d480bf4f4c522c53de2c80" prot="public" virt="non-virtual"><scope>Graph</scope><name>isValidGraph</name></member>
+      <member refid="class_graph_1a8d1e98320ebaa549bacaca74e68038f3" prot="public" virt="non-virtual"><scope>Graph</scope><name>max_FL</name></member>
+      <member refid="class_graph_1ad80775afcaa1329fd46436ab254d1d5c" prot="public" virt="non-virtual"><scope>Graph</scope><name>max_FT</name></member>
+      <member refid="class_graph_1ac83d539cd6bea2604ebd5b8f365aa513" prot="public" virt="non-virtual"><scope>Graph</scope><name>max_path_dag</name></member>
+      <member refid="class_graph_1ac8568e2dee70d12201c9aba194e79d2e" prot="public" virt="non-virtual"><scope>Graph</scope><name>maximum_capacity</name></member>
+      <member refid="class_graph_1a43b3f9654a3e60fb52f778f15daef9c1" prot="public" virt="non-virtual"><scope>Graph</scope><name>maximum_capacity_with_shortest_path</name></member>
+      <member refid="class_graph_1a81a76a428e630453ef019a15b9092967" prot="private" virt="non-virtual"><scope>Graph</scope><name>n</name></member>
+      <member refid="class_graph_1a71b5e16eb9e0670fea3ecee3526abb41" prot="private" virt="non-virtual"><scope>Graph</scope><name>nodes</name></member>
+      <member refid="class_graph_1a573010ea691bfd1d99c4ca51da75a354" prot="public" virt="non-virtual"><scope>Graph</scope><name>send_dinic_flow</name></member>
+      <member refid="class_graph_1ac3828054e06e2e56673e498c2a9e30cd" prot="public" virt="non-virtual"><scope>Graph</scope><name>shortest_path_with_maximum_capacity</name></member>
+      <member refid="class_graph_1a8e1ef0e7ed58ac4853273fdf43c67801" prot="public" virt="non-virtual"><scope>Graph</scope><name>transpose</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

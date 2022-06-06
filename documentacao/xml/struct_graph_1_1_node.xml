@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="struct_graph_1_1_node" kind="struct" language="C++" prot="private">
+    <compoundname>Graph::Node</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_graph_1_1_node_1af39d72970d35b4e23ce032f3b3deaeb8" prot="public" static="no" mutable="no">
+        <type>list&lt; Edge &gt;</type>
+        <definition>list&lt;Edge&gt; Graph::Node::adj</definition>
+        <argsstring></argsstring>
+        <name>adj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="43" column="14" bodyfile="graph.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1aaa7cc99f209076f200ddc0af96217bf9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::dist</definition>
+        <argsstring></argsstring>
+        <name>dist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="44" column="13" bodyfile="graph.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a2446d7d493d129df278b16fbfb3f470c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::capacity</definition>
+        <argsstring></argsstring>
+        <name>capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="45" column="13" bodyfile="graph.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a09f5571b617c4763e2b74ef1a83232c8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::pred</definition>
+        <argsstring></argsstring>
+        <name>pred</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="46" column="13" bodyfile="graph.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a9ee69f028c5a62377344b26fe5adb723" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Graph::Node::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="47" column="15" bodyfile="graph.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a2360e752c746736f533bc4e673c1f80d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Graph::Node::visited</definition>
+        <argsstring></argsstring>
+        <name>visited</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="48" column="14" bodyfile="graph.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a55924081bdfd47b643fe96fee5e8777a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::degree</definition>
+        <argsstring></argsstring>
+        <name>degree</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="49" column="13" bodyfile="graph.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a8a72cbb227d5caebffdcf54c24aade46" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="50" column="13" bodyfile="graph.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a5e4addc4491870d9ed29aa96547e3609" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::ES</definition>
+        <argsstring></argsstring>
+        <name>ES</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="51" column="13" bodyfile="graph.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_node_1a6febd11673d4273dde151e81aa71b98d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Node::LF</definition>
+        <argsstring></argsstring>
+        <name>LF</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="52" column="13" bodyfile="graph.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Represents a Node in the <ref refid="class_graph" kindref="compound">Graph</ref> </para>
+    </detaileddescription>
+    <location file="graph.h" line="42" column="5" bodyfile="graph.h" bodystart="42" bodyend="53"/>
+    <listofallmembers>
+      <member refid="struct_graph_1_1_node_1af39d72970d35b4e23ce032f3b3deaeb8" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>adj</name></member>
+      <member refid="struct_graph_1_1_node_1a2446d7d493d129df278b16fbfb3f470c" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>capacity</name></member>
+      <member refid="struct_graph_1_1_node_1a9ee69f028c5a62377344b26fe5adb723" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>color</name></member>
+      <member refid="struct_graph_1_1_node_1a55924081bdfd47b643fe96fee5e8777a" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>degree</name></member>
+      <member refid="struct_graph_1_1_node_1aaa7cc99f209076f200ddc0af96217bf9" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>dist</name></member>
+      <member refid="struct_graph_1_1_node_1a5e4addc4491870d9ed29aa96547e3609" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>ES</name></member>
+      <member refid="struct_graph_1_1_node_1a8a72cbb227d5caebffdcf54c24aade46" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>level</name></member>
+      <member refid="struct_graph_1_1_node_1a6febd11673d4273dde151e81aa71b98d" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>LF</name></member>
+      <member refid="struct_graph_1_1_node_1a09f5571b617c4763e2b74ef1a83232c8" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>pred</name></member>
+      <member refid="struct_graph_1_1_node_1a2360e752c746736f533bc4e673c1f80d" prot="public" virt="non-virtual"><scope>Graph::Node</scope><name>visited</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

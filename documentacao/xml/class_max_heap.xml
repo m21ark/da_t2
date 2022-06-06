@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="class_max_heap" kind="class" language="C++" prot="public">
+    <compoundname>MaxHeap</compoundname>
+    <innerclass refid="struct_max_heap_1_1_node" prot="private">MaxHeap::Node</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class K</type>
+      </param>
+      <param>
+        <type>class V</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_max_heap_1a8c3a97a9b3765f62ecbb4de7f82b8f7b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MaxHeap&lt; K, V &gt;::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="22" column="9" bodyfile="maxHeap.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_max_heap_1aacb9195df606635470e1926129fe17e6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MaxHeap&lt; K, V &gt;::maxSize</definition>
+        <argsstring></argsstring>
+        <name>maxSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="23" column="9" bodyfile="maxHeap.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_max_heap_1ab2939e2fe509f5607e9a2fbfed54c11f" prot="private" static="no" mutable="no">
+        <type>vector&lt; Node &gt;</type>
+        <definition>vector&lt;Node&gt; MaxHeap&lt; K, V &gt;::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="24" column="12" bodyfile="maxHeap.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_max_heap_1a19487b967190bc6d2376fabc4d83c0f0" prot="private" static="no" mutable="no">
+        <type>unordered_map&lt; K, int &gt;</type>
+        <definition>unordered_map&lt;K, int&gt; MaxHeap&lt; K, V &gt;::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="25" column="19" bodyfile="maxHeap.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_max_heap_1afd7702c650d7f5715d90e2305dbf3a29" prot="private" static="no" mutable="no">
+        <type>const K</type>
+        <definition>const K MaxHeap&lt; K, V &gt;::KEY_NOT_FOUND</definition>
+        <argsstring></argsstring>
+        <name>KEY_NOT_FOUND</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="26" column="13" bodyfile="maxHeap.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_max_heap_1a96866cb019ff4727229a5a415916bd21" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxHeap&lt; K, V &gt;::upHeap</definition>
+        <argsstring>(int i)</argsstring>
+        <name>upHeap</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="28" column="10" bodyfile="maxHeap.h" bodystart="46" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1ad908fb7c202d80540db6924852ae06c6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxHeap&lt; K, V &gt;::downHeap</definition>
+        <argsstring>(int i)</argsstring>
+        <name>downHeap</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="30" column="10" bodyfile="maxHeap.h" bodystart="55" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1ac2270bc13e0ce5632cf4d77b41197144" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxHeap&lt; K, V &gt;::swap</definition>
+        <argsstring>(int i1, int i2)</argsstring>
+        <name>swap</name>
+        <param>
+          <type>int</type>
+          <declname>i1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="32" column="10" bodyfile="maxHeap.h" bodystart="67" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_max_heap_1a4b7fb8601747d2c8364fe7525f23f45c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MaxHeap&lt; K, V &gt;::MaxHeap</definition>
+        <argsstring>(int n, const K &amp;notFound)</argsstring>
+        <name>MaxHeap</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const K &amp;</type>
+          <declname>notFound</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="35" column="5" bodyfile="maxHeap.h" bodystart="77" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1a4d11babd3ad4e094967a405331310fcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int MaxHeap&lt; K, V &gt;::getSize</definition>
+        <argsstring>()</argsstring>
+        <name>getSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="36" column="9" bodyfile="maxHeap.h" bodystart="82" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1a3993a6e51f5114b931051144fff98bb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MaxHeap&lt; K, V &gt;::hasKey</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>hasKey</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="37" column="10" bodyfile="maxHeap.h" bodystart="88" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1a7c7ced384549da4847be60e2bbc10940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxHeap&lt; K, V &gt;::insert</definition>
+        <argsstring>(const K &amp;key, const V &amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const V &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="38" column="10" bodyfile="maxHeap.h" bodystart="94" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1afc96285c3c1a9e7878c0f9af2864c5d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxHeap&lt; K, V &gt;::increaseKey</definition>
+        <argsstring>(const K &amp;key, const V &amp;value)</argsstring>
+        <name>increaseKey</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const V &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="39" column="10" bodyfile="maxHeap.h" bodystart="104" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_max_heap_1ac64d27413e9e71de95355ae51ece6ba5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>K</type>
+        <definition>K MaxHeap&lt; K, V &gt;::removeMax</definition>
+        <argsstring>()</argsstring>
+        <name>removeMax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="40" column="7" bodyfile="maxHeap.h" bodystart="114" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="maxHeap.h" line="16" column="1" bodyfile="maxHeap.h" bodystart="16" bodyend="41"/>
+    <listofallmembers>
+      <member refid="class_max_heap_1ab2939e2fe509f5607e9a2fbfed54c11f" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>a</name></member>
+      <member refid="class_max_heap_1ad908fb7c202d80540db6924852ae06c6" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>downHeap</name></member>
+      <member refid="class_max_heap_1a4d11babd3ad4e094967a405331310fcd" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>getSize</name></member>
+      <member refid="class_max_heap_1a3993a6e51f5114b931051144fff98bb5" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>hasKey</name></member>
+      <member refid="class_max_heap_1afc96285c3c1a9e7878c0f9af2864c5d7" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>increaseKey</name></member>
+      <member refid="class_max_heap_1a7c7ced384549da4847be60e2bbc10940" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>insert</name></member>
+      <member refid="class_max_heap_1afd7702c650d7f5715d90e2305dbf3a29" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>KEY_NOT_FOUND</name></member>
+      <member refid="class_max_heap_1a4b7fb8601747d2c8364fe7525f23f45c" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>MaxHeap</name></member>
+      <member refid="class_max_heap_1aacb9195df606635470e1926129fe17e6" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>maxSize</name></member>
+      <member refid="class_max_heap_1a19487b967190bc6d2376fabc4d83c0f0" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>pos</name></member>
+      <member refid="class_max_heap_1ac64d27413e9e71de95355ae51ece6ba5" prot="public" virt="non-virtual"><scope>MaxHeap</scope><name>removeMax</name></member>
+      <member refid="class_max_heap_1a8c3a97a9b3765f62ecbb4de7f82b8f7b" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>size</name></member>
+      <member refid="class_max_heap_1ac2270bc13e0ce5632cf4d77b41197144" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>swap</name></member>
+      <member refid="class_max_heap_1a96866cb019ff4727229a5a415916bd21" prot="private" virt="non-virtual"><scope>MaxHeap</scope><name>upHeap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

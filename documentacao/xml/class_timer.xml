@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="class_timer" kind="class" language="C++" prot="public">
+    <compoundname>Timer</compoundname>
+    <includes refid="timer_8h" local="no">timer.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_timer_1ab86544f70043bd85200330a3bb2b5dae" prot="private" static="yes" mutable="no">
+        <type>time_point_t</type>
+        <definition>time_point_t Timer::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Start and End time deltas variables </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="20" column="25" bodyfile="timer.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_timer_1a507734f47dbf8ac6ee4a57d37743b6cd" prot="private" static="yes" mutable="no">
+        <type>time_point_t</type>
+        <definition>time_point_t Timer::stop_time</definition>
+        <argsstring></argsstring>
+        <name>stop_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="20" column="36" bodyfile="timer.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_timer_1a2830b17e5e89164d28eb73458753b64b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Timer::start</definition>
+        <argsstring>()</argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets start_time static var to the current time at the calling moment </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="26" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_timer_1aac15e75f611256c2b6503c07e4606396" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Timer::stop</definition>
+        <argsstring>()</argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets stop_time static var to the current time at the calling moment </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="31" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_timer_1a343466ffc155509a0342d40fe308061e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float Timer::getCurrentTime</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current time delta between the calling moment and the time saved at start_time var <simplesect kind="return"><para>time since last <ref refid="class_timer_1a2830b17e5e89164d28eb73458753b64b" kindref="member">start()</ref> call: current_time - start_time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="38" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_timer_1a934a5a082a5e8a94de48684aa376572d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float Timer::getTime</definition>
+        <argsstring>()</argsstring>
+        <name>getTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time delta between the calling of <ref refid="class_timer_1a2830b17e5e89164d28eb73458753b64b" kindref="member">start()</ref> and <ref refid="class_timer_1aac15e75f611256c2b6503c07e4606396" kindref="member">stop()</ref> <simplesect kind="return"><para>time delta: stop_time - start_time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="timer.h" line="44" column="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_timer" kindref="compound">Timer</ref> class that stores current time at command. Useful for measuring time deltas in code </para>
+    </detaileddescription>
+    <location file="timer.h" line="15" column="1" bodyfile="timer.h" bodystart="15" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_timer_1a343466ffc155509a0342d40fe308061e" prot="public" virt="non-virtual"><scope>Timer</scope><name>getCurrentTime</name></member>
+      <member refid="class_timer_1a934a5a082a5e8a94de48684aa376572d" prot="public" virt="non-virtual"><scope>Timer</scope><name>getTime</name></member>
+      <member refid="class_timer_1a2830b17e5e89164d28eb73458753b64b" prot="public" virt="non-virtual"><scope>Timer</scope><name>start</name></member>
+      <member refid="class_timer_1ab86544f70043bd85200330a3bb2b5dae" prot="private" virt="non-virtual"><scope>Timer</scope><name>start_time</name></member>
+      <member refid="class_timer_1aac15e75f611256c2b6503c07e4606396" prot="public" virt="non-virtual"><scope>Timer</scope><name>stop</name></member>
+      <member refid="class_timer_1a507734f47dbf8ac6ee4a57d37743b6cd" prot="private" virt="non-virtual"><scope>Timer</scope><name>stop_time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

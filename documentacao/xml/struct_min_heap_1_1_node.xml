@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="struct_min_heap_1_1_node" kind="struct" language="C++" prot="private">
+    <compoundname>MinHeap::Node</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_min_heap_1_1_node_1a2282121136aa89c86c774e26908f2eb6" prot="public" static="no" mutable="no">
+        <type>K</type>
+        <definition>K MinHeap&lt; K, V &gt;::Node::key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="19" column="11" bodyfile="minHeap.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_min_heap_1_1_node_1ab31a78bd9a3e1e3f6c21afe70b188289" prot="public" static="no" mutable="no">
+        <type>V</type>
+        <definition>V MinHeap&lt; K, V &gt;::Node::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="20" column="11" bodyfile="minHeap.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="minHeap.h" line="18" column="5" bodyfile="minHeap.h" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="struct_min_heap_1_1_node_1a2282121136aa89c86c774e26908f2eb6" prot="public" virt="non-virtual"><scope>MinHeap::Node</scope><name>key</name></member>
+      <member refid="struct_min_heap_1_1_node_1ab31a78bd9a3e1e3f6c21afe70b188289" prot="public" virt="non-virtual"><scope>MinHeap::Node</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

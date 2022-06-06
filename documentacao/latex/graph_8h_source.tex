@@ -1,0 +1,109 @@
+\hypertarget{graph_8h_source}{}\doxysection{graph.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_GRAPH\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_GRAPH\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <climits>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}set"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}map"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}stack"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}readFiles.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../include/minHeap.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../include/maxHeap.h"{}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define INF ( INT\_MAX / 2)}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{23 \textcolor{keyword}{enum} Color \{}
+\DoxyCodeLine{24     WHITE, GREY, BLACK}
+\DoxyCodeLine{25 \};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{30 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35     \textcolor{keyword}{struct }Edge \{}
+\DoxyCodeLine{36         \textcolor{keywordtype}{int} dest, duration, cap, flow, residual;}
+\DoxyCodeLine{37     \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42     \textcolor{keyword}{struct }Node \{}
+\DoxyCodeLine{43         list<Edge> adj;}
+\DoxyCodeLine{44         \textcolor{keywordtype}{int} dist;}
+\DoxyCodeLine{45         \textcolor{keywordtype}{int} capacity;}
+\DoxyCodeLine{46         \textcolor{keywordtype}{int} pred;}
+\DoxyCodeLine{47         Color color;}
+\DoxyCodeLine{48         \textcolor{keywordtype}{bool} visited;}
+\DoxyCodeLine{49         \textcolor{keywordtype}{int} degree = 0;}
+\DoxyCodeLine{50         \textcolor{keywordtype}{int} level = 0;}
+\DoxyCodeLine{51         \textcolor{keywordtype}{int} ES = 0;}
+\DoxyCodeLine{52         \textcolor{keywordtype}{int} LF = 0;}
+\DoxyCodeLine{53     \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{comment}{// Important information about Graph Object}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{57     \textcolor{keywordtype}{bool} includeResidual;}
+\DoxyCodeLine{58     vector<Node> nodes;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keyword}{public}:}
+\DoxyCodeLine{66     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_graph_ab7ed46069f0ef69abd002f00512c3eb4}{Graph}}(\textcolor{keywordtype}{int} nodes, \textcolor{keywordtype}{bool} includeResidual = \textcolor{keyword}{false});}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{72     \mbox{\hyperlink{class_graph}{Graph}} *\mbox{\hyperlink{class_graph_a8e1ef0e7ed58ac4853273fdf43c67801}{transpose}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{81     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a8d01a6cde3a2fb3732d02bed81268546}{addEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} duration, \textcolor{keywordtype}{int} cap = 1);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ac8568e2dee70d12201c9aba194e79d2e}{maximum\_capacity}}();}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{95     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a43b3f9654a3e60fb52f778f15daef9c1}{maximum\_capacity\_with\_shortest\_path}}(\textcolor{keywordtype}{int} max = INT32\_MAX);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{103     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ac3828054e06e2e56673e498c2a9e30cd}{shortest\_path\_with\_maximum\_capacity}}(\textcolor{keywordtype}{int} min = INT32\_MIN);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{109     list<int> \mbox{\hyperlink{class_graph_acdef71890a7ec2ae60a920858360d6e3}{get\_path}}();}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{116     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{125     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a7ad72ed7eee778c1874d62fefe6377b4}{bfs\_sink}}(\textcolor{keywordtype}{int} u, \textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{comment}{// stack<int> topologicalSorting();}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{134     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a20f902dc53b8885c924f230797f94f86}{dfsTopSort}}(\textcolor{keywordtype}{int} v, stack<int> \&l);}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{141     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aa201cbe7d928038c7b9cb5cd759ea98b}{cycleDfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{146     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a1f7cc151b51ef6adbb113a94b43aa46f}{critical\_path\_lf}}();}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{151     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a8d1e98320ebaa549bacaca74e68038f3}{max\_FL}}();}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{156     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ad80775afcaa1329fd46436ab254d1d5c}{max\_FT}}();}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ac83d539cd6bea2604ebd5b8f365aa513}{max\_path\_dag}}();}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{169     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aa4c43c82778e410053e2fc19012dcc2b}{cen\_2\_1}}(\textcolor{keywordtype}{int} groupSize);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{177     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a9843cadf490a7d040bb1b4c57e2ebe35}{edmonds\_karp\_bfs}}(\textcolor{keywordtype}{int} s, \textcolor{keywordtype}{int} t);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{184     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a73331ecf77c21f70217ff52ac85464d6}{edmonds\_karp\_dfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{190     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ac615b1ce04b5cbc2c7e90d725eacef49}{dinic\_algo}}();}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{199     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a573010ea691bfd1d99c4ca51da75a354}{send\_dinic\_flow}}(\textcolor{keywordtype}{int} s, \textcolor{keywordtype}{int} flow, \textcolor{keywordtype}{int} t);}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{208     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a0f711308a54d86f3ef9e5e4d37f68942}{edmonds\_karp}}(\textcolor{keywordtype}{int} groupSize\_limiter = 0, \textcolor{keywordtype}{bool} useDfs = \textcolor{keyword}{false});}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{216     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a33d7f8a950836ca72fa684efbe108300}{edmonds\_karp\_update}}(\textcolor{keywordtype}{int} bottleNeck, \textcolor{keywordtype}{int} s, \textcolor{keywordtype}{int} t);}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{224     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a701b7ebbaec62bc9cdb70bb6288bbd43}{getPathBottleNeck}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{232     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a7187806eda0055303ee4974972da88c9}{edmonds\_karp\_flow\_path}}(\textcolor{keywordtype}{int} s, \textcolor{keywordtype}{int} t, \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}} = \textcolor{keyword}{false});}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{239     [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aae8066c344d480bf4f4c522c53de2c80}{isValidGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{240 \};}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242 \mbox{\hyperlink{class_graph}{Graph}} buildGraph(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{bool} includeResidual = \textcolor{keyword}{false});}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

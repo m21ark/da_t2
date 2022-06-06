@@ -1,0 +1,382 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_ab7ed46069f0ef69abd002f00512c3eb4}{Graph}} (int nodes, bool include\+Residual=false)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_graph_a8e1ef0e7ed58ac4853273fdf43c67801}{transpose}} ()
+\item 
+void \mbox{\hyperlink{class_graph_a8d01a6cde3a2fb3732d02bed81268546}{add\+Edge}} (int src, int dest, int duration, int cap=1)
+\item 
+int \mbox{\hyperlink{class_graph_ac8568e2dee70d12201c9aba194e79d2e}{maximum\+\_\+capacity}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a43b3f9654a3e60fb52f778f15daef9c1}{maximum\+\_\+capacity\+\_\+with\+\_\+shortest\+\_\+path}} (int max=INT32\+\_\+\+MAX)
+\item 
+int \mbox{\hyperlink{class_graph_ac3828054e06e2e56673e498c2a9e30cd}{shortest\+\_\+path\+\_\+with\+\_\+maximum\+\_\+capacity}} (int min=INT32\+\_\+\+MIN)
+\item 
+list$<$ int $>$ \mbox{\hyperlink{class_graph_acdef71890a7ec2ae60a920858360d6e3}{get\+\_\+path}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}} (int v)
+\item 
+bool \mbox{\hyperlink{class_graph_a7ad72ed7eee778c1874d62fefe6377b4}{bfs\+\_\+sink}} (int u, int v)
+\item 
+void \mbox{\hyperlink{class_graph_a20f902dc53b8885c924f230797f94f86}{dfs\+Top\+Sort}} (int v, stack$<$ int $>$ \&l)
+\item 
+bool \mbox{\hyperlink{class_graph_aa201cbe7d928038c7b9cb5cd759ea98b}{cycle\+Dfs}} (int v)
+\item 
+void \mbox{\hyperlink{class_graph_a1f7cc151b51ef6adbb113a94b43aa46f}{critical\+\_\+path\+\_\+lf}} ()
+\item 
+void \mbox{\hyperlink{class_graph_a8d1e98320ebaa549bacaca74e68038f3}{max\+\_\+\+FL}} ()
+\item 
+void \mbox{\hyperlink{class_graph_ad80775afcaa1329fd46436ab254d1d5c}{max\+\_\+\+FT}} ()
+\item 
+void \mbox{\hyperlink{class_graph_ac83d539cd6bea2604ebd5b8f365aa513}{max\+\_\+path\+\_\+dag}} ()
+\item 
+bool \mbox{\hyperlink{class_graph_aa4c43c82778e410053e2fc19012dcc2b}{cen\+\_\+2\+\_\+1}} (int group\+Size)
+\item 
+int \mbox{\hyperlink{class_graph_a9843cadf490a7d040bb1b4c57e2ebe35}{edmonds\+\_\+karp\+\_\+bfs}} (int s, int t)
+\item 
+int \mbox{\hyperlink{class_graph_a73331ecf77c21f70217ff52ac85464d6}{edmonds\+\_\+karp\+\_\+dfs}} (int v)
+\item 
+int \mbox{\hyperlink{class_graph_ac615b1ce04b5cbc2c7e90d725eacef49}{dinic\+\_\+algo}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a573010ea691bfd1d99c4ca51da75a354}{send\+\_\+dinic\+\_\+flow}} (int s, int flow, int t)
+\item 
+int \mbox{\hyperlink{class_graph_a0f711308a54d86f3ef9e5e4d37f68942}{edmonds\+\_\+karp}} (int group\+Size\+\_\+limiter=0, bool use\+Dfs=false)
+\item 
+void \mbox{\hyperlink{class_graph_a33d7f8a950836ca72fa684efbe108300}{edmonds\+\_\+karp\+\_\+update}} (int bottle\+Neck, int s, int t)
+\item 
+int \mbox{\hyperlink{class_graph_a701b7ebbaec62bc9cdb70bb6288bbd43}{get\+Path\+Bottle\+Neck}} (int start, int end)
+\item 
+int \mbox{\hyperlink{class_graph_a7187806eda0055303ee4974972da88c9}{edmonds\+\_\+karp\+\_\+flow\+\_\+path}} (int s, int t, bool \mbox{\hyperlink{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}{dfs}}=false)
+\item 
+bool \mbox{\hyperlink{class_graph_aae8066c344d480bf4f4c522c53de2c80}{is\+Valid\+Graph}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_graph}{Graph}} class representation using adjacent lists 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_ab7ed46069f0ef69abd002f00512c3eb4}\label{class_graph_ab7ed46069f0ef69abd002f00512c3eb4}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{nodes,  }\item[{bool}]{include\+Residual = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Builds a graph 
+\begin{DoxyParams}{Parameters}
+{\em nodes} & number of nodes \\
+\hline
+{\em include\+Residual} & true if residual edges should be included, false otherwise \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a8d01a6cde3a2fb3732d02bed81268546}\label{class_graph_a8d01a6cde3a2fb3732d02bed81268546}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{int}]{duration,  }\item[{int}]{cap = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+Adds an edge to the graph that connects src and dest 
+\begin{DoxyParams}{Parameters}
+{\em src} & start node \\
+\hline
+{\em dest} & end node \\
+\hline
+{\em duration} & time taken to go from src to dest node \\
+\hline
+{\em cap} & capacity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a7ad72ed7eee778c1874d62fefe6377b4}\label{class_graph_a7ad72ed7eee778c1874d62fefe6377b4}} 
+\index{Graph@{Graph}!bfs\_sink@{bfs\_sink}}
+\index{bfs\_sink@{bfs\_sink}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs\_sink()}{bfs\_sink()}}
+{\footnotesize\ttfamily bool Graph\+::bfs\+\_\+sink (\begin{DoxyParamCaption}\item[{int}]{u,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+Bfs that only considers non saturated edges Sets level for nodes 
+\begin{DoxyParams}{Parameters}
+{\em u} & start node \\
+\hline
+{\em v} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean if v was visited by the bfs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aa4c43c82778e410053e2fc19012dcc2b}\label{class_graph_aa4c43c82778e410053e2fc19012dcc2b}} 
+\index{Graph@{Graph}!cen\_2\_1@{cen\_2\_1}}
+\index{cen\_2\_1@{cen\_2\_1}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{cen\_2\_1()}{cen\_2\_1()}}
+{\footnotesize\ttfamily bool Graph\+::cen\+\_\+2\+\_\+1 (\begin{DoxyParamCaption}\item[{int}]{group\+Size }\end{DoxyParamCaption})}
+
+Checks if there is a shortest path with the capacity higher or equal than the one given. If so, then it outputs the result to the user. 
+\begin{DoxyParams}{Parameters}
+{\em group\+Size} & group size to look for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if path found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a1f7cc151b51ef6adbb113a94b43aa46f}\label{class_graph_a1f7cc151b51ef6adbb113a94b43aa46f}} 
+\index{Graph@{Graph}!critical\_path\_lf@{critical\_path\_lf}}
+\index{critical\_path\_lf@{critical\_path\_lf}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{critical\_path\_lf()}{critical\_path\_lf()}}
+{\footnotesize\ttfamily void Graph\+::critical\+\_\+path\+\_\+lf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the critical path of the graph using latest finish \mbox{\Hypertarget{class_graph_aa201cbe7d928038c7b9cb5cd759ea98b}\label{class_graph_aa201cbe7d928038c7b9cb5cd759ea98b}} 
+\index{Graph@{Graph}!cycleDfs@{cycleDfs}}
+\index{cycleDfs@{cycleDfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{cycleDfs()}{cycleDfs()}}
+{\footnotesize\ttfamily bool Graph\+::cycle\+Dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+Checks the graph for cycles 
+\begin{DoxyParams}{Parameters}
+{\em v} & start node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if cycle found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}\label{class_graph_a0b8af8ed6acdd35d9321742c7ffa4950}} 
+\index{Graph@{Graph}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily int Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+It traverses the graph using a depth-\/first search 
+\begin{DoxyParams}{Parameters}
+{\em v} & start node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a20f902dc53b8885c924f230797f94f86}\label{class_graph_a20f902dc53b8885c924f230797f94f86}} 
+\index{Graph@{Graph}!dfsTopSort@{dfsTopSort}}
+\index{dfsTopSort@{dfsTopSort}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfsTopSort()}{dfsTopSort()}}
+{\footnotesize\ttfamily void Graph\+::dfs\+Top\+Sort (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{stack$<$ int $>$ \&}]{l }\end{DoxyParamCaption})}
+
+Calculates de topological sorting path using dfs 
+\begin{DoxyParams}{Parameters}
+{\em v} & start node \\
+\hline
+{\em l} & stack of sorted nodes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_ac615b1ce04b5cbc2c7e90d725eacef49}\label{class_graph_ac615b1ce04b5cbc2c7e90d725eacef49}} 
+\index{Graph@{Graph}!dinic\_algo@{dinic\_algo}}
+\index{dinic\_algo@{dinic\_algo}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dinic\_algo()}{dinic\_algo()}}
+{\footnotesize\ttfamily int Graph\+::dinic\+\_\+algo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the maximum flow of a graph from start to finish using Dinic\textquotesingle{}s algorithm \begin{DoxyReturn}{Returns}
+max flow 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0f711308a54d86f3ef9e5e4d37f68942}\label{class_graph_a0f711308a54d86f3ef9e5e4d37f68942}} 
+\index{Graph@{Graph}!edmonds\_karp@{edmonds\_karp}}
+\index{edmonds\_karp@{edmonds\_karp}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmonds\_karp()}{edmonds\_karp()}}
+{\footnotesize\ttfamily int Graph\+::edmonds\+\_\+karp (\begin{DoxyParamCaption}\item[{int}]{group\+Size\+\_\+limiter = {\ttfamily 0},  }\item[{bool}]{use\+Dfs = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Main edmonds karp algorithm Calculates the maximum flow in a graph from s to t 
+\begin{DoxyParams}{Parameters}
+{\em group\+Size\+\_\+limiter} & max flow bottleneck \\
+\hline
+{\em use\+Dfs} & if DFS should be used instead of BFS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max flow of the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a9843cadf490a7d040bb1b4c57e2ebe35}\label{class_graph_a9843cadf490a7d040bb1b4c57e2ebe35}} 
+\index{Graph@{Graph}!edmonds\_karp\_bfs@{edmonds\_karp\_bfs}}
+\index{edmonds\_karp\_bfs@{edmonds\_karp\_bfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmonds\_karp\_bfs()}{edmonds\_karp\_bfs()}}
+{\footnotesize\ttfamily int Graph\+::edmonds\+\_\+karp\+\_\+bfs (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{int}]{t }\end{DoxyParamCaption})}
+
+BFS used to calculate edmonds\+\_\+karp\+\_\+algorithm 
+\begin{DoxyParams}{Parameters}
+{\em s} & start node \\
+\hline
+{\em t} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if node t is reached, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a73331ecf77c21f70217ff52ac85464d6}\label{class_graph_a73331ecf77c21f70217ff52ac85464d6}} 
+\index{Graph@{Graph}!edmonds\_karp\_dfs@{edmonds\_karp\_dfs}}
+\index{edmonds\_karp\_dfs@{edmonds\_karp\_dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmonds\_karp\_dfs()}{edmonds\_karp\_dfs()}}
+{\footnotesize\ttfamily int Graph\+::edmonds\+\_\+karp\+\_\+dfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+DFS used to calculate edmonds\+\_\+karp\+\_\+algorithm -\/-\/\texorpdfstring{$>$}{>} Ford Fulkerson 
+\begin{DoxyParams}{Parameters}
+{\em v} & node where to start DFS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of nodes visited 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a7187806eda0055303ee4974972da88c9}\label{class_graph_a7187806eda0055303ee4974972da88c9}} 
+\index{Graph@{Graph}!edmonds\_karp\_flow\_path@{edmonds\_karp\_flow\_path}}
+\index{edmonds\_karp\_flow\_path@{edmonds\_karp\_flow\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmonds\_karp\_flow\_path()}{edmonds\_karp\_flow\_path()}}
+{\footnotesize\ttfamily int Graph\+::edmonds\+\_\+karp\+\_\+flow\+\_\+path (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{int}]{t,  }\item[{bool}]{dfs = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Finds a flow path to the sink node 
+\begin{DoxyParams}{Parameters}
+{\em s} & start node \\
+\hline
+{\em t} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flow of the path found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a33d7f8a950836ca72fa684efbe108300}\label{class_graph_a33d7f8a950836ca72fa684efbe108300}} 
+\index{Graph@{Graph}!edmonds\_karp\_update@{edmonds\_karp\_update}}
+\index{edmonds\_karp\_update@{edmonds\_karp\_update}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmonds\_karp\_update()}{edmonds\_karp\_update()}}
+{\footnotesize\ttfamily void Graph\+::edmonds\+\_\+karp\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{bottle\+Neck,  }\item[{int}]{s,  }\item[{int}]{t }\end{DoxyParamCaption})}
+
+Updates the residual and flow parameters of the path found 
+\begin{DoxyParams}{Parameters}
+{\em bottle\+Neck} & the minimum capacity \\
+\hline
+{\em s} & start node \\
+\hline
+{\em t} & end node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_acdef71890a7ec2ae60a920858360d6e3}\label{class_graph_acdef71890a7ec2ae60a920858360d6e3}} 
+\index{Graph@{Graph}!get\_path@{get\_path}}
+\index{get\_path@{get\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{get\_path()}{get\_path()}}
+{\footnotesize\ttfamily list$<$ int $>$ Graph\+::get\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the path of the last used algorithm \begin{DoxyReturn}{Returns}
+path from a to b 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a701b7ebbaec62bc9cdb70bb6288bbd43}\label{class_graph_a701b7ebbaec62bc9cdb70bb6288bbd43}} 
+\index{Graph@{Graph}!getPathBottleNeck@{getPathBottleNeck}}
+\index{getPathBottleNeck@{getPathBottleNeck}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getPathBottleNeck()}{getPathBottleNeck()}}
+{\footnotesize\ttfamily int Graph\+::get\+Path\+Bottle\+Neck (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Get the minimum capacity edge along the path 
+\begin{DoxyParams}{Parameters}
+{\em start} & start node \\
+\hline
+{\em end} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimum capacity along the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aae8066c344d480bf4f4c522c53de2c80}\label{class_graph_aae8066c344d480bf4f4c522c53de2c80}} 
+\index{Graph@{Graph}!isValidGraph@{isValidGraph}}
+\index{isValidGraph@{isValidGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{isValidGraph()}{isValidGraph()}}
+{\footnotesize\ttfamily bool Graph\+::is\+Valid\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns if graph is a valid graph aka if was built with success \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8d1e98320ebaa549bacaca74e68038f3}\label{class_graph_a8d1e98320ebaa549bacaca74e68038f3}} 
+\index{Graph@{Graph}!max\_FL@{max\_FL}}
+\index{max\_FL@{max\_FL}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{max\_FL()}{max\_FL()}}
+{\footnotesize\ttfamily void Graph\+::max\+\_\+\+FL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the maximum \char`\"{}\+Folga livre\char`\"{} \mbox{\Hypertarget{class_graph_ad80775afcaa1329fd46436ab254d1d5c}\label{class_graph_ad80775afcaa1329fd46436ab254d1d5c}} 
+\index{Graph@{Graph}!max\_FT@{max\_FT}}
+\index{max\_FT@{max\_FT}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{max\_FT()}{max\_FT()}}
+{\footnotesize\ttfamily void Graph\+::max\+\_\+\+FT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the maximum \char`\"{}\+Folga total\char`\"{} \mbox{\Hypertarget{class_graph_ac83d539cd6bea2604ebd5b8f365aa513}\label{class_graph_ac83d539cd6bea2604ebd5b8f365aa513}} 
+\index{Graph@{Graph}!max\_path\_dag@{max\_path\_dag}}
+\index{max\_path\_dag@{max\_path\_dag}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{max\_path\_dag()}{max\_path\_dag()}}
+{\footnotesize\ttfamily void Graph\+::max\+\_\+path\+\_\+dag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Bfs update of the earliest start for paths containing flow \mbox{\Hypertarget{class_graph_ac8568e2dee70d12201c9aba194e79d2e}\label{class_graph_ac8568e2dee70d12201c9aba194e79d2e}} 
+\index{Graph@{Graph}!maximum\_capacity@{maximum\_capacity}}
+\index{maximum\_capacity@{maximum\_capacity}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{maximum\_capacity()}{maximum\_capacity()}}
+{\footnotesize\ttfamily int Graph\+::maximum\+\_\+capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates a maximum capacity path for the graph \begin{DoxyReturn}{Returns}
+max capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a43b3f9654a3e60fb52f778f15daef9c1}\label{class_graph_a43b3f9654a3e60fb52f778f15daef9c1}} 
+\index{Graph@{Graph}!maximum\_capacity\_with\_shortest\_path@{maximum\_capacity\_with\_shortest\_path}}
+\index{maximum\_capacity\_with\_shortest\_path@{maximum\_capacity\_with\_shortest\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{maximum\_capacity\_with\_shortest\_path()}{maximum\_capacity\_with\_shortest\_path()}}
+{\footnotesize\ttfamily int Graph\+::maximum\+\_\+capacity\+\_\+with\+\_\+shortest\+\_\+path (\begin{DoxyParamCaption}\item[{int}]{max = {\ttfamily INT32\+\_\+MAX} }\end{DoxyParamCaption})}
+
+Among the maximum capacity paths, it calculates the shortest one 
+\begin{DoxyParams}{Parameters}
+{\em max} & distance limiter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a573010ea691bfd1d99c4ca51da75a354}\label{class_graph_a573010ea691bfd1d99c4ca51da75a354}} 
+\index{Graph@{Graph}!send\_dinic\_flow@{send\_dinic\_flow}}
+\index{send\_dinic\_flow@{send\_dinic\_flow}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{send\_dinic\_flow()}{send\_dinic\_flow()}}
+{\footnotesize\ttfamily int Graph\+::send\+\_\+dinic\+\_\+flow (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{int}]{flow,  }\item[{int}]{t }\end{DoxyParamCaption})}
+
+Recursive part of the Dinic\textquotesingle{}s algorithm that finds available path to the sink node 
+\begin{DoxyParams}{Parameters}
+{\em s} & start node \\
+\hline
+{\em flow} & current flow along the recursive chain \\
+\hline
+{\em t} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flow found along the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ac3828054e06e2e56673e498c2a9e30cd}\label{class_graph_ac3828054e06e2e56673e498c2a9e30cd}} 
+\index{Graph@{Graph}!shortest\_path\_with\_maximum\_capacity@{shortest\_path\_with\_maximum\_capacity}}
+\index{shortest\_path\_with\_maximum\_capacity@{shortest\_path\_with\_maximum\_capacity}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{shortest\_path\_with\_maximum\_capacity()}{shortest\_path\_with\_maximum\_capacity()}}
+{\footnotesize\ttfamily int Graph\+::shortest\+\_\+path\+\_\+with\+\_\+maximum\+\_\+capacity (\begin{DoxyParamCaption}\item[{int}]{min = {\ttfamily INT32\+\_\+MIN} }\end{DoxyParamCaption})}
+
+Among the shortest paths, it calculates the path with the highest capacity 
+\begin{DoxyParams}{Parameters}
+{\em min} & capacity limiter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+capacity of path from a to b 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8e1ef0e7ed58ac4853273fdf43c67801}\label{class_graph_a8e1ef0e7ed58ac4853273fdf43c67801}} 
+\index{Graph@{Graph}!transpose@{transpose}}
+\index{transpose@{transpose}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} $\ast$ Graph\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the transpose graph \begin{DoxyReturn}{Returns}
+transposed graph 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+graph.\+h\end{DoxyCompactItemize}

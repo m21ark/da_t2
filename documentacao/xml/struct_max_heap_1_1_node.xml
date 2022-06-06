@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="struct_max_heap_1_1_node" kind="struct" language="C++" prot="private">
+    <compoundname>MaxHeap::Node</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_max_heap_1_1_node_1a144b7c3a43c6089ca0ee44a38b559a67" prot="public" static="no" mutable="no">
+        <type>K</type>
+        <definition>K MaxHeap&lt; K, V &gt;::Node::key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="18" column="11" bodyfile="maxHeap.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_max_heap_1_1_node_1a13b34bc222a189bc4f30900057d5508b" prot="public" static="no" mutable="no">
+        <type>V</type>
+        <definition>V MaxHeap&lt; K, V &gt;::Node::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="maxHeap.h" line="19" column="11" bodyfile="maxHeap.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="maxHeap.h" line="17" column="5" bodyfile="maxHeap.h" bodystart="17" bodyend="20"/>
+    <listofallmembers>
+      <member refid="struct_max_heap_1_1_node_1a144b7c3a43c6089ca0ee44a38b559a67" prot="public" virt="non-virtual"><scope>MaxHeap::Node</scope><name>key</name></member>
+      <member refid="struct_max_heap_1_1_node_1a13b34bc222a189bc4f30900057d5508b" prot="public" virt="non-virtual"><scope>MaxHeap::Node</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

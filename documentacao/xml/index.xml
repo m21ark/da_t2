@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.2" xml:lang="en-US">
+  <compound refid="struct_graph_1_1_edge" kind="struct"><name>Graph::Edge</name>
+    <member refid="struct_graph_1_1_edge_1a7afb7da8c73dfaca8bb3808b185fa05b" kind="variable"><name>dest</name></member>
+    <member refid="struct_graph_1_1_edge_1a0e169394c6fab0c4e53338ded5617e98" kind="variable"><name>duration</name></member>
+    <member refid="struct_graph_1_1_edge_1a984410210075aab26d8dbd5739886d89" kind="variable"><name>cap</name></member>
+    <member refid="struct_graph_1_1_edge_1ab1186050dff969b57602bbe2903f6796" kind="variable"><name>flow</name></member>
+    <member refid="struct_graph_1_1_edge_1aace46a884e44cf6cb8d7d02b680a3e73" kind="variable"><name>residual</name></member>
+  </compound>
+  <compound refid="struct_file_contents" kind="struct"><name>FileContents</name>
+    <member refid="struct_file_contents_1aeddb29b2da2e4bee0cffc81753e0f356" kind="variable"><name>pred</name></member>
+    <member refid="struct_file_contents_1a4bf99104d62693eda18de35c3475a123" kind="variable"><name>dest</name></member>
+    <member refid="struct_file_contents_1a03f30e67ecb16a0bbd269c3f6e0da761" kind="variable"><name>capacity</name></member>
+    <member refid="struct_file_contents_1a64d88b88e856ab6c36a56dcdf3424bfd" kind="variable"><name>duration</name></member>
+  </compound>
+  <compound refid="class_graph" kind="class"><name>Graph</name>
+    <member refid="class_graph_1a81a76a428e630453ef019a15b9092967" kind="variable"><name>n</name></member>
+    <member refid="class_graph_1a4e6b5ae36373d3af3bde7e67d36629ff" kind="variable"><name>includeResidual</name></member>
+    <member refid="class_graph_1a71b5e16eb9e0670fea3ecee3526abb41" kind="variable"><name>nodes</name></member>
+    <member refid="class_graph_1ab7ed46069f0ef69abd002f00512c3eb4" kind="function"><name>Graph</name></member>
+    <member refid="class_graph_1a8e1ef0e7ed58ac4853273fdf43c67801" kind="function"><name>transpose</name></member>
+    <member refid="class_graph_1a8d01a6cde3a2fb3732d02bed81268546" kind="function"><name>addEdge</name></member>
+    <member refid="class_graph_1ac8568e2dee70d12201c9aba194e79d2e" kind="function"><name>maximum_capacity</name></member>
+    <member refid="class_graph_1a43b3f9654a3e60fb52f778f15daef9c1" kind="function"><name>maximum_capacity_with_shortest_path</name></member>
+    <member refid="class_graph_1ac3828054e06e2e56673e498c2a9e30cd" kind="function"><name>shortest_path_with_maximum_capacity</name></member>
+    <member refid="class_graph_1acdef71890a7ec2ae60a920858360d6e3" kind="function"><name>get_path</name></member>
+    <member refid="class_graph_1a0b8af8ed6acdd35d9321742c7ffa4950" kind="function"><name>dfs</name></member>
+    <member refid="class_graph_1a7ad72ed7eee778c1874d62fefe6377b4" kind="function"><name>bfs_sink</name></member>
+    <member refid="class_graph_1a20f902dc53b8885c924f230797f94f86" kind="function"><name>dfsTopSort</name></member>
+    <member refid="class_graph_1aa201cbe7d928038c7b9cb5cd759ea98b" kind="function"><name>cycleDfs</name></member>
+    <member refid="class_graph_1a1f7cc151b51ef6adbb113a94b43aa46f" kind="function"><name>critical_path_lf</name></member>
+    <member refid="class_graph_1a8d1e98320ebaa549bacaca74e68038f3" kind="function"><name>max_FL</name></member>
+    <member refid="class_graph_1ad80775afcaa1329fd46436ab254d1d5c" kind="function"><name>max_FT</name></member>
+    <member refid="class_graph_1ac83d539cd6bea2604ebd5b8f365aa513" kind="function"><name>max_path_dag</name></member>
+    <member refid="class_graph_1aa4c43c82778e410053e2fc19012dcc2b" kind="function"><name>cen_2_1</name></member>
+    <member refid="class_graph_1a9843cadf490a7d040bb1b4c57e2ebe35" kind="function"><name>edmonds_karp_bfs</name></member>
+    <member refid="class_graph_1a73331ecf77c21f70217ff52ac85464d6" kind="function"><name>edmonds_karp_dfs</name></member>
+    <member refid="class_graph_1ac615b1ce04b5cbc2c7e90d725eacef49" kind="function"><name>dinic_algo</name></member>
+    <member refid="class_graph_1a573010ea691bfd1d99c4ca51da75a354" kind="function"><name>send_dinic_flow</name></member>
+    <member refid="class_graph_1a0f711308a54d86f3ef9e5e4d37f68942" kind="function"><name>edmonds_karp</name></member>
+    <member refid="class_graph_1a33d7f8a950836ca72fa684efbe108300" kind="function"><name>edmonds_karp_update</name></member>
+    <member refid="class_graph_1a701b7ebbaec62bc9cdb70bb6288bbd43" kind="function"><name>getPathBottleNeck</name></member>
+    <member refid="class_graph_1a7187806eda0055303ee4974972da88c9" kind="function"><name>edmonds_karp_flow_path</name></member>
+    <member refid="class_graph_1aae8066c344d480bf4f4c522c53de2c80" kind="function"><name>isValidGraph</name></member>
+  </compound>
+  <compound refid="class_max_heap" kind="class"><name>MaxHeap</name>
+    <member refid="class_max_heap_1a8c3a97a9b3765f62ecbb4de7f82b8f7b" kind="variable"><name>size</name></member>
+    <member refid="class_max_heap_1aacb9195df606635470e1926129fe17e6" kind="variable"><name>maxSize</name></member>
+    <member refid="class_max_heap_1ab2939e2fe509f5607e9a2fbfed54c11f" kind="variable"><name>a</name></member>
+    <member refid="class_max_heap_1a19487b967190bc6d2376fabc4d83c0f0" kind="variable"><name>pos</name></member>
+    <member refid="class_max_heap_1afd7702c650d7f5715d90e2305dbf3a29" kind="variable"><name>KEY_NOT_FOUND</name></member>
+    <member refid="class_max_heap_1a96866cb019ff4727229a5a415916bd21" kind="function"><name>upHeap</name></member>
+    <member refid="class_max_heap_1ad908fb7c202d80540db6924852ae06c6" kind="function"><name>downHeap</name></member>
+    <member refid="class_max_heap_1ac2270bc13e0ce5632cf4d77b41197144" kind="function"><name>swap</name></member>
+    <member refid="class_max_heap_1a4b7fb8601747d2c8364fe7525f23f45c" kind="function"><name>MaxHeap</name></member>
+    <member refid="class_max_heap_1a4d11babd3ad4e094967a405331310fcd" kind="function"><name>getSize</name></member>
+    <member refid="class_max_heap_1a3993a6e51f5114b931051144fff98bb5" kind="function"><name>hasKey</name></member>
+    <member refid="class_max_heap_1a7c7ced384549da4847be60e2bbc10940" kind="function"><name>insert</name></member>
+    <member refid="class_max_heap_1afc96285c3c1a9e7878c0f9af2864c5d7" kind="function"><name>increaseKey</name></member>
+    <member refid="class_max_heap_1ac64d27413e9e71de95355ae51ece6ba5" kind="function"><name>removeMax</name></member>
+  </compound>
+  <compound refid="class_menu" kind="class"><name>Menu</name>
+    <member refid="class_menu_1af926949d10332a96b26733c1feda298f" kind="function"><name>start</name></member>
+    <member refid="class_menu_1a91491fcf930057fab4a5460dcc43c7b6" kind="function"><name>askInt</name></member>
+    <member refid="class_menu_1a418a63311b050034256bb4ff1cb91735" kind="function"><name>displayResults</name></member>
+    <member refid="class_menu_1a92df48fe0d27745fdc6bb36cffef4ad5" kind="function"><name>submenu1</name></member>
+    <member refid="class_menu_1a81742ff5476945d1eb504b6e547d37f7" kind="function"><name>scenario1</name></member>
+    <member refid="class_menu_1aff8d69e152ee90a8a8bd76bc942cb86b" kind="function"><name>submenu2</name></member>
+    <member refid="class_menu_1a7eae084e77c52c6c528fbdc07cab2a24" kind="function"><name>scenario2</name></member>
+  </compound>
+  <compound refid="class_min_heap" kind="class"><name>MinHeap</name>
+    <member refid="class_min_heap_1a63167fa7a87828b182d552c31be43be3" kind="variable"><name>size</name></member>
+    <member refid="class_min_heap_1a113297ceca49dbb1999d6a2bd1a8a884" kind="variable"><name>maxSize</name></member>
+    <member refid="class_min_heap_1a506467ea6e5c2680c47eea76092beb89" kind="variable"><name>a</name></member>
+    <member refid="class_min_heap_1af754d24ad86ac63ffecefa960021cc51" kind="variable"><name>pos</name></member>
+    <member refid="class_min_heap_1a9807875fda68c608ad977021c767afe9" kind="variable"><name>KEY_NOT_FOUND</name></member>
+    <member refid="class_min_heap_1aa557bc2acdf4c278e37811f1260fe992" kind="function"><name>upHeap</name></member>
+    <member refid="class_min_heap_1a3c546146fe05dce2d81e3f4e93fbf014" kind="function"><name>downHeap</name></member>
+    <member refid="class_min_heap_1aa7def05463b20015e9956e6c5bb3f291" kind="function"><name>swap</name></member>
+    <member refid="class_min_heap_1a8041a62441509d4fd713e3b1bfad8f31" kind="function"><name>MinHeap</name></member>
+    <member refid="class_min_heap_1a17652e042dae3954be25a1cd9e04f3b0" kind="function"><name>getSize</name></member>
+    <member refid="class_min_heap_1ae5bd0efd391f31ed67634d5eeb50622e" kind="function"><name>hasKey</name></member>
+    <member refid="class_min_heap_1a708cab4630ba761be49aea0ae536d772" kind="function"><name>insert</name></member>
+    <member refid="class_min_heap_1acb40738ccbaf73f7c093f8504387587b" kind="function"><name>decreaseKey</name></member>
+    <member refid="class_min_heap_1a3ab07802846cc4314d7ec383180d3b82" kind="function"><name>removeMin</name></member>
+  </compound>
+  <compound refid="struct_graph_1_1_node" kind="struct"><name>Graph::Node</name>
+    <member refid="struct_graph_1_1_node_1af39d72970d35b4e23ce032f3b3deaeb8" kind="variable"><name>adj</name></member>
+    <member refid="struct_graph_1_1_node_1aaa7cc99f209076f200ddc0af96217bf9" kind="variable"><name>dist</name></member>
+    <member refid="struct_graph_1_1_node_1a2446d7d493d129df278b16fbfb3f470c" kind="variable"><name>capacity</name></member>
+    <member refid="struct_graph_1_1_node_1a09f5571b617c4763e2b74ef1a83232c8" kind="variable"><name>pred</name></member>
+    <member refid="struct_graph_1_1_node_1a9ee69f028c5a62377344b26fe5adb723" kind="variable"><name>color</name></member>
+    <member refid="struct_graph_1_1_node_1a2360e752c746736f533bc4e673c1f80d" kind="variable"><name>visited</name></member>
+    <member refid="struct_graph_1_1_node_1a55924081bdfd47b643fe96fee5e8777a" kind="variable"><name>degree</name></member>
+    <member refid="struct_graph_1_1_node_1a8a72cbb227d5caebffdcf54c24aade46" kind="variable"><name>level</name></member>
+    <member refid="struct_graph_1_1_node_1a5e4addc4491870d9ed29aa96547e3609" kind="variable"><name>ES</name></member>
+    <member refid="struct_graph_1_1_node_1a6febd11673d4273dde151e81aa71b98d" kind="variable"><name>LF</name></member>
+  </compound>
+  <compound refid="struct_max_heap_1_1_node" kind="struct"><name>MaxHeap::Node</name>
+    <member refid="struct_max_heap_1_1_node_1a144b7c3a43c6089ca0ee44a38b559a67" kind="variable"><name>key</name></member>
+    <member refid="struct_max_heap_1_1_node_1a13b34bc222a189bc4f30900057d5508b" kind="variable"><name>value</name></member>
+  </compound>
+  <compound refid="struct_min_heap_1_1_node" kind="struct"><name>MinHeap::Node</name>
+    <member refid="struct_min_heap_1_1_node_1a2282121136aa89c86c774e26908f2eb6" kind="variable"><name>key</name></member>
+    <member refid="struct_min_heap_1_1_node_1ab31a78bd9a3e1e3f6c21afe70b188289" kind="variable"><name>value</name></member>
+  </compound>
+  <compound refid="class_timer" kind="class"><name>Timer</name>
+    <member refid="class_timer_1ab86544f70043bd85200330a3bb2b5dae" kind="variable"><name>start_time</name></member>
+    <member refid="class_timer_1a507734f47dbf8ac6ee4a57d37743b6cd" kind="variable"><name>stop_time</name></member>
+    <member refid="class_timer_1a2830b17e5e89164d28eb73458753b64b" kind="function"><name>start</name></member>
+    <member refid="class_timer_1aac15e75f611256c2b6503c07e4606396" kind="function"><name>stop</name></member>
+    <member refid="class_timer_1a343466ffc155509a0342d40fe308061e" kind="function"><name>getCurrentTime</name></member>
+    <member refid="class_timer_1a934a5a082a5e8a94de48684aa376572d" kind="function"><name>getTime</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespacestd_1_1chrono" kind="namespace"><name>std::chrono</name>
+  </compound>
+  <compound refid="graph_8h" kind="file"><name>graph.h</name>
+    <member refid="graph_8h_1a12c2040f25d8e3a7b9e1c2024c618cb6" kind="define"><name>INF</name></member>
+    <member refid="graph_8h_1ab87bacfdad76e61b9412d7124be44c1c" kind="enum"><name>Color</name></member>
+    <member refid="graph_8h_1ab87bacfdad76e61b9412d7124be44c1ca283fc479650da98250635b9c3c0e7e50" kind="enumvalue"><name>WHITE</name></member>
+    <member refid="graph_8h_1ab87bacfdad76e61b9412d7124be44c1ca38566822dbd9408c447abfd3ed4a85d2" kind="enumvalue"><name>GREY</name></member>
+    <member refid="graph_8h_1ab87bacfdad76e61b9412d7124be44c1caf77fb67151d0c18d397069ad8c271ba3" kind="enumvalue"><name>BLACK</name></member>
+    <member refid="graph_8h_1a6edf4c9c74b446bdb72c5bcd7c7d0b1c" kind="function"><name>buildGraph</name></member>
+  </compound>
+  <compound refid="max_heap_8h" kind="file"><name>maxHeap.h</name>
+    <member refid="max_heap_8h_1a25d5ae2e52c533b5f27895fcf7a4ea95" kind="define"><name>LEFT</name></member>
+    <member refid="max_heap_8h_1a134d4f19a207929c1e9716743771ae5a" kind="define"><name>RIGHT</name></member>
+    <member refid="max_heap_8h_1a91004761621b8ef1c66f3601988fde7c" kind="define"><name>PARENT</name></member>
+  </compound>
+  <compound refid="menu_8h" kind="file"><name>menu.h</name>
+    <member refid="menu_8h_1a611cc9b5f655508482f3d7a9751c182a" kind="define"><name>CLEAR</name></member>
+    <member refid="menu_8h_1a0e8de783fb4e2dbaf8aaddefa63191ff" kind="define"><name>TERMINAL_CLEAR</name></member>
+    <member refid="menu_8h_1a26d46534b8726f429d834df179469941" kind="function"><name>trimStr</name></member>
+    <member refid="menu_8h_1a350686f25a4947619a3a5e7c3bc5ebf6" kind="function"><name>emptyStream</name></member>
+  </compound>
+  <compound refid="min_heap_8h" kind="file"><name>minHeap.h</name>
+    <member refid="min_heap_8h_1a25d5ae2e52c533b5f27895fcf7a4ea95" kind="define"><name>LEFT</name></member>
+    <member refid="min_heap_8h_1a134d4f19a207929c1e9716743771ae5a" kind="define"><name>RIGHT</name></member>
+    <member refid="min_heap_8h_1a91004761621b8ef1c66f3601988fde7c" kind="define"><name>PARENT</name></member>
+  </compound>
+  <compound refid="objs_8h" kind="file"><name>objs.h</name>
+  </compound>
+  <compound refid="read_files_8h" kind="file"><name>readFiles.h</name>
+    <member refid="read_files_8h_1adce6434fd9a295841d3d830236d72ac1" kind="function"><name>read_file</name></member>
+    <member refid="read_files_8h_1a932be49efbcb3a3798228d7aac933608" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="read_files_8h_1ae28f8dbbf69203b7bd7ecb52c783fad7" kind="function"><name>operator&gt;&gt;</name></member>
+  </compound>
+  <compound refid="timer_8h" kind="file"><name>timer.h</name>
+    <member refid="timer_8h_1aad733886e2311708e74c623561d22b96" kind="typedef"><name>time_point_t</name></member>
+  </compound>
+</doxygenindex>

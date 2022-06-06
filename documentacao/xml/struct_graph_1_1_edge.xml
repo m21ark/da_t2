@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="struct_graph_1_1_edge" kind="struct" language="C++" prot="private">
+    <compoundname>Graph::Edge</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_graph_1_1_edge_1a7afb7da8c73dfaca8bb3808b185fa05b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Edge::dest</definition>
+        <argsstring></argsstring>
+        <name>dest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="36" column="13" bodyfile="graph.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_edge_1a0e169394c6fab0c4e53338ded5617e98" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Edge::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="36" column="18" bodyfile="graph.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_edge_1a984410210075aab26d8dbd5739886d89" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Edge::cap</definition>
+        <argsstring></argsstring>
+        <name>cap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="36" column="27" bodyfile="graph.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_edge_1ab1186050dff969b57602bbe2903f6796" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Edge::flow</definition>
+        <argsstring></argsstring>
+        <name>flow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="36" column="31" bodyfile="graph.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_graph_1_1_edge_1aace46a884e44cf6cb8d7d02b680a3e73" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Graph::Edge::residual</definition>
+        <argsstring></argsstring>
+        <name>residual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="graph.h" line="36" column="36" bodyfile="graph.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Union between to Nodes </para>
+    </detaileddescription>
+    <location file="graph.h" line="35" column="5" bodyfile="graph.h" bodystart="35" bodyend="37"/>
+    <listofallmembers>
+      <member refid="struct_graph_1_1_edge_1a984410210075aab26d8dbd5739886d89" prot="public" virt="non-virtual"><scope>Graph::Edge</scope><name>cap</name></member>
+      <member refid="struct_graph_1_1_edge_1a7afb7da8c73dfaca8bb3808b185fa05b" prot="public" virt="non-virtual"><scope>Graph::Edge</scope><name>dest</name></member>
+      <member refid="struct_graph_1_1_edge_1a0e169394c6fab0c4e53338ded5617e98" prot="public" virt="non-virtual"><scope>Graph::Edge</scope><name>duration</name></member>
+      <member refid="struct_graph_1_1_edge_1ab1186050dff969b57602bbe2903f6796" prot="public" virt="non-virtual"><scope>Graph::Edge</scope><name>flow</name></member>
+      <member refid="struct_graph_1_1_edge_1aace46a884e44cf6cb8d7d02b680a3e73" prot="public" virt="non-virtual"><scope>Graph::Edge</scope><name>residual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="struct_file_contents" kind="struct" language="C++" prot="public">
+    <compoundname>FileContents</compoundname>
+    <includes refid="objs_8h" local="no">objs.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_file_contents_1aeddb29b2da2e4bee0cffc81753e0f356" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileContents::pred</definition>
+        <argsstring></argsstring>
+        <name>pred</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="objs.h" line="8" column="9" bodyfile="objs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_file_contents_1a4bf99104d62693eda18de35c3475a123" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileContents::dest</definition>
+        <argsstring></argsstring>
+        <name>dest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="objs.h" line="8" column="14" bodyfile="objs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_file_contents_1a03f30e67ecb16a0bbd269c3f6e0da761" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileContents::capacity</definition>
+        <argsstring></argsstring>
+        <name>capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="objs.h" line="8" column="19" bodyfile="objs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_file_contents_1a64d88b88e856ab6c36a56dcdf3424bfd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileContents::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="objs.h" line="8" column="28" bodyfile="objs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Line of data file </para>
+    </detaileddescription>
+    <location file="objs.h" line="7" column="1" bodyfile="objs.h" bodystart="7" bodyend="9"/>
+    <listofallmembers>
+      <member refid="struct_file_contents_1a03f30e67ecb16a0bbd269c3f6e0da761" prot="public" virt="non-virtual"><scope>FileContents</scope><name>capacity</name></member>
+      <member refid="struct_file_contents_1a4bf99104d62693eda18de35c3475a123" prot="public" virt="non-virtual"><scope>FileContents</scope><name>dest</name></member>
+      <member refid="struct_file_contents_1a64d88b88e856ab6c36a56dcdf3424bfd" prot="public" virt="non-virtual"><scope>FileContents</scope><name>duration</name></member>
+      <member refid="struct_file_contents_1aeddb29b2da2e4bee0cffc81753e0f356" prot="public" virt="non-virtual"><scope>FileContents</scope><name>pred</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

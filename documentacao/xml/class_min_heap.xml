@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="class_min_heap" kind="class" language="C++" prot="public">
+    <compoundname>MinHeap</compoundname>
+    <innerclass refid="struct_min_heap_1_1_node" prot="private">MinHeap::Node</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class K</type>
+      </param>
+      <param>
+        <type>class V</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_min_heap_1a63167fa7a87828b182d552c31be43be3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MinHeap&lt; K, V &gt;::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="23" column="9" bodyfile="minHeap.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_min_heap_1a113297ceca49dbb1999d6a2bd1a8a884" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MinHeap&lt; K, V &gt;::maxSize</definition>
+        <argsstring></argsstring>
+        <name>maxSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="24" column="9" bodyfile="minHeap.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_min_heap_1a506467ea6e5c2680c47eea76092beb89" prot="private" static="no" mutable="no">
+        <type>vector&lt; Node &gt;</type>
+        <definition>vector&lt;Node&gt; MinHeap&lt; K, V &gt;::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="25" column="12" bodyfile="minHeap.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_min_heap_1af754d24ad86ac63ffecefa960021cc51" prot="private" static="no" mutable="no">
+        <type>unordered_map&lt; K, int &gt;</type>
+        <definition>unordered_map&lt;K, int&gt; MinHeap&lt; K, V &gt;::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="26" column="19" bodyfile="minHeap.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_min_heap_1a9807875fda68c608ad977021c767afe9" prot="private" static="no" mutable="no">
+        <type>const K</type>
+        <definition>const K MinHeap&lt; K, V &gt;::KEY_NOT_FOUND</definition>
+        <argsstring></argsstring>
+        <name>KEY_NOT_FOUND</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="27" column="13" bodyfile="minHeap.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_min_heap_1aa557bc2acdf4c278e37811f1260fe992" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MinHeap&lt; K, V &gt;::upHeap</definition>
+        <argsstring>(int i)</argsstring>
+        <name>upHeap</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="29" column="10" bodyfile="minHeap.h" bodystart="47" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1a3c546146fe05dce2d81e3f4e93fbf014" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MinHeap&lt; K, V &gt;::downHeap</definition>
+        <argsstring>(int i)</argsstring>
+        <name>downHeap</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="31" column="10" bodyfile="minHeap.h" bodystart="56" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1aa7def05463b20015e9956e6c5bb3f291" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MinHeap&lt; K, V &gt;::swap</definition>
+        <argsstring>(int i1, int i2)</argsstring>
+        <name>swap</name>
+        <param>
+          <type>int</type>
+          <declname>i1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="33" column="10" bodyfile="minHeap.h" bodystart="68" bodyend="74"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_min_heap_1a8041a62441509d4fd713e3b1bfad8f31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MinHeap&lt; K, V &gt;::MinHeap</definition>
+        <argsstring>(int n, const K &amp;notFound)</argsstring>
+        <name>MinHeap</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const K &amp;</type>
+          <declname>notFound</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="36" column="5" bodyfile="minHeap.h" bodystart="78" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1a17652e042dae3954be25a1cd9e04f3b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int MinHeap&lt; K, V &gt;::getSize</definition>
+        <argsstring>()</argsstring>
+        <name>getSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="37" column="9" bodyfile="minHeap.h" bodystart="83" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1ae5bd0efd391f31ed67634d5eeb50622e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MinHeap&lt; K, V &gt;::hasKey</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>hasKey</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="38" column="10" bodyfile="minHeap.h" bodystart="89" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1a708cab4630ba761be49aea0ae536d772" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MinHeap&lt; K, V &gt;::insert</definition>
+        <argsstring>(const K &amp;key, const V &amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const V &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="39" column="10" bodyfile="minHeap.h" bodystart="95" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1acb40738ccbaf73f7c093f8504387587b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MinHeap&lt; K, V &gt;::decreaseKey</definition>
+        <argsstring>(const K &amp;key, const V &amp;value)</argsstring>
+        <name>decreaseKey</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const V &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="40" column="10" bodyfile="minHeap.h" bodystart="105" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_min_heap_1a3ab07802846cc4314d7ec383180d3b82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>K</type>
+        <definition>K MinHeap&lt; K, V &gt;::removeMin</definition>
+        <argsstring>()</argsstring>
+        <name>removeMin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="minHeap.h" line="41" column="7" bodyfile="minHeap.h" bodystart="115" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="minHeap.h" line="17" column="1" bodyfile="minHeap.h" bodystart="17" bodyend="42"/>
+    <listofallmembers>
+      <member refid="class_min_heap_1a506467ea6e5c2680c47eea76092beb89" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>a</name></member>
+      <member refid="class_min_heap_1acb40738ccbaf73f7c093f8504387587b" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>decreaseKey</name></member>
+      <member refid="class_min_heap_1a3c546146fe05dce2d81e3f4e93fbf014" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>downHeap</name></member>
+      <member refid="class_min_heap_1a17652e042dae3954be25a1cd9e04f3b0" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>getSize</name></member>
+      <member refid="class_min_heap_1ae5bd0efd391f31ed67634d5eeb50622e" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>hasKey</name></member>
+      <member refid="class_min_heap_1a708cab4630ba761be49aea0ae536d772" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>insert</name></member>
+      <member refid="class_min_heap_1a9807875fda68c608ad977021c767afe9" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>KEY_NOT_FOUND</name></member>
+      <member refid="class_min_heap_1a113297ceca49dbb1999d6a2bd1a8a884" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>maxSize</name></member>
+      <member refid="class_min_heap_1a8041a62441509d4fd713e3b1bfad8f31" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>MinHeap</name></member>
+      <member refid="class_min_heap_1af754d24ad86ac63ffecefa960021cc51" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>pos</name></member>
+      <member refid="class_min_heap_1a3ab07802846cc4314d7ec383180d3b82" prot="public" virt="non-virtual"><scope>MinHeap</scope><name>removeMin</name></member>
+      <member refid="class_min_heap_1a63167fa7a87828b182d552c31be43be3" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>size</name></member>
+      <member refid="class_min_heap_1aa7def05463b20015e9956e6c5bb3f291" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>swap</name></member>
+      <member refid="class_min_heap_1aa557bc2acdf4c278e37811f1260fe992" prot="private" virt="non-virtual"><scope>MinHeap</scope><name>upHeap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

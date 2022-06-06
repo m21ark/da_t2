@@ -1,0 +1,48 @@
+\hypertarget{menu_8h_source}{}\doxysection{menu.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef MENU\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define MENU\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}graph.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define CLEAR "{}cls"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#else }\textcolor{comment}{//In any other OS}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define CLEAR "{}clear"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define TERMINAL\_CLEAR  if(system(CLEAR))\{\}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{22 \textcolor{keywordtype}{string} trimStr(\textcolor{keywordtype}{string} str);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{29 \textcolor{keywordtype}{bool} emptyStream(istream \&ios);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{class_menu}{Menu}} \{}
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_af926949d10332a96b26733c1feda298f}{start}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{46     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_menu_a91491fcf930057fab4a5460dcc43c7b6}{askInt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&message);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{53     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_a418a63311b050034256bb4ff1cb91735}{displayResults}}(\textcolor{keywordtype}{int} capacity, \textcolor{keyword}{const} list<int> \&path);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{keyword}{private}:}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{61     \textcolor{keyword}{static} \textcolor{keywordtype}{void} submenu1();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{68     \textcolor{keyword}{static} \textcolor{keywordtype}{void} scenario1(\textcolor{keywordtype}{int} option);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74     \textcolor{keyword}{static} \textcolor{keywordtype}{void} submenu2();}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{81     \textcolor{keyword}{static} \textcolor{keywordtype}{void} scenario2(\textcolor{keywordtype}{int} option);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//MENU\_H}}
+
+\end{DoxyCode}
